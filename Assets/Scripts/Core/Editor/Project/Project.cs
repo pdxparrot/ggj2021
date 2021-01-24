@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Text;
 
 using UnityEditor;
@@ -302,8 +302,7 @@ namespace pdxpartyparrot.Core.Editor.Project
             PlayerSettings.SetIconsForTargetGroup(BuildTargetGroup.Unknown, new[] { defaultIcon });
         }
 
-        // TODO: this doesn't work anymore
-        /*private static void EnableExclusiveInputSystem()
+        private static void EnableExclusiveInputSystem()
         {
             // no nice interface for this :(
 
@@ -315,14 +314,19 @@ namespace pdxpartyparrot.Core.Editor.Project
 
             SerializedObject projectSettings = new SerializedObject(projectSettingsAssets[0]);
 
+#if UNITY_2020_1_OR_NEWER
+            SerializedProperty activeInputHandler = projectSettings.FindProperty("activeInputHandler");
+            activeInputHandler.intValue = 1;
+#else
             SerializedProperty enableNativePlatformBackendsForNewInputSystem = projectSettings.FindProperty("enableNativePlatformBackendsForNewInputSystem");
             enableNativePlatformBackendsForNewInputSystem.boolValue = true;
 
             SerializedProperty disableOldInputManagerSupport = projectSettings.FindProperty("disableOldInputManagerSupport");
             disableOldInputManagerSupport.boolValue = true;
+#endif
 
             projectSettings.ApplyModifiedProperties();
-        }*/
+        }
 
         // TODO: break this down into platform specific methods
         private static void InitializePlayerSettingsV1()
@@ -360,7 +364,7 @@ namespace pdxpartyparrot.Core.Editor.Project
             PlayerSettings.SetIl2CppCompilerConfiguration(BuildTargetGroup.Android, Il2CppCompilerConfiguration.Release);
             PlayerSettings.SetIl2CppCompilerConfiguration(BuildTargetGroup.iOS, Il2CppCompilerConfiguration.Release);
 
-            //EnableExclusiveInputSystem();
+            EnableExclusiveInputSystem();
 
             // "Oreo" min Android SDK
             PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel26;
