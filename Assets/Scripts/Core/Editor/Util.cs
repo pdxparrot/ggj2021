@@ -8,6 +8,8 @@ using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Networking;
 
+using pdxpartyparrot.Core.Network;
+
 namespace pdxpartyparrot.Core.Editor
 {
     // TODO: some of this should move to Core.Util.EditorUtils so game code can use it in editor mode
@@ -47,7 +49,7 @@ namespace pdxpartyparrot.Core.Editor
                 Thread.Sleep(500);
             }
 
-            if(www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
+            if(www.IsHttpError()) {
                 Debug.LogError($"Failed to download asset from {url}: {www.error}");
                 return false;
             }
