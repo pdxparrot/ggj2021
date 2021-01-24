@@ -23,7 +23,7 @@ namespace pdxpartyparrot.Core.Network
     [RequireComponent(typeof(NetworkDiscovery))]
     public sealed class NetworkManager : UnityEngine.Networking.NetworkManager
 #else
-    public sealed class NetworkManager :  SingletonBehavior<NetworkManager>
+    public sealed class NetworkManager : SingletonBehavior<NetworkManager>
 #endif
     {
         #region Events
