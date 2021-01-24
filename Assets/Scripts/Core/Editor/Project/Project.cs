@@ -93,8 +93,9 @@ namespace pdxpartyparrot.Core.Editor.Project
 
             InitializeFileSystem(version);
 
-            if(!DownloadAssets(version))
+            if(!DownloadAssets(version)) {
                 return false;
+            }
 
             InitializeCompilerOptions(version);
 
@@ -135,11 +136,13 @@ namespace pdxpartyparrot.Core.Editor.Project
         private static bool DownloadAssets(int version)
         {
 
-            if(!DownloadArt(version))
+            if(!DownloadArt(version)) {
                 return false;
+            }
 
-            if(!DownloadAudio(version))
+            if(!DownloadAudio(version)) {
                 return false;
+            }
 
             return true;
         }
@@ -148,11 +151,13 @@ namespace pdxpartyparrot.Core.Editor.Project
 
         private static bool DownloadArtV1()
         {
-            if(!Util.DownloadTextureToFile(DefaultIconUrl, DefaultIconPath, TextureImporterType.Sprite))
+            if(!Util.DownloadTextureToFile(DefaultIconUrl, DefaultIconPath, TextureImporterType.Sprite)) {
                 return false;
+            }
 
-            if(!Util.DownloadTextureToFile(ProgressSpriteUrl, $"Assets/Art/Core/{ProgressSpriteFileName}", TextureImporterType.Sprite))
+            if(!Util.DownloadTextureToFile(ProgressSpriteUrl, $"Assets/Art/Core/{ProgressSpriteFileName}", TextureImporterType.Sprite)) {
                 return false;
+            }
 
             return true;
         }
@@ -160,8 +165,9 @@ namespace pdxpartyparrot.Core.Editor.Project
         private static bool DownloadArt(int version)
         {
             if(version < 1) {
-                if(!DownloadArtV1())
+                if(!DownloadArtV1()) {
                     return false;
+                }
             }
 
             return true;
@@ -173,11 +179,13 @@ namespace pdxpartyparrot.Core.Editor.Project
 
         private static bool DownloadAudioV1()
         {
-            if(!Util.DownloadSFXToFile(ButtonClickUrl, $"Assets/Audio/UI/{ButtonClickFileName}"))
+            if(!Util.DownloadSFXToFile(ButtonClickUrl, $"Assets/Audio/UI/{ButtonClickFileName}")) {
                 return false;
+            }
 
-            if(!Util.DownloadSFXToFile(ButtonHoverUrl, $"Assets/Audio/UI/{ButtonHoverFileName}"))
+            if(!Util.DownloadSFXToFile(ButtonHoverUrl, $"Assets/Audio/UI/{ButtonHoverFileName}")) {
                 return false;
+            }
 
             return true;
         }
@@ -185,8 +193,9 @@ namespace pdxpartyparrot.Core.Editor.Project
         private static bool DownloadAudio(int version)
         {
             if(version < 1) {
-                if(!DownloadAudioV1())
+                if(!DownloadAudioV1()) {
                     return false;
+                }
             }
 
             return true;

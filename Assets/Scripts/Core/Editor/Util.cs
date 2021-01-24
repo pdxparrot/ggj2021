@@ -73,8 +73,9 @@ namespace pdxpartyparrot.Core.Editor
 
         public static bool DownloadTextureToFile(string url, string path, TextureImporterType type)
         {
-            if(!DownloadAssetToFile(url, path))
+            if(!DownloadAssetToFile(url, path)) {
                 return false;
+            }
 
             TextureImporter textureImporter = (TextureImporter)AssetImporter.GetAtPath(path);
             textureImporter.textureType = type;
@@ -85,8 +86,9 @@ namespace pdxpartyparrot.Core.Editor
 
         public static bool DownloadMusicToFile(string url, string path)
         {
-            if(!DownloadAssetToFile(url, path))
+            if(!DownloadAssetToFile(url, path)) {
                 return false;
+            }
 
             AudioImporter audioImporter = (AudioImporter)AssetImporter.GetAtPath(path);
             audioImporter.preloadAudioData = true;
@@ -105,8 +107,9 @@ namespace pdxpartyparrot.Core.Editor
 
         public static bool DownloadStingerToFile(string url, string path)
         {
-            if(!DownloadAssetToFile(url, path))
+            if(!DownloadAssetToFile(url, path)) {
                 return false;
+            }
 
             AudioImporter audioImporter = (AudioImporter)AssetImporter.GetAtPath(path);
             audioImporter.preloadAudioData = true;
@@ -125,8 +128,9 @@ namespace pdxpartyparrot.Core.Editor
 
         public static bool DownloadSFXToFile(string url, string path)
         {
-            if(!DownloadAssetToFile(url, path))
+            if(!DownloadAssetToFile(url, path)) {
                 return false;
+            }
 
             AudioImporter audioImporter = (AudioImporter)AssetImporter.GetAtPath(path);
             audioImporter.preloadAudioData = true;
