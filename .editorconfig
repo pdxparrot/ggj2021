@@ -204,6 +204,6 @@ csharp_space_between_parentheses = false
 csharp_space_between_square_brackets = false
 
 # Blocks are allowed
-csharp_prefer_braces = true
+csharp_prefer_braces = true:warning
 csharp_preserve_single_line_blocks = true
 csharp_preserve_single_line_statements = false
