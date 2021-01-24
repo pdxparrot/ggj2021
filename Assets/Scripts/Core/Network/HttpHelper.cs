@@ -19,7 +19,7 @@ namespace pdxpartyparrot.Core.Network
                 yield return asyncOp.progress;
             }
 
-            if(www.isNetworkError || www.isHttpError) {
+            if(www.IsHttpError()) {
                 failure?.Invoke(www.error);
             } else {
                 success?.Invoke(www.downloadHandler.text);
@@ -34,7 +34,7 @@ namespace pdxpartyparrot.Core.Network
                 yield return asyncOp.progress;
             }
 
-            if(www.isNetworkError || www.isHttpError) {
+            if(www.IsHttpError()) {
                 failure?.Invoke(www.error);
             } else {
                 success?.Invoke(www.downloadHandler.data);
@@ -49,7 +49,7 @@ namespace pdxpartyparrot.Core.Network
                 yield return asyncOp.progress;
             }
 
-            if(www.isNetworkError || www.isHttpError) {
+            if(www.IsHttpError()) {
                 failure?.Invoke(www.error);
             } else {
                 success?.Invoke(((DownloadHandlerAssetBundle)www.downloadHandler).assetBundle);
@@ -64,7 +64,7 @@ namespace pdxpartyparrot.Core.Network
                 yield return asyncOp.progress;
             }
 
-            if(www.isNetworkError || www.isHttpError) {
+            if(www.IsHttpError()) {
                 failure?.Invoke(www.error);
             } else {
                 success?.Invoke(((DownloadHandlerTexture)www.downloadHandler).texture);
@@ -79,7 +79,7 @@ namespace pdxpartyparrot.Core.Network
                 yield return asyncOp.progress;
             }
 
-            if(www.isNetworkError || www.isHttpError) {
+            if(www.IsHttpError()) {
                 failure?.Invoke(www.error);
             } else {
                 success?.Invoke(((DownloadHandlerAudioClip)www.downloadHandler).audioClip);
@@ -98,7 +98,7 @@ namespace pdxpartyparrot.Core.Network
                 yield return asyncOp.progress;
             }
 
-            if(www.isNetworkError || www.isHttpError) {
+            if(www.IsHttpError()) {
                 failure?.Invoke(www.error);
             } else {
                 success?.Invoke();
@@ -117,7 +117,7 @@ namespace pdxpartyparrot.Core.Network
                 yield return asyncOp.progress;
             }
 
-            if(www.isNetworkError || www.isHttpError) {
+            if(www.IsHttpError()) {
                 failure?.Invoke(www.error);
             } else {
                 success?.Invoke();
@@ -136,7 +136,7 @@ namespace pdxpartyparrot.Core.Network
                 yield return asyncOp.progress;
             }
 
-            if(www.isNetworkError || www.isHttpError) {
+            if(www.IsHttpError()) {
                 failure?.Invoke(www.error);
             } else {
                 success?.Invoke();
