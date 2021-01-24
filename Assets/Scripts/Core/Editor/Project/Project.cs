@@ -228,11 +228,13 @@ namespace pdxpartyparrot.Core.Editor.Project
             Util.AddPackage("com.unity.inputsystem");
             Util.AddPackage("com.unity.mathematics");
             Util.AddPackage("com.unity.multiplayer-hlapi");
+            Util.AddPackage("com.unity.polybrush");
             Util.AddPackage("com.unity.postprocessing");
             Util.AddPackage("com.unity.probuilder");
             Util.AddPackage("com.unity.progrids");
             Util.AddPackage("com.unity.quicksearch");
             Util.AddPackage("com.unity.render-pipelines.core");
+            Util.AddPackage("com.unity.render-pipelines.universal");
             Util.AddPackage("com.unity.scriptablebuildpipeline");
             Util.AddPackage("com.unity.searcher");
             Util.AddPackage("com.unity.settings-manager");
@@ -281,7 +283,7 @@ namespace pdxpartyparrot.Core.Editor.Project
             // base c# project namespace
             EditorSettings.projectGenerationRootNamespace = "pdxpartyparrot";
 
-            // unix line endings
+            // OS native line endings
             EditorSettings.lineEndingsForNewScripts = LineEndingsMode.OSNative;
         }
 
