@@ -15,12 +15,12 @@ namespace pdxpartyparrot.Game.Editor.Dialogue
 
         public void OnDropOutsidePort(Edge edge, Vector2 position)
         {
-            // TODO
+            // TODO:
         }
 
         public void OnDrop(GraphView graphView, Edge edge)
         {
-            // TODO
+            // TODO:
         }
     }
 }
