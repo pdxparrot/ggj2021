@@ -33,7 +33,6 @@ namespace pdxpartyparrot.Core.Data
         public EffectTrigger DefaultButtonHoverEffectTriggerPrefab => _defaultButtonHoverEffectPrefab;
 
         [SerializeField]
-        [FormerlySerializedAs("_defaultButtonClickEffectPrefab")]
         [CanBeNull]
         private EffectTrigger _defaultButtonSubmitEffectPrefab;
 

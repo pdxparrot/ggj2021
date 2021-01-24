@@ -19,7 +19,6 @@ namespace pdxpartyparrot.Core.UI
         private EffectTrigger _hoverEffectTrigger;
 
         [SerializeField]
-        [FormerlySerializedAs("_clickEffectTrigger")]
         [CanBeNull]
         private EffectTrigger _submitEffectTrigger;
 
