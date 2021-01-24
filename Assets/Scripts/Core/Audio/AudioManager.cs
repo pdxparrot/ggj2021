@@ -22,8 +22,8 @@ namespace pdxpartyparrot.Core.Audio
 
         private struct InternalAudioMixerSnapshotConfig
         {
-            public AudioMixerSnapshot[] snapshots;
-            public float[] weights;
+            public AudioMixerSnapshot[] Snapshots;
+            public float[] Weights;
         }
 
         [SerializeField]
@@ -201,13 +201,13 @@ namespace pdxpartyparrot.Core.Audio
 
             // add in the paused / unpaused config
             AddSnapshotConfig("unpaused", new InternalAudioMixerSnapshotConfig {
-                snapshots = new[] { _mixer.FindSnapshot(_audioData.UnpausedSnapshotName) },
-                weights = new[] { 1.0f }
+                Snapshots = new[] { _mixer.FindSnapshot(_audioData.UnpausedSnapshotName) },
+                Weights = new[] { 1.0f }
             });
 
             AddSnapshotConfig("paused", new InternalAudioMixerSnapshotConfig {
-                snapshots = new[] { _mixer.FindSnapshot(_audioData.PausedSnapshotName) },
-                weights = new[] { 1.0f }
+                Snapshots = new[] { _mixer.FindSnapshot(_audioData.PausedSnapshotName) },
+                Weights = new[] { 1.0f }
             });
 
             // init our audio sources
@@ -458,13 +458,13 @@ namespace pdxpartyparrot.Core.Audio
         private void AddSnapshotConfig(AudioMixerSnapshotsConfig snapshotsConfig)
         {
             InternalAudioMixerSnapshotConfig snapshotConfig = new InternalAudioMixerSnapshotConfig {
-                snapshots = new AudioMixerSnapshot[snapshotsConfig.Snapshots.Count],
-                weights = new float[snapshotsConfig.Snapshots.Count]
+                Snapshots = new AudioMixerSnapshot[snapshotsConfig.Snapshots.Count],
+                Weights = new float[snapshotsConfig.Snapshots.Count]
             };
 
             for(int i = 0; i < snapshotsConfig.Snapshots.Count; ++i) {
-                snapshotConfig.snapshots[i] = _mixer.FindSnapshot(snapshotsConfig.Snapshots.ElementAt(i).Name);
-                snapshotConfig.weights[i] = snapshotsConfig.Snapshots.ElementAt(i).Weight;
+                snapshotConfig.Snapshots[i] = _mixer.FindSnapshot(snapshotsConfig.Snapshots.ElementAt(i).Name);
+                snapshotConfig.Weights[i] = snapshotsConfig.Snapshots.ElementAt(i).Weight;
             }
 
             AddSnapshotConfig(snapshotsConfig.Id, snapshotConfig);
@@ -481,7 +481,7 @@ namespace pdxpartyparrot.Core.Audio
         public void SetSnapshots(string snapshotId)
         {
             if(_snapshotConfigs.TryGetValue(snapshotId, out var snapshotConfig)) {
-                _mixer.TransitionToSnapshots(snapshotConfig.snapshots, snapshotConfig.weights, 0.1f);
+                _mixer.TransitionToSnapshots(snapshotConfig.Snapshots, snapshotConfig.Weights, 0.1f);
             }
         }
 
