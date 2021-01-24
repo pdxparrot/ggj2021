@@ -1,5 +1,13 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "Keijiro",
+      "url": "https://registry.npmjs.com",
+      "scopes": [ "jp.keijiro" ]
+    }
+  ],
   "dependencies": {
+    "jp.keijiro.kino.post-processing": "2.1.15",
     "com.unity.addressables": "1.16.15",
     "com.unity.assetbundlebrowser": "1.7.0",
     "com.unity.cinemachine": "2.7.1",

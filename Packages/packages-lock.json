@@ -134,6 +134,27 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.render-pipelines.high-definition": {
+      "version": "10.2.2",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.render-pipelines.core": "10.2.2",
+        "com.unity.shadergraph": "10.2.2",
+        "com.unity.visualeffectgraph": "10.2.2",
+        "com.unity.render-pipelines.high-definition-config": "10.2.2"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.render-pipelines.high-definition-config": {
+      "version": "10.2.2",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.render-pipelines.core": "10.2.2"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.scriptablebuildpipeline": {
       "version": "1.15.1",
       "depth": 0,
@@ -214,6 +235,15 @@
         "com.unity.shadergraph": "10.2.2"
       },
       "url": "https://packages.unity.com"
+    },
+    "jp.keijiro.kino.post-processing": {
+      "version": "2.1.15",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.render-pipelines.high-definition": "7.4.1"
+      },
+      "url": "https://registry.npmjs.com"
     },
     "nuget.mono-cecil": {
       "version": "0.1.6-preview",
