@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 using JetBrains.Annotations;
@@ -68,7 +69,7 @@ namespace pdxpartyparrot.Core.Editor.Scripting
             _nodeList.bindItem = BindItemEventHandler;
             _nodeList.itemsSource = null;
             _nodeList.selectionType = SelectionType.Single;
-            _nodeList.onItemChosen += ItemChosenEventHandler;
+            _nodeList.onItemsChosen += ItemsChosenEventHandler;
         }
 
         #endregion
@@ -108,13 +109,15 @@ namespace pdxpartyparrot.Core.Editor.Scripting
             (element as Label).text = GetNodeName(index);
         }
 
-        private void ItemChosenEventHandler(object item)
+        private void ItemsChosenEventHandler(IEnumerable<object> items)
         {
-            string nodeName = item as string;
+            foreach(object item in items) {
+                string nodeName = item as string;
 
-            ScriptViewNode node = CreateNode(nodeName, _nodePosition);
+                ScriptViewNode node = CreateNode(nodeName, _nodePosition);
 
-            _onSuccess?.Invoke(node);
+                _onSuccess?.Invoke(node);
+            }
 
             Close();
         }
