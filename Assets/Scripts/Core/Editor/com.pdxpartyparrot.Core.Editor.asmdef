@@ -1,0 +1,19 @@
+{
+    "name": "com.pdxpartyparrot.Core.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b816156c0aa5d741dbe8a8b80f10e537",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
