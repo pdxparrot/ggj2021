@@ -345,6 +345,11 @@ namespace pdxpartyparrot.Core.Editor.Project
 
             // TODO: need to enable static and dynamic batching but seems like we have to open the asset itself to do it
 
+            // incremental GC
+#if UNITY_2020_1_OR_NEWER
+            PlayerSettings.gcIncremental = true;
+#endif
+
             // script runtime
 #if !UNITY_2019_3_OR_NEWER
             PlayerSettings.scriptingRuntimeVersion = ScriptingRuntimeVersion.Latest;
