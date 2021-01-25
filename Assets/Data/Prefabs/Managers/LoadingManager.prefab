@@ -66,6 +66,7 @@ MonoBehaviour:
   _gameStateManagerPrefab: {fileID: 4861747054959334081, guid: 1a0c077d66a24beb58325daa98b6fa55, type: 3}
   _dialogueManagerPrefab: {fileID: 165803276568352641, guid: f680b73981c9e71b4b4516ea4e08c1de, type: 3}
   _cinematicsManagerPrefab: {fileID: 9207573412211450996, guid: f43a1f1ca2bc0cec4882772fe5731d13, type: 3}
+  _gameManagerPrefab: {fileID: 1006178552989964167, guid: 5c5fdc9141528de438d5451fa21cf083, type: 3}
   references:
     version: 1
     00000000:
