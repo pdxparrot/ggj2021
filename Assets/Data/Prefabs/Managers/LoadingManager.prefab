@@ -45,27 +45,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainCamera: {fileID: 0}
   _loadingScreen: {fileID: 0}
-  _engineManagerPrefab: {fileID: 0}
-  _debugMenuManagerPrefab: {fileID: 0}
-  _timeManagerPrefab: {fileID: 0}
-  _saveGameManagerPrefab: {fileID: 0}
-  _uiManagerPrefab: {fileID: 0}
-  _localizationManagerPrefab: {fileID: 0}
-  _audioManagerPrefab: {fileID: 0}
-  _viewerManagerPrefab: {fileID: 0}
-  _inputManagerPrefab: {fileID: 0}
-  _networkManagerPrefab: {fileID: 0}
-  _sceneManagerPrefab: {fileID: 0}
-  _objectPoolManagerPrefab: {fileID: 0}
-  _spawnManagerPrefab: {fileID: 0}
-  _actorManagerPrefab: {fileID: 0}
-  _effectsManagerPrefab: {fileID: 0}
-  _loadingTips: {fileID: 0}
+  _loadingTips: {fileID: 11400000, guid: 75ac10958b9204dad9d9946ef4214472, type: 2}
   _loadingTipTimer:
     id: 0
-  _gameStateManagerPrefab: {fileID: 0}
-  _dialogManagerPrefab: {fileID: 0}
-  _cinematicsManagerPrefab: {fileID: 0}
+  _engineManagerPrefab: {fileID: 5039776761241147311, guid: c6473c6ecf0ce2be1b1d96941001092c, type: 3}
+  _debugMenuManagerPrefab: {fileID: 1823371298958064680, guid: 87d4db5aeff8f443bb3e83d87fab8f4d, type: 3}
+  _timeManagerPrefab: {fileID: 4774796896725155799, guid: 0e018f29e033ee97489e7adb80fce222, type: 3}
+  _saveGameManagerPrefab: {fileID: 8836157691694879368, guid: 75b7dfdc05917d7e38548b90021c498c, type: 3}
+  _uiManagerPrefab: {fileID: 6714807760145345686, guid: 9ea0f55c92356fb99a6d59b6360392f0, type: 3}
+  _localizationManagerPrefab: {fileID: 5148682250534288474, guid: f27721bd19bbe05ac9284675826f76fc, type: 3}
+  _audioManagerPrefab: {fileID: 5425198496588607855, guid: df77aaf7b773ef3708948716bc1fd3d3, type: 3}
+  _viewerManagerPrefab: {fileID: 3835189037409725048, guid: ccf1973d52cb454af9f9c88f7f74ef28, type: 3}
+  _inputManagerPrefab: {fileID: 8852486416561472288, guid: cefb2fa2e7126e076bb101a5356e4f84, type: 3}
+  _networkManagerPrefab: {fileID: 343522394208071768, guid: f3050eb15a91a5da8a6aeff74aa64b0f, type: 3}
+  _sceneManagerPrefab: {fileID: 6011673321421391866, guid: 00075736382a0c769809231db0e8b9b1, type: 3}
+  _objectPoolManagerPrefab: {fileID: 886454824235680975, guid: 63668445a75fb94f982ee21188353504, type: 3}
+  _spawnManagerPrefab: {fileID: 1328415530170223913, guid: 460bbb3abc573a3c386658296ccd45d7, type: 3}
+  _actorManagerPrefab: {fileID: 74435919057197284, guid: 865f5af8dc955c92d9245e758553dc05, type: 3}
+  _effectsManagerPrefab: {fileID: 3917343219837872124, guid: 0ba0fa053ed5dad0faec0df1983c49a4, type: 3}
+  _gameStateManagerPrefab: {fileID: 4861747054959334081, guid: 1a0c077d66a24beb58325daa98b6fa55, type: 3}
+  _dialogueManagerPrefab: {fileID: 165803276568352641, guid: f680b73981c9e71b4b4516ea4e08c1de, type: 3}
+  _cinematicsManagerPrefab: {fileID: 9207573412211450996, guid: f43a1f1ca2bc0cec4882772fe5731d13, type: 3}
   references:
     version: 1
     00000000:

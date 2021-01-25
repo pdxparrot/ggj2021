@@ -20,7 +20,7 @@ namespace pdxpartyparrot.Game.Loading
         private GameStateManager _gameStateManagerPrefab;
 
         [SerializeField]
-        private DialogueManager _dialogManagerPrefab;
+        private DialogueManager _dialogueManagerPrefab;
 
         [SerializeField]
         private CinematicsManager _cinematicsManagerPrefab;
@@ -33,7 +33,7 @@ namespace pdxpartyparrot.Game.Loading
 
             GameStateManager.CreateFromPrefab(_gameStateManagerPrefab, ManagersContainer);
             CinematicsManager.CreateFromPrefab(_cinematicsManagerPrefab, ManagersContainer);
-            DialogueManager.CreateFromPrefab(_dialogManagerPrefab, ManagersContainer);
+            DialogueManager.CreateFromPrefab(_dialogueManagerPrefab, ManagersContainer);
             HighScoreManager.Create(ManagersContainer);
         }
 

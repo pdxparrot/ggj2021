@@ -42,6 +42,16 @@ namespace pdxpartyparrot.Core.Loading
 
         [Space(10)]
 
+        [SerializeField]
+        [CanBeNull]
+        private LoadingTipData _loadingTips;
+
+        [SerializeReference]
+        [ReadOnly]
+        private ITimer _loadingTipTimer;
+
+        [Space(10)]
+
         #region Manager Prefabs
 
         [Header("Manager Prefabs")]
@@ -92,16 +102,6 @@ namespace pdxpartyparrot.Core.Loading
         private EffectsManager _effectsManagerPrefab;
 
         #endregion
-
-        [Space(10)]
-
-        [SerializeField]
-        [CanBeNull]
-        private LoadingTipData _loadingTips;
-
-        [SerializeReference]
-        [ReadOnly]
-        private ITimer _loadingTipTimer;
 
         protected GameObject ManagersContainer { get; private set; }
 

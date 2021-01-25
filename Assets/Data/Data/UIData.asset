@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiLayer:
     serializedVersion: 2
-    m_Bits: 0
-  _defaultFont: {fileID: 0}
-  _defaultButtonHoverEffectPrefab: {fileID: 0}
-  _defaultButtonSubmitEffectPrefab: {fileID: 0}
-  _defaultButtonBackEffectPrefab: {fileID: 0}
+    m_Bits: 32
+  _defaultFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  _defaultButtonHoverEffectPrefab: {fileID: 1084686521062881621, guid: db15902925e75d407ad1d59d29310f9b, type: 3}
+  _defaultButtonSubmitEffectPrefab: {fileID: 4154296617995231905, guid: 8488cfd6904300c0e9cd958a099708fe, type: 3}
+  _defaultButtonBackEffectPrefab: {fileID: 6905726135780638412, guid: 05101d7ce6a7eb0a28551facd08793c0, type: 3}
