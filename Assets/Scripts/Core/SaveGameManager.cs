@@ -13,8 +13,12 @@ namespace pdxpartyparrot.Core
     // TODO: when writing to disk - https://docs.unity3d.com/Manual/JSONSerialization.html
     public class SaveGameManager : SingletonBehavior<SaveGameManager>
     {
+        private const string FileNameExtension = ".partyparrot";
+
         [SerializeField]
-        private string _saveFileName = "default.partyparrot";
+        private string _saveFileName = "default";
+
+        private string SaveFileName => $"{_saveFileName}{FileNameExtension}";
 
         [SerializeField]
         [ReadOnly]
@@ -53,7 +57,7 @@ namespace pdxpartyparrot.Core
 
         public IEnumerator LoadSaveRoutine()
         {
-            Debug.Log($"Loading save file '{_saveFileName}'...");
+            Debug.Log($"Loading save file '{SaveFileName}'...");
 
             // TODO: read the save file
             yield break;
