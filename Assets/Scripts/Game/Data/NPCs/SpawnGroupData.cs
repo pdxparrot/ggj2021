@@ -11,11 +11,6 @@ namespace pdxpartyparrot.Game.Data.NPCs
     [Serializable]
     public class SpawnGroupData
     {
-        [Serializable]
-        public class ReorderableList : ReorderableList<SpawnGroupData>
-        {
-        }
-
         [SerializeField]
         private Actor _actorPrefab;
 

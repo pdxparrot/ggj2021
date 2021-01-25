@@ -14,18 +14,11 @@ namespace pdxpartyparrot.Core.Effects
 {
     public class EffectTrigger : MonoBehaviour
     {
-        [Serializable]
-        public class ReorderableList : ReorderableList<EffectTrigger>
-        {
-        }
+        [SerializeField]
+        private EffectTrigger[] _triggerOnComplete;
 
         [SerializeField]
-        [ReorderableList]
-        private ReorderableList _triggerOnComplete = new ReorderableList();
-
-        [SerializeField]
-        [ReorderableList]
-        private EffectTriggerComponent.ReorderableList _components = new EffectTriggerComponent.ReorderableList();
+        private EffectTriggerComponent[] _components;
 
         [SerializeField]
         [ReadOnly]
@@ -73,7 +66,7 @@ namespace pdxpartyparrot.Core.Effects
         [CanBeNull]
         public T GetEffectTriggerComponent<T>() where T : EffectTriggerComponent
         {
-            foreach(var component in _components.Items) {
+            foreach(var component in _components) {
                 T tc = component as T;
                 if(tc != null) {
                     return tc;
@@ -85,7 +78,7 @@ namespace pdxpartyparrot.Core.Effects
         public void GetEffectTriggerComponents<T>(ICollection<T> components) where T : EffectTriggerComponent
         {
             components.Clear();
-            foreach(var component in _components.Items) {
+            foreach(var component in _components) {
                 T tc = component as T;
                 if(tc != null) {
                     components.Add(tc);
@@ -95,7 +88,7 @@ namespace pdxpartyparrot.Core.Effects
 
         private void RunOnComponents(Action<EffectTriggerComponent> f)
         {
-            foreach(var component in _components.Items) {
+            foreach(var component in _components) {
                 f(component);
             }
         }
@@ -143,7 +136,7 @@ namespace pdxpartyparrot.Core.Effects
             _isRunning = true;
 
             if(EffectsManager.Instance.EnableDebug) {
-                Debug.Log($"Trigger {_components.Items.Count} more effects on {name}");
+                Debug.Log($"Trigger {_components.Length} more effects on {name}");
             }
 
             RunOnComponents(c => {
@@ -183,7 +176,7 @@ namespace pdxpartyparrot.Core.Effects
                 }
             });
 
-            foreach(var onCompleteEffect in _triggerOnComplete.Items) {
+            foreach(var onCompleteEffect in _triggerOnComplete) {
                 onCompleteEffect.KillTrigger();
             }
 
@@ -213,7 +206,7 @@ namespace pdxpartyparrot.Core.Effects
                 }
 
                 bool done = true;
-                foreach(EffectTriggerComponent component in _components.Items) {
+                foreach(EffectTriggerComponent component in _components) {
                     if(!component.WaitForComplete || component.IsDone) {
                         continue;
                     }
@@ -235,11 +228,11 @@ namespace pdxpartyparrot.Core.Effects
             callback?.Invoke();
 
             if(EffectsManager.Instance.EnableDebug) {
-                Debug.Log($"Trigger {_triggerOnComplete.Items.Count} more effects from {name}");
+                Debug.Log($"Trigger {_triggerOnComplete.Length} more effects from {name}");
             }
 
             // trigger further effects
-            foreach(var onCompleteEffect in _triggerOnComplete.Items) {
+            foreach(var onCompleteEffect in _triggerOnComplete) {
                 onCompleteEffect.TriggerWithContext(_context);
 
                 if(_complete) {
@@ -250,7 +243,7 @@ namespace pdxpartyparrot.Core.Effects
             // wait for those effects before we call ourself not running
             while(true) {
                 bool done = true;
-                foreach(EffectTrigger onCompleteEffect in _triggerOnComplete.Items) {
+                foreach(EffectTrigger onCompleteEffect in _triggerOnComplete) {
                     if(!onCompleteEffect.IsRunning) {
                         continue;
                     }

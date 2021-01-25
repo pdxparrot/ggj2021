@@ -13,11 +13,6 @@ namespace pdxpartyparrot.Core.Actors.Components
     // then that would work out a lot faster and cleaner than how this is currently done
     public abstract class ActorComponent : MonoBehaviour
     {
-        [Serializable]
-        public class ReorderableList : ReorderableList<ActorComponent>
-        {
-        }
-
         [SerializeField]
         [ReadOnly]
         [CanBeNull]

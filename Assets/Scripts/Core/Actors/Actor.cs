@@ -46,8 +46,7 @@ namespace pdxpartyparrot.Core.Actors
         [Header("Components")]
 
         [SerializeField]
-        [ReorderableList]
-        private ActorComponent.ReorderableList _components = new ActorComponent.ReorderableList();
+        private ActorComponent[] _components;
 
         #region Behavior
 
@@ -150,7 +149,7 @@ namespace pdxpartyparrot.Core.Actors
             _id = id;
             name = Id.ToString();
 
-            foreach(ActorComponent component in _components.Items) {
+            foreach(ActorComponent component in _components) {
                 component.Initialize(this);
 
                 // cache some useful components while we're here
@@ -172,7 +171,7 @@ namespace pdxpartyparrot.Core.Actors
         [CanBeNull]
         public T GetActorComponent<T>() where T : ActorComponent
         {
-            foreach(ActorComponent component in _components.Items) {
+            foreach(ActorComponent component in _components) {
                 T tc = component as T;
                 if(tc != null) {
                     return tc;
@@ -184,7 +183,7 @@ namespace pdxpartyparrot.Core.Actors
         public void GetActorComponents<T>(ICollection<T> components) where T : ActorComponent
         {
             components.Clear();
-            foreach(ActorComponent component in _components.Items) {
+            foreach(ActorComponent component in _components) {
                 T tc = component as T;
                 if(tc != null) {
                     components.Add(tc);
@@ -194,7 +193,7 @@ namespace pdxpartyparrot.Core.Actors
 
         public void RunOnComponents(Func<ActorComponent, bool> f)
         {
-            foreach(ActorComponent component in _components.Items) {
+            foreach(ActorComponent component in _components) {
                 if(f(component)) {
                     return;
                 }
@@ -240,7 +239,7 @@ namespace pdxpartyparrot.Core.Actors
             }
 
             if(components) {
-                foreach(ActorComponent component in _components.Items) {
+                foreach(ActorComponent component in _components) {
                     if(!component.CanMove) {
                         return false;
                     }

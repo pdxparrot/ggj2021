@@ -48,8 +48,7 @@ namespace pdxpartyparrot.Core.Tween
         private bool _firstRun = true;
 
         [SerializeField]
-        [ReorderableList]
-        private TweenRunner.ReorderableList _tweens = new TweenRunner.ReorderableList();
+        private TweenRunner[] _tweens;
 
         [CanBeNull]
         private Sequence _sequence;
@@ -70,7 +69,7 @@ namespace pdxpartyparrot.Core.Tween
         {
             PartyParrotManager.Instance.PauseEvent += PauseEventHandler;
 
-            foreach(TweenRunner runner in _tweens.Items) {
+            foreach(TweenRunner runner in _tweens) {
                 // cleanup the runner start states so they don't act outside our control
                 // TODO: this doesn't work :( bleh...
                 runner.PlayOnAwake = false;
@@ -109,7 +108,7 @@ namespace pdxpartyparrot.Core.Tween
         {
             Kill();
 
-            foreach(TweenRunner runner in _tweens.Items) {
+            foreach(TweenRunner runner in _tweens) {
                 runner.DoReset();
             }
         }
@@ -119,7 +118,7 @@ namespace pdxpartyparrot.Core.Tween
             // TODO: sequence / runner delay might need to factor into this
             // TODO: also time scale
             float duration = 0.0f;
-            foreach(TweenRunner runner in _tweens.Items) {
+            foreach(TweenRunner runner in _tweens) {
                 duration += (runner.Loops + 1) * runner.Duration;
             }
             return (Loops + 1) * duration;
@@ -133,7 +132,7 @@ namespace pdxpartyparrot.Core.Tween
                 .SetDelay(_firstRun ? (_firstRunDelay + _delay) : _delay)
                 .SetLoops(_loops, _loopType);
 
-            foreach(TweenRunner runner in _tweens.Items) {
+            foreach(TweenRunner runner in _tweens) {
                 _sequence.Append(runner.Play());
             }
 

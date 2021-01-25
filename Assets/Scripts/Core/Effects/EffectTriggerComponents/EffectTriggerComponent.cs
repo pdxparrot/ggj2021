@@ -1,19 +1,10 @@
-﻿using System;
-
-using pdxpartyparrot.Core.Util;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace pdxpartyparrot.Core.Effects.EffectTriggerComponents
 {
     [RequireComponent(typeof(EffectTrigger))]
     public abstract class EffectTriggerComponent : MonoBehaviour
     {
-        [Serializable]
-        public class ReorderableList : ReorderableList<EffectTriggerComponent>
-        {
-        }
-
         protected EffectTrigger Owner { get; private set; }
 
         public abstract bool WaitForComplete { get; }

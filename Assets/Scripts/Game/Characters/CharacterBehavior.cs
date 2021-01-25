@@ -46,8 +46,7 @@ namespace pdxpartyparrot.Game.Characters
         [Header("Components")]
 
         [SerializeField]
-        [ReorderableList]
-        private CharacterBehaviorComponent.ReorderableList _components = new CharacterBehaviorComponent.ReorderableList();
+        private CharacterBehaviorComponent[] _components;
 
         [Space(10)]
 
@@ -157,7 +156,7 @@ namespace pdxpartyparrot.Game.Characters
 
             _actionBuffer = new CircularBuffer<ActionBufferEntry>(CharacterBehaviorData.ActionBufferSize);
 
-            foreach(CharacterBehaviorComponent component in _components.Items) {
+            foreach(CharacterBehaviorComponent component in _components) {
                 component.Initialize(this);
             }
 
@@ -169,7 +168,7 @@ namespace pdxpartyparrot.Game.Characters
         [CanBeNull]
         public T GetBehaviorComponent<T>() where T : CharacterBehaviorComponent
         {
-            foreach(var component in _components.Items) {
+            foreach(var component in _components) {
                 T tc = component as T;
                 if(tc != null) {
                     return tc;
@@ -181,7 +180,7 @@ namespace pdxpartyparrot.Game.Characters
         public void GetBehaviorComponents<T>(ICollection<T> components) where T : CharacterBehaviorComponent
         {
             components.Clear();
-            foreach(var component in _components.Items) {
+            foreach(var component in _components) {
                 T tc = component as T;
                 if(tc != null) {
                     components.Add(tc);
@@ -191,7 +190,7 @@ namespace pdxpartyparrot.Game.Characters
 
         public void RunOnComponents(Func<CharacterBehaviorComponent, bool> f)
         {
-            foreach(CharacterBehaviorComponent component in _components.Items) {
+            foreach(CharacterBehaviorComponent component in _components) {
                 if(f(component)) {
                     return;
                 }

@@ -13,11 +13,6 @@ namespace pdxpartyparrot.Core.Tween
 {
     public abstract class TweenRunner : MonoBehaviour
     {
-        [Serializable]
-        public class ReorderableList : ReorderableList<TweenRunner>
-        {
-        }
-
         [SerializeField]
         private bool _playOnAwake = false;
 

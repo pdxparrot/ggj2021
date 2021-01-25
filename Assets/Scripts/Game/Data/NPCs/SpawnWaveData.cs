@@ -13,16 +13,10 @@ namespace pdxpartyparrot.Game.Data.NPCs
     [Serializable]
     public abstract class SpawnWaveData : ScriptableObject
     {
-        [Serializable]
-        public class ReorderableList : ReorderableList<SpawnWaveData>
-        {
-        }
-
         [SerializeField]
-        [ReorderableList]
-        private SpawnGroupData.ReorderableList _spawnGroups = new SpawnGroupData.ReorderableList();
+        private SpawnGroupData[] _spawnGroups;
 
-        public IReadOnlyCollection<SpawnGroupData> SpawnGroups => _spawnGroups.Items;
+        public IReadOnlyCollection<SpawnGroupData> SpawnGroups => _spawnGroups;
 
         #region Effects
 

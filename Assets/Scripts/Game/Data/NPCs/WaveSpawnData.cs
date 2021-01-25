@@ -12,9 +12,8 @@ namespace pdxpartyparrot.Game.Data.NPCs
     public class WaveSpawnData : ScriptableObject
     {
         [SerializeField]
-        [ReorderableList]
-        private SpawnWaveData.ReorderableList _waves = new SpawnWaveData.ReorderableList();
+        private SpawnWaveData[] _waves;
 
-        public IReadOnlyCollection<SpawnWaveData> Waves => _waves.Items;
+        public IReadOnlyCollection<SpawnWaveData> Waves => _waves;
     }
 }

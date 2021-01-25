@@ -1,8 +1,4 @@
-﻿using System;
-
-using JetBrains.Annotations;
-
-using pdxpartyparrot.Core.Util;
+﻿using JetBrains.Annotations;
 
 using UnityEngine;
 
@@ -12,11 +8,6 @@ namespace pdxpartyparrot.Game.Characters.BehaviorComponents
     {
         // TODO: if subclasses could register for specific action types (and we keep a dictionary ActionType => Listener)
         // then that would work out a lot faster and cleaner than how this is currently done
-
-        [Serializable]
-        public class ReorderableList : ReorderableList<CharacterBehaviorComponent>
-        {
-        }
 
         [CanBeNull]
         protected CharacterBehavior Behavior { get; private set; }
