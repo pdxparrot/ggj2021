@@ -240,6 +240,7 @@ namespace pdxpartyparrot.Core.Loading
         {
             SetLoadingScreenPercent(0.0f);
             SetLoadingScreenText("Loading...");
+            _loadingScreen.ShowLoadingTip("");
 
             ShowNextLoadingTip();
         }
@@ -264,7 +265,7 @@ namespace pdxpartyparrot.Core.Loading
 
         private void ShowNextLoadingTip()
         {
-            if(null == _loadingTips) {
+            if(!PartyParrotManager.HasInstance || null == _loadingTips) {
                 return;
             }
 
