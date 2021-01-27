@@ -175,7 +175,7 @@ namespace pdxpartyparrot.Game
 
         protected virtual void InitializeObjectPools()
         {
-            if(null != GameData.FloatingTextPrefab) {
+            if(null != GameData.FloatingTextPrefab && null != GameStateManager.Instance.GameUIManager) {
                 PooledObject pooledObject = GameData.FloatingTextPrefab.GetComponent<PooledObject>();
                 ObjectPoolManager.Instance.InitializePoolAsync(GameStateManager.Instance.GameUIManager.DefaultFloatingTextPoolName, pooledObject, GameData.FloatingTextPoolSize);
             }
@@ -183,7 +183,7 @@ namespace pdxpartyparrot.Game
 
         protected virtual void DestroyObjectPools()
         {
-            if(ObjectPoolManager.HasInstance) {
+            if(ObjectPoolManager.HasInstance && null != GameStateManager.Instance.GameUIManager) {
                 ObjectPoolManager.Instance.DestroyPool(GameStateManager.Instance.GameUIManager.DefaultFloatingTextPoolName);
             }
         }

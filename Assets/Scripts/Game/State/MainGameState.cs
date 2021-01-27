@@ -138,7 +138,11 @@ namespace pdxpartyparrot.Game.State
                 return false;
             }
 
-            GameStateManager.Instance.GameUIManager.Initialize();
+            if(null != GameStateManager.Instance.GameUIManager) {
+                GameStateManager.Instance.GameUIManager.Initialize();
+            } else {
+                Debug.LogWarning("GameUIManager missing!");
+            }
 
             Core.Network.NetworkManager.Instance.LocalClientReady(GameStateManager.Instance.NetworkClient?.connection);
 

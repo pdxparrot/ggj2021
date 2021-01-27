@@ -36,6 +36,7 @@ namespace pdxpartyparrot.Core.Scenes
                 yield break;
             }
 
+            // TODO: is there any way to know if this fails?
             while(!asyncOp.isDone) {
                 yield return asyncOp.progress;
             }

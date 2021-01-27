@@ -1,7 +1,6 @@
 using JetBrains.Annotations;
 
 using pdxpartyparrot.Core.Audio;
-using pdxpartyparrot.Core.Input;
 using pdxpartyparrot.Game.Menu;
 using pdxpartyparrot.Game.UI;
 
@@ -30,10 +29,14 @@ namespace pdxpartyparrot.Game.State
         {
             base.OnEnter();
 
-            Menu = GameStateManager.Instance.GameUIManager.InstantiateUIPrefab(_menuPrefab);
-            Menu.Initialize();
+            if(null != GameStateManager.Instance.GameUIManager) {
+                Menu = GameStateManager.Instance.GameUIManager.InstantiateUIPrefab(_menuPrefab);
+                Menu.Initialize();
 
-            TitleScreen = GameStateManager.Instance.GameUIManager.InstantiateUIPrefab(_titleScreenPrefab);
+                TitleScreen = GameStateManager.Instance.GameUIManager.InstantiateUIPrefab(_titleScreenPrefab);
+            } else {
+                Debug.LogWarning("GameUIManager missing!");
+            }
 
             if(GameStateManager.Instance.GameManager.TransitionToHighScores && null != MainMenu) {
                 TitleScreen.FinishLoading();

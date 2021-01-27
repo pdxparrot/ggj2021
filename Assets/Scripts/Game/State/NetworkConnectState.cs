@@ -77,9 +77,13 @@ namespace pdxpartyparrot.Game.State
             base.OnEnter();
 
 #if USE_NETWORKING
-            _networkConnectUI = GameStateManager.Instance.GameUIManager.InstantiateUIPrefab(_networkConnectUIPrefab);
-            if(null != _networkConnectUI) {
-                _networkConnectUI.Initialize(this);
+            if(null != GameStateManager.Instance.GameUIManager) {
+                _networkConnectUI = GameStateManager.Instance.GameUIManager.InstantiateUIPrefab(_networkConnectUIPrefab);
+                if(null != _networkConnectUI) {
+                    _networkConnectUI.Initialize(this);
+                }
+            } else {
+                Debug.LogWarning("GameUIManager missing!");
             }
 #endif
         }

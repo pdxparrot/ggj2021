@@ -41,7 +41,7 @@ namespace pdxpartyparrot.Game.State
                 _completeTimer = TimeManager.Instance.AddTimer();
                 _completeTimer.TimesUpEvent += CompleteTimerTimesUpEventHandler;
                 _completeTimer.Start(_completeWaitTimeSeconds);
-            } else {
+            } else if(null != GameStateManager.Instance.GameUIManager) {
                 _menu = GameStateManager.Instance.GameUIManager.InstantiateUIPrefab(_menuPrefab);
                 _menu.Initialize();
             }
