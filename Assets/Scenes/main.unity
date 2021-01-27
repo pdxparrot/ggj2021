@@ -871,6 +871,10 @@ PrefabInstance:
       propertyPath: _loadingScreen
       value: 
       objectReference: {fileID: 1952243411}
+    - target: {fileID: 5441558143184276836, guid: 4cee00d03260ae0589982d7a50790614, type: 3}
+      propertyPath: _gameUiManagerPrefab
+      value: 
+      objectReference: {fileID: 1787735424174293879, guid: 8858b310dfe33585080febfd3a596857, type: 3}
     - target: {fileID: 5715605981285060616, guid: 4cee00d03260ae0589982d7a50790614, type: 3}
       propertyPath: m_Name
       value: LoadingManager
