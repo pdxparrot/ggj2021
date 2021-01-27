@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+
 using pdxpartyparrot.Core;
 using pdxpartyparrot.Core.Audio;
 using pdxpartyparrot.Core.Util;
@@ -12,6 +14,7 @@ namespace pdxpartyparrot.Game.Menu
         #region Settings
 
         [SerializeField]
+        [CanBeNull]
         private SettingsMenu _settingsMenu;
 
         #endregion
@@ -22,7 +25,9 @@ namespace pdxpartyparrot.Game.Menu
         {
             base.Awake();
 
-            _settingsMenu.gameObject.SetActive(false);
+            if(null != _settingsMenu) {
+                _settingsMenu.gameObject.SetActive(false);
+            }
         }
 
         #endregion
