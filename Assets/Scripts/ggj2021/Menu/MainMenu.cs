@@ -10,8 +10,7 @@ namespace pdxpartyparrot.ggj2021.Menu
         {
             base.OnStart();
 
-            // TODO:
-            //GameStateManager.Instance.StartLocal(GameManager.Instance.GameGameData.MainGameStatePrefab);
+            GameStateManager.Instance.StartLocal(GameManager.Instance.GameData.MainGameStatePrefab);
         }
 
         #endregion
