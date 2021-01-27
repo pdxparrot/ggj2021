@@ -66,8 +66,8 @@ namespace pdxpartyparrot.Game.Data
 
             // TODO: handle A vs An if we can
 
-            string credit = contributors.GetRandomEntry();
-            return null == credit ? _contributorString : _contributorString.Replace("{credit}", credit);
+            string credit = contributors.GetRandomEntry() ?? "PDX PartyParrot";
+            return _contributorString.Replace("{credit}", credit);
         }
 
         public override string ToString()

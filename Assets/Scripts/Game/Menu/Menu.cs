@@ -21,6 +21,7 @@ namespace pdxpartyparrot.Game.Menu
 
         public MenuPanel MainPanel => _mainPanel;
 
+        // TODO: should this go on the MainMenu rather than *every* menu?
         [SerializeField]
         [CanBeNull]
         private TextMeshProUGUI _creditTitleText;
