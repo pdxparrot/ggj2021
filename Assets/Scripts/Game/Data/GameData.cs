@@ -3,6 +3,7 @@
 using JetBrains.Annotations;
 
 using pdxpartyparrot.Game.UI;
+using pdxpartyparrot.Game.State;
 
 using UnityEngine;
 
@@ -53,6 +54,17 @@ namespace pdxpartyparrot.Game.Data
         private int _floatingTextPoolSize = 10;
 
         public int FloatingTextPoolSize => _floatingTextPoolSize;
+
+        #endregion
+
+        #region Game States
+
+        [Header("Game States")]
+
+        [SerializeField]
+        private MainGameState _mainGameStatePrefab;
+
+        public MainGameState MainGameStatePrefab => _mainGameStatePrefab;
 
         #endregion
     }

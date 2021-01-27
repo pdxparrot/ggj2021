@@ -36,6 +36,8 @@ namespace pdxpartyparrot.Game.State
         private NetworkConnectUI _networkConnectUI;
 #endif
 
+        [SerializeField]
+        [ReadOnly]
         private GameState _gameStatePrefab;
 
         private Action<GameState> _gameStateInit;
