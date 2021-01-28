@@ -2,7 +2,8 @@
 
 namespace pdxpartyparrot.Game.State
 {
-    public class SceneTester : MainGameState
+    // TODO: this needs to be abstract because we need to deal with viewer configuration
+    public abstract class SceneTester : MainGameState
     {
         [SerializeField]
         private string[] _testScenes;
@@ -23,11 +24,7 @@ namespace pdxpartyparrot.Game.State
             return true;
         }
 
-        public void InitViewer()
-        {
-            /*ViewerManager.Instance.AllocateViewers(1, GameStateManager.Instance.GameManager.GameData.ViewerPrefab);
-            GameStateManager.Instance.GameManager.InitViewer();*/
-        }
+        public abstract void InitViewer();
 
         public void SetScene(string sceneName)
         {

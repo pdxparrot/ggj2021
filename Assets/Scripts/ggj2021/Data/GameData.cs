@@ -1,5 +1,7 @@
 using System;
 
+using pdxpartyparrot.ggj2021.Camera;
+
 using UnityEngine;
 
 namespace pdxpartyparrot.ggj2021.Data
@@ -8,5 +10,6 @@ namespace pdxpartyparrot.ggj2021.Data
     [Serializable]
     public sealed class GameData : Game.Data.GameData
     {
+        public GameViewer GameViewerPrefab => (GameViewer)ViewerPrefab;
     }
 }

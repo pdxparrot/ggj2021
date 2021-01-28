@@ -45,6 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainMenuStatePrefab: {fileID: 3142322541730920661, guid: f3b123a5f984e2329beb119f6b9e428c, type: 3}
   _networkConnectStatePrefab: {fileID: 4900244861828106328, guid: 093bad17f3ebd9b15bcac84c0ce07e53, type: 3}
-  _sceneTesterStatePrefab: {fileID: 8660191186894791141, guid: 9b978708fc5e0df82b45e216d23e76a2, type: 3}
+  _sceneTesterStatePrefab: {fileID: 7524581611991375121, guid: 9b978708fc5e0df82b45e216d23e76a2, type: 3}
   _currentGameState: {fileID: 0}
   _currentSubGameState: {fileID: 0}

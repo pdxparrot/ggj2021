@@ -2,6 +2,7 @@
 
 using JetBrains.Annotations;
 
+using pdxpartyparrot.Core.Camera;
 using pdxpartyparrot.Game.UI;
 using pdxpartyparrot.Game.State;
 
@@ -12,7 +13,12 @@ namespace pdxpartyparrot.Game.Data
     [Serializable]
     public abstract class GameData : ScriptableObject
     {
-        [Header("Viewport")]
+        [Header("Viewer")]
+
+        [SerializeField]
+        private Viewer _viewerPrefab;
+
+        public Viewer ViewerPrefab => _viewerPrefab;
 
         // TODO: this probably isn't the best way to handle this or the best place to put it
         // TODO: also, this is the *2D* viewport size and entirely irrelevant to 3D games
@@ -22,6 +28,15 @@ namespace pdxpartyparrot.Game.Data
         private float _viewportSize = 10;
 
         public float ViewportSize => _viewportSize;
+
+        // TODO: this probably isn't the best way to handle this or the best place to put it
+        // TODO: also, this is the *3D* fov and entirely irrelevant to 2D games
+        // and that should be made clearer in the data
+        [SerializeField]
+        [Tooltip("The Field of View of the 3D camera.")]
+        private float _fov = 60;
+
+        public float FoV => _fov;
 
         [Space(10)]
 

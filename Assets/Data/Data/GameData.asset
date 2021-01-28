@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c094d542a3a358ef482a51370196f8e4, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
+  _viewerPrefab: {fileID: 4460146216915277088, guid: bdb52f13004d05fc9996f046072b828f, type: 3}
   _viewportSize: 10
+  _fov: 60
   _maxLocalPlayers: 1
   _gamepadsArePlayers: 0
   _floatingTextPrefab: {fileID: 4002503836432287892, guid: db8b19ec476cf58fe82437d4660d931a, type: 3}

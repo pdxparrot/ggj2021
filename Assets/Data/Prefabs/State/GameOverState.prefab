@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7162170464090158281
+--- !u!1 &9030960958763025424
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3165648081447364496}
-  - component: {fileID: 2927043203986919087}
+  - component: {fileID: 9030960958763025426}
+  - component: {fileID: 9030960958763025425}
   m_Layer: 0
-  m_Name: MainGameState
+  m_Name: GameOverState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3165648081447364496
+--- !u!4 &9030960958763025426
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7162170464090158281}
+  m_GameObject: {fileID: 9030960958763025424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,21 +31,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2927043203986919087
+--- !u!114 &9030960958763025425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7162170464090158281}
+  m_GameObject: {fileID: 9030960958763025424}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddcea75355381bf32af4ce54b4ff5805, type: 3}
+  m_Script: {fileID: 11500000, guid: dc0e6d12df0d487a29ed31c339881fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialSceneName: 
-  _currentSceneName: 
-  _makeInitialSceneActive: 1
   _enterEffect: {fileID: 0}
   _exitEffect: {fileID: 0}
-  _gameOverState: {fileID: 9030960958763025425, guid: 68c5168759dd8fc95b1fafa08a537aae, type: 3}
+  _menuPrefab: {fileID: 0}
+  _completeWaitTimeSeconds: 5
+  _completeTimer:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
