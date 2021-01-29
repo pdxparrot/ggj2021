@@ -46,3 +46,10 @@ MonoBehaviour:
   _nextLevel: 
   _levelEnterEffect: {fileID: 0}
   _levelExitEffect: {fileID: 0}
+  _roundSeconds: 30
+  _timer:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
