@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 namespace pdxpartyparrot.Game.Players.Input
 {
+    // TODO: add handlers for device lost / device regained / controls changed
+
     public abstract class PlayerInputSystemHandler : PlayerInputHandler
     {
         [SerializeField]

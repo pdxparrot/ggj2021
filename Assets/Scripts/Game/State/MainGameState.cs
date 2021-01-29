@@ -153,7 +153,7 @@ namespace pdxpartyparrot.Game.State
                 if(count < 1) {
                     Debug.LogWarning("No player controllers available!");
                 } else {
-                    Debug.Log($"Spawning a player for each controller ({count})...");
+                    Debug.Log($"Will spawn a player for each controller ({count})...");
                 }
 
                 for(short i = 0; i < count; ++i) {
