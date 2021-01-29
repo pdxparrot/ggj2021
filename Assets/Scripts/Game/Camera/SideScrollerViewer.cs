@@ -9,7 +9,7 @@ using UnityEngine;
 namespace pdxpartyparrot.Game.Camera
 {
     [RequireComponent(typeof(CinemachineFramingTransposer))]
-    [RequireComponent(typeof(CinemachinePOV))]
+    [RequireComponent(typeof(CinemachinePOV))]  // TODO: nothing uses this?
     [RequireComponent(typeof(CinemachineConfiner))]
     public class SideScrollerViewer : CinemachineViewer, IPlayerViewer
     {

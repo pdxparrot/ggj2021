@@ -5,18 +5,11 @@ using UnityEngine;
 
 namespace pdxpartyparrot.Game.Camera
 {
+    // TODO: is this even useful? it's entirely reliant on selecting a Body that follows something
+
     public class FollowCamera : CinemachineViewer, IPlayerViewer
     {
         public Viewer Viewer => this;
-
-        #region Unity Lifecycle
-
-        protected override void Awake()
-        {
-            base.Awake();
-        }
-
-        #endregion
 
         public virtual void Initialize(GameData gameData)
         {
