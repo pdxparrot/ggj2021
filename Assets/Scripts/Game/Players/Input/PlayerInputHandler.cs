@@ -61,6 +61,10 @@ namespace pdxpartyparrot.Game.Players.Input
 
         protected virtual bool InputEnabled => !PartyParrotManager.Instance.IsPaused && Player.IsLocalActor && GameStateManager.Instance.GameManager.IsGameReady && !GameStateManager.Instance.GameManager.IsGameOver;
 
+        [SerializeField]
+        [ReadOnly]
+        private bool _inputEnabled;
+
         protected bool EnableMouseLook { get; private set; } = !Application.isEditor;
 
         public PlayerInputHelper InputHelper { get; private set; }
@@ -89,6 +93,8 @@ namespace pdxpartyparrot.Game.Players.Input
 
         protected virtual void Update()
         {
+            _inputEnabled = InputEnabled;
+
             if(!Player.IsLocalActor) {
                 return;
             }
@@ -103,6 +109,8 @@ namespace pdxpartyparrot.Game.Players.Input
             if(!Player.IsLocalActor) {
                 return;
             }
+
+            Debug.Log($"Initializing player input {playerControllerId}...");
 
             InputHelper.Initialize(playerControllerId);
 

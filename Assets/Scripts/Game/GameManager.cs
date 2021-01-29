@@ -44,6 +44,10 @@ namespace pdxpartyparrot.Game
 
         void UnRegisterLevelHelper(LevelHelper levelHelper);
 
+        void StartGameServer();
+
+        void StartGameClient();
+
         void GameReady();
 
         void GameUnReady();

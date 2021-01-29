@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using pdxpartyparrot.Game;
+
+using UnityEngine;
 
 namespace pdxpartyparrot.Game.State
 {
@@ -10,6 +12,18 @@ namespace pdxpartyparrot.Game.State
 
         public string[] TestScenes => _testScenes;
 
+        protected override bool InitializeServer()
+        {
+            if(!base.InitializeServer()) {
+                Debug.LogWarning("Failed to initialize server!");
+                return false;
+            }
+
+            GameStateManager.Instance.GameManager.StartGameServer();
+
+            return true;
+        }
+
         protected override bool InitializeClient()
         {
             // need to init the viewer before we start spawning players
@@ -20,6 +34,11 @@ namespace pdxpartyparrot.Game.State
                 Debug.LogWarning("Failed to initialize client!");
                 return false;
             }
+
+            GameStateManager.Instance.GameManager.StartGameClient();
+
+            // normally the level helper would do this
+            GameStateManager.Instance.GameManager.GameReady();
 
             return true;
         }

@@ -54,6 +54,7 @@ namespace pdxpartyparrot.Core.Input
             Debug.Log($"Pairing player controller {playerControllerId} ({gamepadCount} total gamepads)");
             Gamepad gamepad = InputManager.Instance.GetGamepad(playerControllerId);
             if(null == gamepad) {
+                Debug.LogWarning($"Failed to find gamepad {playerControllerId}");
                 return;
             }
 

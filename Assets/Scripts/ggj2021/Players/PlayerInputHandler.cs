@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 namespace pdxpartyparrot.ggj2021.Players
 {
-    public sealed class PlayerInputHandler : SideScollerPlayerInputHandler
+    public sealed class PlayerInputHandler : ThirdPersonPlayerInputHandler
     {
         #region Unity Lifecycle
 
