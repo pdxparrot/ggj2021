@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 7d13d48cad1141c81a60d6558506e77e, type: 2}
   _enableVR: 0
-  _frictionlesssMaterial: {fileID: 0}
-  _frictionlesssMaterial2D: {fileID: 0}
+  _frictionlesssMaterial: {fileID: 13400000, guid: 2cac5f324e0d785d39447d29d17d8fc4, type: 2}
+  _frictionlesssMaterial2D: {fileID: 6200000, guid: b635cfb015c3779ab84a55150e58dc7b, type: 2}
   _randomSeed: 0
   _isPaused: 0

@@ -13,6 +13,17 @@ namespace pdxpartyparrot.Game.Data
     [Serializable]
     public abstract class GameData : ScriptableObject
     {
+        [Header("World")]
+
+        [SerializeField]
+        private string _worldLayer = "World";
+
+        public LayerMask WorldLayer => LayerMask.NameToLayer(_worldLayer);
+
+        #region Viewer
+
+        [Space(10)]
+
         [Header("Viewer")]
 
         [SerializeField]
@@ -37,6 +48,8 @@ namespace pdxpartyparrot.Game.Data
         private float _fov = 60;
 
         public float FoV => _fov;
+
+        #endregion
 
         [Space(10)]
 

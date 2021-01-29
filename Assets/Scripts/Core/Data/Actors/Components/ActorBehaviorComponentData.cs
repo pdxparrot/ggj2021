@@ -8,9 +8,9 @@ namespace pdxpartyparrot.Core.Data.Actors.Components
     public abstract class ActorBehaviorComponentData : ScriptableObject
     {
         [SerializeField]
-        private LayerMask _actorLayer;
+        private string _actorLayer;
 
-        public LayerMask ActorLayer => _actorLayer;
+        public LayerMask ActorLayer => LayerMask.NameToLayer(_actorLayer);
 
         #region Physics
 

@@ -5,11 +5,11 @@ using pdxpartyparrot.Core.Camera;
 using pdxpartyparrot.Game.Data;
 
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace pdxpartyparrot.Game.Camera
 {
     [RequireComponent(typeof(CinemachineFramingTransposer))]
-    [RequireComponent(typeof(CinemachinePOV))]  // TODO: nothing uses this?
     [RequireComponent(typeof(CinemachineConfiner))]
     public class SideScrollerViewer : CinemachineViewer, IPlayerViewer
     {
@@ -33,7 +33,10 @@ namespace pdxpartyparrot.Game.Camera
             base.Awake();
 
             _transposer = GetCinemachineComponent<CinemachineFramingTransposer>();
+            Assert.IsNotNull(_transposer);
+
             _confiner = GetComponent<CinemachineConfiner>();
+            Assert.IsNotNull(_confiner);
         }
 
         #endregion

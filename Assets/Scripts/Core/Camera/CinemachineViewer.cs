@@ -11,6 +11,9 @@ namespace pdxpartyparrot.Core.Camera
 {
     // https://blogs.unity3d.com/2018/07/17/cinemachine-for-2d-tips-and-tricks/
 
+    // TODO: the way we have a Mode here but also separate Set2D(size) / Set3D(fov)
+    // methods is really confusing and seems like it could be error prone
+
     [RequireComponent(typeof(CinemachineVirtualCamera))]
     [RequireComponent(typeof(CinemachineImpulseListener))]
     public class CinemachineViewer : Viewer

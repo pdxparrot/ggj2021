@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3feec17c931fec59e99abf1cdb2952f5, type: 3}
   m_Name: PlayerBehaviorData
   m_EditorClassIdentifier: 
-  _actorLayer:
-    serializedVersion: 2
-    m_Bits: 1024
+  _actorLayer: Player
   _mass: 45
   _drag: 0
   _angularDrag: 0
