@@ -7,6 +7,18 @@ namespace pdxpartyparrot.ggj2021.State
 {
     public sealed class MainGameState : Game.State.MainGameState
     {
+        protected override bool InitializeServer()
+        {
+            if(!base.InitializeServer()) {
+                Debug.LogWarning("Failed to initialize server!");
+                return false;
+            }
+
+            GameManager.Instance.StartGameServer();
+
+            return true;
+        }
+
         protected override bool InitializeClient()
         {
             // need to init the viewer before we start spawning players
@@ -21,6 +33,8 @@ namespace pdxpartyparrot.ggj2021.State
                 Debug.LogWarning("Failed to initialize client!");
                 return false;
             }
+
+            GameManager.Instance.StartGameClient();
 
             return true;
         }

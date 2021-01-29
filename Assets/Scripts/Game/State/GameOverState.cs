@@ -50,6 +50,10 @@ namespace pdxpartyparrot.Game.State
         protected override void DoExit()
         {
             if(null == _menu) {
+                // TODO: this is all triggered off of the timer's times up event
+                // which means we're modifying the timer collection
+                // while we're in the middle of iterating it
+                // this either needs to move or be deferred or something
                 TimeManager.Instance.RemoveTimer(_completeTimer);
                 _completeTimer = null;
             } else {
