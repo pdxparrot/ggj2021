@@ -50,14 +50,14 @@ namespace pdxpartyparrot.ggj2021.Players
                 return false;
             }
 
-            PlayerGameViewer.Follow(transform);
+            PlayerGameViewer.FollowTarget(gameObject);
 
             return true;
         }
 
         public override void OnDeSpawn()
         {
-            PlayerGameViewer.Follow(null);
+            PlayerGameViewer.FollowTarget(null);
 
             base.OnDeSpawn();
         }

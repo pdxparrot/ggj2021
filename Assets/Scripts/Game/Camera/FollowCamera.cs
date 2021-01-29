@@ -1,5 +1,3 @@
-using Cinemachine;
-
 using pdxpartyparrot.Core.Camera;
 using pdxpartyparrot.Game.Data;
 
@@ -7,7 +5,6 @@ using UnityEngine;
 
 namespace pdxpartyparrot.Game.Camera
 {
-    [RequireComponent(typeof(CinemachinePOV))]
     public class FollowCamera : CinemachineViewer, IPlayerViewer
     {
         public Viewer Viewer => this;
@@ -24,6 +21,12 @@ namespace pdxpartyparrot.Game.Camera
         public virtual void Initialize(GameData gameData)
         {
             Viewer.Set3D(gameData.FoV);
+        }
+
+        public void FollowTarget(GameObject target)
+        {
+            LookAt(target.transform);
+            Follow(target.transform);
         }
     }
 }

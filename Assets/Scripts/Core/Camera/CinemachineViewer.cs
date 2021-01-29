@@ -103,6 +103,7 @@ namespace pdxpartyparrot.Core.Camera
         public void Follow(Transform target)
         {
             if(null != _virtualCamera) {
+                Debug.Log($"Following {target.gameObject.name}");
                 _virtualCamera.Follow = target;
             }
         }
@@ -110,6 +111,7 @@ namespace pdxpartyparrot.Core.Camera
         public void LookAt(Transform target)
         {
             if(null != _virtualCamera) {
+                Debug.Log($"Looking at {target.gameObject.name}");
                 _virtualCamera.LookAt = target;
             }
         }
