@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerSpawnPointTags:
   - Player
-  _types: []
+  _types:
+  - _tag: Sheep
+    _spawnMethod: 1

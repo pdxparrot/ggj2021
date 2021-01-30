@@ -55,7 +55,18 @@ namespace pdxpartyparrot.ggj2021.Level
 
         #endregion
 
-        #region Event Handlers
+        private void SpawnSheep()
+        {
+            int count = SpawnManager.Instance.SpawnPointCount(GameManager.Instance.GameGameData.SheepSpawnTag);
+            Debug.Log($"Spawning {count} sheep");
+
+            for(int i = 0; i < count; ++i) {
+                SpawnPoint spawnPoint = SpawnManager.Instance.GetSpawnPoint(GameManager.Instance.GameGameData.SheepSpawnTag);
+                spawnPoint.SpawnNPCPrefab(GameManager.Instance.GameGameData.SheepPrefab, GameManager.Instance.GameGameData.SheepBehaviorData, _sheepPen.transform);
+            }
+
+            GameManager.Instance.Goal = count;
+        }
 
         #region Event Handlers
 
@@ -67,8 +78,6 @@ namespace pdxpartyparrot.ggj2021.Level
             _goal = spawnPoint.SpawnFromPrefab(GameManager.Instance.GameGameData.GoalPrefab, null) as Goal;
             _goal.SetWaypoint(_initialGoalWaypoint);
         }
-
-        #endregion
 
         protected override void GameStartClientEventHandler(object sender, EventArgs args)
         {
@@ -83,7 +92,7 @@ namespace pdxpartyparrot.ggj2021.Level
         {
             //GameManager.Instance.IntroCompleteEvent -= IntroCompleteEventHandler;
 
-            // TODO: we want to spawn the sheep or whatever here
+            SpawnSheep();
 
             _timer.Start(_roundSeconds);
         }
