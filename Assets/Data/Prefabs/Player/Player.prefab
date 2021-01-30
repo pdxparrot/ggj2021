@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8136978070064989695}
+  - component: {fileID: 8659946713465597842}
   m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
@@ -31,6 +32,18 @@ Transform:
   m_Father: {fileID: 5988821913990690062}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8659946713465597842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744759722683349762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14bcc54eaac24c48d96d7d2cbcde6171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1432746754197826412
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,6 +219,7 @@ MonoBehaviour:
   _mouseSensitivity: 0.5
   _lastMoveBufferTimestampMs: 0
   _lastLookBufferTimestampMs: 0
+  _inputEnabled: 0
   _pollMove: 0
   _pollLook: 0
 --- !u!1 &2239123779616160342
@@ -260,6 +274,57 @@ MonoBehaviour:
     Velocity: {x: 0, y: 0, z: 0}
     AngularVelocity: {x: 0, y: 0, z: 0}
   _isComponentControlling: 0
+--- !u!1 &2896964373797534512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3436142926806816642}
+  - component: {fileID: 98359632092750829}
+  m_Layer: 10
+  m_Name: Sheep Attachment
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3436142926806816642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896964373797534512}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5988821913990690062}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &98359632092750829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896964373797534512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1fd8daaed7b64148a34acb96ba14ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonRenderer: {fileID: 0}
+  boneName: 
+  followXYPosition: 1
+  followZPosition: 1
+  followBoneRotation: 1
+  followSkeletonFlip: 1
+  followLocalScale: 0
+  initializeOnAwake: 1
 --- !u!1 &5921528214601961170
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +441,7 @@ Transform:
   - {fileID: 4827128437685584390}
   - {fileID: 2521455584264789216}
   - {fileID: 5692897743308017819}
+  - {fileID: 3436142926806816642}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -445,6 +511,8 @@ MonoBehaviour:
   _manualAnimator: {fileID: 0}
   _networkPlayer: {fileID: 5512232860236640460}
   _inputHandler: {fileID: 7806986284324066881}
+  _shepherd: {fileID: 4309703129247348672}
+  _shephardModel: {fileID: 8659946713465597842}
 --- !u!1 &8635814204767799990
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +522,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4827128437685584390}
+  - component: {fileID: 351146424486517325}
+  - component: {fileID: 4233228105685773574}
+  - component: {fileID: 4309703129247348672}
   - component: {fileID: 4223570603007877474}
   m_Layer: 10
   m_Name: Behavior
@@ -476,6 +547,46 @@ Transform:
   m_Father: {fileID: 5988821913990690062}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &351146424486517325
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8635814204767799990}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &4233228105685773574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8635814204767799990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0a74866a4215a24ad63d9426b23023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4309703129247348672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8635814204767799990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae3a6cdd15b70c6a812cbdbf91e7570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _owner: {fileID: 8281382272004184653}
+  _sheepAttachment: {fileID: 98359632092750829}
+  _heldSheep: {fileID: 0}
 --- !u!114 &4223570603007877474
 MonoBehaviour:
   m_ObjectHideFlags: 0

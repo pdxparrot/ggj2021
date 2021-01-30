@@ -13,11 +13,25 @@ namespace pdxpartyparrot.ggj2021.Players
     {
         private GameViewer PlayerGameViewer => (GameViewer)Viewer;
 
+        [Space(10)]
+
+        [SerializeField]
+        private ShephardBehavior _shepherd;
+
+        public ShephardBehavior Shepherd => _shepherd;
+
+        [SerializeField]
+        private ShephardModel _shephardModel;
+
+        public ShephardModel ShephardModel => _shephardModel;
+
         #region Unity Lifecycle
 
         protected override void Awake()
         {
             base.Awake();
+
+            Assert.IsTrue(PlayerInputHandler is PlayerInputHandler);
 
             Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
@@ -39,6 +53,8 @@ namespace pdxpartyparrot.ggj2021.Players
 
             PlayerViewer = GameManager.Instance.Viewer;
 
+            _shepherd.Initialize();
+
             return true;
         }
 
@@ -50,6 +66,25 @@ namespace pdxpartyparrot.ggj2021.Players
                 return false;
             }
 
+            /*if(!_shepherd.OnSpawn(spawnpoint)) {
+                return false;
+            }*/
+
+            PlayerGameViewer.FollowTarget(gameObject);
+
+            return true;
+        }
+
+        public override bool OnReSpawn(SpawnPoint spawnpoint)
+        {
+            if(!base.OnReSpawn(spawnpoint)) {
+                return false;
+            }
+
+            /*if(!_shepherd.OnReSpawn(spawnpoint)) {
+                return false;
+            }*/
+
             PlayerGameViewer.FollowTarget(gameObject);
 
             return true;
@@ -57,6 +92,8 @@ namespace pdxpartyparrot.ggj2021.Players
 
         public override void OnDeSpawn()
         {
+            //_shepherd.OnDeSpawn();
+
             PlayerGameViewer.FollowTarget(null);
 
             base.OnDeSpawn();

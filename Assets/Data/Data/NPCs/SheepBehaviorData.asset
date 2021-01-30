@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca041d25a8f4a3c8d95fdf3bc952fcba, type: 3}
+  m_Name: SheepBehaviorData
+  m_EditorClassIdentifier: 
+  _actorLayer: NPC
+  _mass: 45
+  _drag: 0
+  _angularDrag: 0
+  _isKinematic: 0
+  _animateModel: 0
+  _moveSpeed: 30
+  _runThreshold: 0.75
+  _fallSpeedAdjustment: 200
+  _terminalVelocity: 50
+  _allowAirControl: 1
+  _moveXAxisParam: InputX
+  _moveZAxisParam: InputZ
+  _fallingParam: Falling
+  _actionBufferSize: 1
+  _actionBufferTimeoutMs: 500
+  _angularMoveSpeed: 120
+  _moveAcceleration: 10
+  _stoppingDistance: 0.1

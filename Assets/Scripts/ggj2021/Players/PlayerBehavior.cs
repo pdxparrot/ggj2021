@@ -1,10 +1,12 @@
 using pdxpartyparrot.Core.Data.Actors.Components;
 using pdxpartyparrot.ggj2021.Data.Players;
 
+using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace pdxpartyparrot.ggj2021.Players
 {
+    [RequireComponent(typeof(ShephardBehavior))]
     public sealed class PlayerBehavior : Game.Characters.Players.PlayerBehavior
     {
         public override void Initialize(ActorBehaviorComponentData behaviorData)

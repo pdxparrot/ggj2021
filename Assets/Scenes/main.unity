@@ -868,6 +868,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1190773375}
     - target: {fileID: 5441558143184276836, guid: 4cee00d03260ae0589982d7a50790614, type: 3}
+      propertyPath: _npcManager
+      value: 
+      objectReference: {fileID: 4921538928591082637, guid: 13082d358c5fd7de7a6acbf6c1b30dfd, type: 3}
+    - target: {fileID: 5441558143184276836, guid: 4cee00d03260ae0589982d7a50790614, type: 3}
       propertyPath: _loadingTips
       value: 
       objectReference: {fileID: 11400000, guid: 75ac10958b9204dad9d9946ef4214472, type: 2}
