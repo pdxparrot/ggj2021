@@ -28,5 +28,10 @@ namespace pdxpartyparrot.ggj2021.Data
         private SheepBehaviorData _sheepBehaviorData;
 
         public SheepBehaviorData SheepBehaviorData => _sheepBehaviorData;
+
+        [SerializeField]
+        private int _maxQueuedSheep = 4;
+
+        public int MaxQueuedSheep => _maxQueuedSheep;
     }
 }

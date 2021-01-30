@@ -2,6 +2,7 @@ using pdxpartyparrot.Core.Camera;
 using pdxpartyparrot.Game;
 using pdxpartyparrot.ggj2021.Camera;
 using pdxpartyparrot.ggj2021.Data;
+using pdxpartyparrot.ggj2021.Level;
 
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace pdxpartyparrot.ggj2021
     public sealed class GameManager : GameManager<GameManager>
     {
         public GameData GameGameData => (GameData)GameData;
+
+        public IBaseLevel BaseLevel => (IBaseLevel)LevelHelper;
 
         public GameViewer Viewer { get; private set; }
 

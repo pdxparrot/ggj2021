@@ -1,12 +1,14 @@
+using System.Collections.Generic;
+using System.Linq;
+
 using JetBrains.Annotations;
 
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Game.Interactables;
 using pdxpartyparrot.ggj2021.NPCs;
 
-using Spine.Unity;
-
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace pdxpartyparrot.ggj2021.Players
 {
@@ -24,16 +26,18 @@ namespace pdxpartyparrot.ggj2021.Players
         #region Sheep
 
         [SerializeField]
-        private BoneFollower _sheepAttachment;
+        private Transform _chamberParent;
 
         [SerializeField]
         [ReadOnly]
         [CanBeNull]
-        private Sheep _heldSheep;
+        private Sheep _chamber;
 
-        public bool IsHoldingSheep => _heldSheep != null;
+        [SerializeField]
+        [ReadOnly]
+        private List<Sheep> _magazine = new List<Sheep>();
 
-        public bool CanPickUpSheep => !IsHoldingSheep;
+        public bool HasCapacity => null == _chamber || (GameManager.HasInstance && _magazine.Count < GameManager.Instance.GameGameData.MaxQueuedSheep);
 
         #endregion
 
@@ -45,8 +49,7 @@ namespace pdxpartyparrot.ggj2021.Players
         {
             _interactables = GetComponent<Interactables>();
 
-            _interactables.AddingInteractableEvent += AddingInteractableEventHandler;
-            _interactables.InteractableRemovedEvent += InteractableRemovedEventHandler;
+            _interactables.InteractableAddedEvent += InteractableAddedEventHandler;
         }
 
         #endregion
@@ -57,9 +60,9 @@ namespace pdxpartyparrot.ggj2021.Players
 
         #region Sheep
 
-        public bool PickUpSheep()
+        public bool CatchSheep()
         {
-            if(!CanPickUpSheep) {
+            if(!HasCapacity) {
                 return false;
             }
 
@@ -68,14 +71,71 @@ namespace pdxpartyparrot.ggj2021.Players
                 return false;
             }
 
-            if(!sheep.Hold()) {
+            if(null == _chamber) {
+                ChamberSheep(sheep);
+            } else {
+                _magazine.Add(sheep);
+                if(_magazine.Count == 1) {
+                    sheep.OnEnqueued(Owner.gameObject);
+                } else {
+                    sheep.OnEnqueued(_magazine.ElementAt(_magazine.Count - 1).gameObject);
+                }
+            }
+
+            _interactables.RemoveInteractable(sheep);
+
+            return true;
+        }
+
+        private void ChamberSheep(Sheep sheep)
+        {
+            Assert.IsNull(_chamber);
+
+            _chamber = sheep;
+            sheep.OnChambered();
+
+            _chamber.transform.SetParent(_chamberParent);
+
+            Debug.Log($"Enable attached sheep");
+        }
+
+        public bool LaunchSheep()
+        {
+            if(null == _chamber) {
                 return false;
             }
 
-            _heldSheep = sheep;
-            _interactables.RemoveInteractable(_heldSheep);
+            Sheep sheep = _chamber;
+            _chamber = null;
 
-            _heldSheep.transform.SetParent(_sheepAttachment.transform);
+            Debug.Log($"Disable attached sheep");
+
+            sheep.transform.SetParent(GameManager.Instance.BaseLevel.SheepPen);
+            sheep.OnLaunch(Owner.Movement.Position, Owner.FacingDirection);
+
+            CycleRound();
+
+            return true;
+        }
+
+        private bool CycleRound()
+        {
+            if(_magazine.Count < 1) {
+                return false;
+            }
+
+            Sheep sheep = _magazine.ElementAt(0);
+            _magazine.RemoveAt(0);
+
+            ChamberSheep(sheep);
+            if(_magazine.Count < 1) {
+                return true;
+            }
+
+            _magazine.ElementAt(0).OnEnqueued(Owner.gameObject);
+            for(int i = 1; i < _magazine.Count; ++i) {
+                _magazine.ElementAt(i).OnEnqueued(_magazine.ElementAt(i - 1).gameObject);
+            }
 
             return true;
         }
@@ -84,18 +144,13 @@ namespace pdxpartyparrot.ggj2021.Players
 
         #region Event Handlers
 
-        private void AddingInteractableEventHandler(object sender, InteractableEventArgs args)
+        private void InteractableAddedEventHandler(object sender, InteractableEventArgs args)
         {
-            if(!_interactables.HasInteractables<Sheep>()) {
-                Debug.Log("Have sheep!");
+            if(!(args.Interactable is Sheep)) {
+                return;
             }
-        }
 
-        private void InteractableRemovedEventHandler(object sender, InteractableEventArgs args)
-        {
-            if(!_interactables.HasInteractables<Sheep>()) {
-                Debug.Log("No more sheep!");
-            }
+            CatchSheep();
         }
 
         #endregion

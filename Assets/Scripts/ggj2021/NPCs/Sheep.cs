@@ -14,7 +14,7 @@ namespace pdxpartyparrot.ggj2021.NPCs
     {
         private SheepBehavior SheepBehavior => (SheepBehavior)NPCBehavior;
 
-        public bool CanInteract => !SheepBehavior.IsHeld;
+        public bool CanInteract => !SheepBehavior.IsCaught;
 
         public Type InteractableType => typeof(Sheep);
 
@@ -37,11 +37,6 @@ namespace pdxpartyparrot.ggj2021.NPCs
             base.Initialize(id);
 
             Assert.IsTrue(Behavior is SheepBehavior);
-        }
-
-        public bool Hold()
-        {
-            return SheepBehavior.Hold();
         }
 
         #region Spawn
@@ -73,6 +68,26 @@ namespace pdxpartyparrot.ggj2021.NPCs
             NPCManager.Instance.UnregisterNPC(this);
 
             base.OnDeSpawn();
+        }
+
+        public void OnChambered()
+        {
+            Model.gameObject.SetActive(false);
+            EnableAgent(false);
+
+            SheepBehavior.OnChambered();
+        }
+
+        public void OnEnqueued(GameObject target)
+        {
+            SheepBehavior.OnEnqueued(target);
+        }
+
+        public void OnLaunch(Vector3 start, Vector3 direction)
+        {
+            SheepBehavior.OnLaunch(start, direction);
+
+            Model.gameObject.SetActive(true);
         }
 
         #endregion

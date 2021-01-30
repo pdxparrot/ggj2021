@@ -13,7 +13,9 @@ namespace pdxpartyparrot.ggj2021.NPCs
         private enum State
         {
             Idle,
-            Held,
+            Chambered,
+            Enqueued,
+            Launched,
         }
 
         public Sheep Sheep => (Sheep)Owner;
@@ -22,7 +24,7 @@ namespace pdxpartyparrot.ggj2021.NPCs
         {
             get
             {
-                if(IsHeld || !Sheep.HasPath) {
+                if(IsCaught || !Sheep.HasPath) {
                     return Vector3.zero;
                 }
 
@@ -35,7 +37,7 @@ namespace pdxpartyparrot.ggj2021.NPCs
         [ReadOnly]
         private State _state = State.Idle;
 
-        public bool IsHeld => _state == State.Held;
+        public bool IsCaught => _state == State.Chambered || _state == State.Enqueued || _state == State.Launched;
 
         public override void Initialize(ActorBehaviorComponentData behaviorData)
         {
@@ -51,21 +53,16 @@ namespace pdxpartyparrot.ggj2021.NPCs
             case State.Idle:
                 HandleIdle();
                 break;
-            case State.Held:
-                HandleHeld();
+            case State.Chambered:
+                HandleChambered();
+                break;
+            case State.Enqueued:
+                HandleEnqueued();
+                break;
+            case State.Launched:
+                HandleLaunched();
                 break;
             }
-
-            return true;
-        }
-
-        public bool Hold()
-        {
-            if(IsHeld) {
-                return false;
-            }
-
-            SetState(State.Held);
 
             return true;
         }
@@ -83,7 +80,13 @@ namespace pdxpartyparrot.ggj2021.NPCs
             case State.Idle:
                 NPCOwner.Stop(true, true);
                 break;
-            case State.Held:
+            case State.Chambered:
+                NPCOwner.Stop(true, false);
+                break;
+            case State.Enqueued:
+                NPCOwner.Stop(true, false);
+                break;
+            case State.Launched:
                 NPCOwner.Stop(true, false);
                 break;
             }
@@ -93,8 +96,33 @@ namespace pdxpartyparrot.ggj2021.NPCs
         {
         }
 
-        private void HandleHeld()
+        private void HandleChambered()
         {
+        }
+
+        private void HandleEnqueued()
+        {
+        }
+
+        private void HandleLaunched()
+        {
+        }
+
+        #endregion
+
+        #region Event Handlers
+
+        public void OnChambered()
+        {
+        }
+
+        public void OnEnqueued(GameObject target)
+        {
+        }
+
+        public void OnLaunch(Vector3 start, Vector3 direction)
+        {
+            transform.position = start;
         }
 
         #endregion

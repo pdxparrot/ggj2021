@@ -25,18 +25,18 @@ namespace pdxpartyparrot.ggj2021.Players
 
         #region Actions
 
-        public void OnInteractAction(InputAction.CallbackContext context)
+        public void OnFireAction(InputAction.CallbackContext context)
         {
             if(!IsInputAllowed(context)) {
                 return;
             }
 
             if(Core.Input.InputManager.Instance.EnableDebug) {
-                Debug.Log($"Interact: {context.action.phase}");
+                Debug.Log($"Fire: {context.action.phase}");
             }
 
             if(context.performed) {
-                GamePlayer.Shepherd.PickUpSheep();
+                GamePlayer.Shepherd.LaunchSheep();
             }
         }
 

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace pdxpartyparrot.ggj2021.Level
 {
-    public sealed class MainLevel : LevelHelper
+    public sealed class MainLevel : LevelHelper, IBaseLevel
     {
         [SerializeField]
         private float _roundSeconds = 60.0f;
@@ -17,11 +17,17 @@ namespace pdxpartyparrot.ggj2021.Level
         [ReadOnly]
         private ITimer _timer;
 
+        private GameObject _sheepPen;
+
+        public Transform SheepPen => _sheepPen.transform;
+
         #region Unity Lifecycle
 
         protected override void Awake()
         {
             base.Awake();
+
+            _sheepPen = new GameObject("Sheep Pen");
 
             _timer = TimeManager.Instance.AddTimer();
             _timer.TimesUpEvent += LevelTimesUpEventHandler;
@@ -29,6 +35,8 @@ namespace pdxpartyparrot.ggj2021.Level
 
         protected override void OnDestroy()
         {
+            Destroy(_sheepPen);
+
             if(TimeManager.HasInstance) {
                 TimeManager.Instance.RemoveTimer(_timer);
                 _timer = null;

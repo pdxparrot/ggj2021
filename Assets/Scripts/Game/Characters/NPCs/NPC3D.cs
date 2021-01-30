@@ -204,6 +204,11 @@ namespace pdxpartyparrot.Game.Characters.NPCs
 
         #endregion
 
+        public void EnableAgent(bool enable)
+        {
+            _agent.enabled = enable;
+        }
+
         public void Stop(bool resetPath, bool idle)
         {
             _agent.velocity = Vector3.zero;
