@@ -10,7 +10,7 @@ using UnityEngine.Assertions;
 namespace pdxpartyparrot.ggj2021.NPCs
 {
     [RequireComponent(typeof(AudioSource))]
-    public sealed class Sheep : NPC25D, IInteractable
+    public sealed class Sheep : NPC3D, IInteractable
     {
         private SheepBehavior SheepBehavior => (SheepBehavior)NPCBehavior;
 

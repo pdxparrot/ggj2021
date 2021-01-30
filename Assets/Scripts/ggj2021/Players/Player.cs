@@ -9,7 +9,7 @@ using UnityEngine.Assertions;
 
 namespace pdxpartyparrot.ggj2021.Players
 {
-    public sealed class Player : Player25D
+    public sealed class Player : Player3D
     {
         private GameViewer PlayerGameViewer => (GameViewer)Viewer;
 
