@@ -46,6 +46,15 @@ namespace pdxpartyparrot.Core.Editor.Project
             set => _useNetworking = value;
         }
 
+        [SerializeField]
+        private bool _useNavMesh;
+
+        public bool UseNavMesh
+        {
+            get => _useNavMesh;
+            set => _useNavMesh = value;
+        }
+
         public void Read()
         {
             string content;

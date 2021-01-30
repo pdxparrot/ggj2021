@@ -28,6 +28,7 @@ namespace pdxpartyparrot.Core.Editor.Project
         private Toggle _useSpine;
         private Toggle _useDOTween;
         private Toggle _useNetworking;
+        private Toggle _useNavMesh;
 
         #region Unity Lifecycle
 
@@ -68,6 +69,9 @@ namespace pdxpartyparrot.Core.Editor.Project
 
             _useNetworking = rootVisualElement.Q<Toggle>("toggle-feature-networking");
             _useNetworking.value = manifest.UseNetworking;
+
+            _useNavMesh = rootVisualElement.Q<Toggle>("toggle-feature-navmesh");
+            _useNavMesh.value = manifest.UseNavMesh;
         }
 
         #endregion
@@ -92,6 +96,12 @@ namespace pdxpartyparrot.Core.Editor.Project
                 scriptingDefineSymbols.AddSymbol("USE_NETWORKING");
             } else {
                 scriptingDefineSymbols.RemoveSymbol("USE_NETWORKING");
+            }
+
+            if(_useNavMesh.value) {
+                scriptingDefineSymbols.AddSymbol("USE_NAVMESH");
+            } else {
+                scriptingDefineSymbols.RemoveSymbol("USE_NAVMESH");
             }
 
             PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, scriptingDefineSymbols.ToString());
@@ -119,6 +129,9 @@ namespace pdxpartyparrot.Core.Editor.Project
 
             refreshAssetDatabase |= manifest.UseNetworking != _useNetworking.value;
             manifest.UseNetworking = _useNetworking.value;
+
+            refreshAssetDatabase |= manifest.UseNavMesh != _useNavMesh.value;
+            manifest.UseNavMesh = _useNavMesh.value;
 
             SetScriptingDefineSymbols(BuildTargetGroup.Standalone);
             SetScriptingDefineSymbols(BuildTargetGroup.Android);

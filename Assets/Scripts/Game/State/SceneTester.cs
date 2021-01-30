@@ -1,6 +1,4 @@
-﻿using pdxpartyparrot.Game;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace pdxpartyparrot.Game.State
 {
@@ -36,9 +34,6 @@ namespace pdxpartyparrot.Game.State
             }
 
             GameStateManager.Instance.GameManager.StartGameClient();
-
-            // normally the level helper would do this
-            GameStateManager.Instance.GameManager.GameReady();
 
             return true;
         }

@@ -1,10 +1,12 @@
 using pdxpartyparrot.Core;
 
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace pdxpartyparrot.ggj2021.Players
 {
     [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(NavMeshObstacle))]
     public sealed class Obstacle : MonoBehaviour
     {
         public Collider Collider { get; private set; }
