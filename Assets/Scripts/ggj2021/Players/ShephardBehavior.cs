@@ -44,6 +44,9 @@ namespace pdxpartyparrot.ggj2021.Players
         private void Awake()
         {
             _interactables = GetComponent<Interactables>();
+
+            _interactables.AddingInteractableEvent += AddingInteractableEventHandler;
+            _interactables.InteractableRemovedEvent += InteractableRemovedEventHandler;
         }
 
         #endregion
@@ -54,7 +57,7 @@ namespace pdxpartyparrot.ggj2021.Players
 
         #region Sheep
 
-        private bool PickUpSheep()
+        public bool PickUpSheep()
         {
             if(!CanPickUpSheep) {
                 return false;
@@ -65,9 +68,9 @@ namespace pdxpartyparrot.ggj2021.Players
                 return false;
             }
 
-            /*if(!sheep.Hold(this)) {
+            if(!sheep.Hold()) {
                 return false;
-            }*/
+            }
 
             _heldSheep = sheep;
             _interactables.RemoveInteractable(_heldSheep);
@@ -75,6 +78,24 @@ namespace pdxpartyparrot.ggj2021.Players
             _heldSheep.transform.SetParent(_sheepAttachment.transform);
 
             return true;
+        }
+
+        #endregion
+
+        #region Event Handlers
+
+        private void AddingInteractableEventHandler(object sender, InteractableEventArgs args)
+        {
+            if(!_interactables.HasInteractables<Sheep>()) {
+                Debug.Log("Have sheep!");
+            }
+        }
+
+        private void InteractableRemovedEventHandler(object sender, InteractableEventArgs args)
+        {
+            if(!_interactables.HasInteractables<Sheep>()) {
+                Debug.Log("No more sheep!");
+            }
         }
 
         #endregion

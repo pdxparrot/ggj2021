@@ -12,15 +12,36 @@ namespace pdxpartyparrot.ggj2021.NPCs
     [RequireComponent(typeof(AudioSource))]
     public sealed class Sheep : NPC25D, IInteractable
     {
-        public bool CanInteract => true;//!IsHeld;
+        private SheepBehavior SheepBehavior => (SheepBehavior)NPCBehavior;
+
+        public bool CanInteract => !SheepBehavior.IsHeld;
 
         public Type InteractableType => typeof(Sheep);
+
+        #region Unity Lifecycle
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            Collider.isTrigger = true;
+
+            GetComponent<AudioSource>().spatialBlend = 0.0f;
+        }
+
+        #endregion
 
         public override void Initialize(Guid id)
         {
             base.Initialize(id);
 
             Assert.IsTrue(Behavior is SheepBehavior);
+        }
+
+        public bool Hold()
+        {
+            return SheepBehavior.Hold();
         }
 
         #region Spawn

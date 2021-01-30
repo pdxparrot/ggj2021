@@ -16,7 +16,12 @@ namespace pdxpartyparrot.Game.Interactables
     {
         #region Events
 
+        public event EventHandler<InteractableEventArgs> AddingInteractableEvent;
+
         public event EventHandler<InteractableEventArgs> InteractableAddedEvent;
+
+        public event EventHandler<InteractableEventArgs> RemovingInteractableEvent;
+
         public event EventHandler<InteractableEventArgs> InteractableRemovedEvent;
 
         #endregion
@@ -42,6 +47,9 @@ namespace pdxpartyparrot.Game.Interactables
             }
 
             //Debug.Log($"Adding interactable of type {interactable.InteractableType}");
+            AddingInteractableEvent?.Invoke(this, new InteractableEventArgs {
+                Interactable = interactable
+            });
 
             var interactables = _interactables.GetOrAdd(interactable.InteractableType);
             return interactables.Add(interactable);
@@ -54,6 +62,9 @@ namespace pdxpartyparrot.Game.Interactables
             }
 
             //Debug.Log($"Removing interactable of type {interactable.InteractableType}");
+            RemovingInteractableEvent?.Invoke(this, new InteractableEventArgs {
+                Interactable = interactable
+            });
 
             var interactables = _interactables.GetOrAdd(interactable.InteractableType);
             return interactables.Remove(interactable);
