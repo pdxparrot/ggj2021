@@ -88,6 +88,12 @@ namespace pdxpartyparrot.Core.World
         }
 
         [CanBeNull]
+        public virtual Actor SpawnFromPrefab(Actor prefab, ActorBehaviorComponentData behaviorData, Transform parent = null, bool activate = true)
+        {
+            return SpawnFromPrefab(prefab, Guid.NewGuid(), behaviorData, parent, activate);
+        }
+
+        [CanBeNull]
         public virtual Actor SpawnFromPrefab(Actor prefab, Guid id, ActorBehaviorComponentData behaviorData, Transform parent = null, bool activate = true)
         {
 #if USE_NETWORKING
@@ -107,7 +113,7 @@ namespace pdxpartyparrot.Core.World
         [CanBeNull]
         public Actor SpawnNPCPrefab(Actor prefab, ActorBehaviorComponentData behaviorData, Transform parent = null, bool active = true)
         {
-            return SpawnFromPrefab(prefab, Guid.NewGuid(), behaviorData, parent, active);
+            return SpawnFromPrefab(prefab, behaviorData, parent, active);
         }
 
         public virtual bool Spawn(Actor actor, Guid id, ActorBehaviorComponentData behaviorData)

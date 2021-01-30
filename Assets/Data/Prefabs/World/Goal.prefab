@@ -297,7 +297,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4695010639071256063}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -314,7 +314,7 @@ Transform:
   - {fileID: 2690468255957089572}
   m_Father: {fileID: 7148275383706808183}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &4846960133449813284
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,6 +396,57 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4916247045270306483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8385943130079972743}
+  - component: {fileID: 6544931435324241486}
+  m_Layer: 16
+  m_Name: Movement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8385943130079972743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4916247045270306483}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5653379061600611599}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6544931435324241486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4916247045270306483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cad18b813c18382b8a001809e6e1fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _owner: {fileID: 0}
+  _lastVelocity: {x: 0, y: 0, z: 0}
+  _lastAngularVelocity: {x: 0, y: 0, z: 0}
+  _rigidbody: {fileID: 9118514343758584251}
+  _pauseState:
+    IsKinematic: 0
+    Velocity: {x: 0, y: 0, z: 0}
+    AngularVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &5188986514814941598
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,6 +700,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5653379061600611599}
   - component: {fileID: 8920052813697005926}
+  - component: {fileID: 9118514343758584251}
   - component: {fileID: 7065093185959490570}
   m_Layer: 16
   m_Name: Goal
@@ -669,6 +721,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7148275383706808183}
+  - {fileID: 8385943130079972743}
   - {fileID: 3692731122306688350}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -686,6 +739,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &9118514343758584251
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7409777507836189458}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &7065093185959490570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,6 +767,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea41517d44aaf4f0cb2bf61a5fd3f1dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _model: {fileID: 970442722880408526}
+  _components:
+  - {fileID: 6544931435324241486}
+  _behavior: {fileID: 0}
+  _movement: {fileID: 0}
+  _isMoving: 0
+  _facingDirection: {x: 1, y: 0, z: 0}
+  _manualAnimator: {fileID: 0}
+  _nextWaypoint: {fileID: 0}
 --- !u!1 &7588512881295134921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,7 +1129,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5653379061600611599}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1749668749453837615
 BoxCollider:

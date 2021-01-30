@@ -2,7 +2,9 @@ using System;
 
 using pdxpartyparrot.Core.Time;
 using pdxpartyparrot.Core.Util;
+using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Level;
+using pdxpartyparrot.ggj2021.World;
 
 using UnityEngine;
 
@@ -11,6 +13,9 @@ namespace pdxpartyparrot.ggj2021.Level
     public sealed class MainLevel : LevelHelper, IBaseLevel
     {
         [SerializeField]
+        private GoalWaypoint _initialGoalWaypoint;
+
+        [SerializeField]
         private float _roundSeconds = 60.0f;
 
         [SerializeReference]
@@ -18,6 +23,8 @@ namespace pdxpartyparrot.ggj2021.Level
         private ITimer _timer;
 
         private GameObject _sheepPen;
+
+        private Goal _goal;
 
         public Transform SheepPen => _sheepPen.transform;
 
@@ -36,6 +43,7 @@ namespace pdxpartyparrot.ggj2021.Level
         protected override void OnDestroy()
         {
             Destroy(_sheepPen);
+            Destroy(_goal.gameObject);
 
             if(TimeManager.HasInstance) {
                 TimeManager.Instance.RemoveTimer(_timer);
@@ -48,6 +56,19 @@ namespace pdxpartyparrot.ggj2021.Level
         #endregion
 
         #region Event Handlers
+
+        #region Event Handlers
+
+        protected override void GameStartServerEventHandler(object sender, EventArgs args)
+        {
+            base.GameStartServerEventHandler(sender, args);
+
+            SpawnPoint spawnPoint = SpawnManager.Instance.GetSpawnPoint(GameManager.Instance.GameGameData.GoalSpawnTag);
+            _goal = spawnPoint.SpawnFromPrefab(GameManager.Instance.GameGameData.GoalPrefab, null) as Goal;
+            _goal.SetWaypoint(_initialGoalWaypoint);
+        }
+
+        #endregion
 
         protected override void GameStartClientEventHandler(object sender, EventArgs args)
         {

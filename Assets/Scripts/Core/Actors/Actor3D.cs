@@ -28,32 +28,32 @@ namespace pdxpartyparrot.Core.Actors
             Collider = GetComponent<Collider>();
         }
 
-        private void OnCollisionEnter(Collision collision)
+        protected virtual void OnCollisionEnter(Collision collision)
         {
             RunOnComponents(c => c.CollisionEnter(collision.gameObject));
         }
 
-        private void OnCollisionStay(Collision collision)
+        protected virtual void OnCollisionStay(Collision collision)
         {
             RunOnComponents(c => c.CollisionStay(collision.gameObject));
         }
 
-        private void OnCollisionExit(Collision collision)
+        protected virtual void OnCollisionExit(Collision collision)
         {
             RunOnComponents(c => c.CollisionExit(collision.gameObject));
         }
 
-        private void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerEnter(Collider other)
         {
             RunOnComponents(c => c.TriggerEnter(other.gameObject));
         }
 
-        private void OnTriggerStay(Collider other)
+        protected virtual void OnTriggerStay(Collider other)
         {
             RunOnComponents(c => c.TriggerStay(other.gameObject));
         }
 
-        private void OnTriggerExit(Collider other)
+        protected virtual void OnTriggerExit(Collider other)
         {
             RunOnComponents(c => c.TriggerExit(other.gameObject));
         }

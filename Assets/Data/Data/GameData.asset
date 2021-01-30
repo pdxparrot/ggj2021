@@ -27,3 +27,7 @@ MonoBehaviour:
   _maxQueuedSheep: 4
   _sheepLaunchSpeed: 75
   _sheepTargetPlayer: 1
+  _goalSpawnTag: Goal
+  _goalPrefab: {fileID: 7065093185959490570, guid: 1556a80286400df35bbc420050682226, type: 3}
+  _goalLayer: GoalTrigger
+  _goalSpeed: 5
