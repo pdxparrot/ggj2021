@@ -33,7 +33,7 @@ namespace pdxpartyparrot.ggj2021.Players
 
             Assert.IsTrue(PlayerInputHandler is PlayerInputHandler);
 
-            Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            Rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
         }
 
         #endregion

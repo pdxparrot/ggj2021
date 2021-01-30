@@ -24,7 +24,7 @@ namespace pdxpartyparrot.ggj2021.NPCs
         {
             base.Awake();
 
-            Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            Rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
             Collider.isTrigger = true;
 
             GetComponent<AudioSource>().spatialBlend = 0.0f;
