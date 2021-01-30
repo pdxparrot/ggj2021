@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace pdxpartyparrot.Core.Effects.EffectTriggerComponents
 {
@@ -13,6 +14,8 @@ namespace pdxpartyparrot.Core.Effects.EffectTriggerComponents
 
         public virtual void Initialize(EffectTrigger owner)
         {
+            Assert.IsNull(Owner);
+
             Owner = owner;
         }
 

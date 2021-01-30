@@ -105,7 +105,7 @@ namespace pdxpartyparrot.Core.Actors.Components
             _transform = owner.GetComponent<Transform>();
         }
 
-        public virtual void Initialize(ActorBehaviorComponentData behaviorData)
+        public virtual void Reset(ActorBehaviorComponentData behaviorData)
         {
             ResetFromData(behaviorData);
 

@@ -1,12 +1,8 @@
 using System;
 
-using JetBrains.Annotations;
-
-using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Characters.NPCs;
 using pdxpartyparrot.Game.Interactables;
-using pdxpartyparrot.ggj2021.Data.NPCs;
 
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -16,27 +12,16 @@ namespace pdxpartyparrot.ggj2021.NPCs
     [RequireComponent(typeof(AudioSource))]
     public sealed class Sheep : NPC25D, IInteractable
     {
-        [SerializeField]
-        [ReadOnly]
-        [CanBeNull]
-        private SheepData _sheepData;
-
-        public SheepData SheepData => _sheepData;
-
         public bool CanInteract => true;//!IsHeld;
 
         public Type InteractableType => typeof(Sheep);
 
-        #region Unity Lifecycle
-
-        protected override void Awake()
+        public override void Initialize(Guid id)
         {
-            base.Awake();
+            base.Initialize(id);
 
-            Assert.IsTrue(NPCBehavior is SheepBehavior);
+            Assert.IsTrue(Behavior is SheepBehavior);
         }
-
-        #endregion
 
         #region Spawn
 

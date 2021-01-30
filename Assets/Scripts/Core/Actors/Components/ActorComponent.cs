@@ -6,6 +6,7 @@ using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Core.World;
 
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace pdxpartyparrot.Core.Actors.Components
 {
@@ -41,6 +42,8 @@ namespace pdxpartyparrot.Core.Actors.Components
 
         public virtual void Initialize(Actor owner)
         {
+            Assert.IsNull(Owner);
+
             Owner = owner;
         }
 

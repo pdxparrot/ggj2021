@@ -80,6 +80,8 @@ namespace pdxpartyparrot.Core.World
         {
             InitActor(actor);
 
+            actor.Initialize(id);
+
             if(null != actor.Behavior && null != behaviorData) {
                 actor.Behavior.Initialize(behaviorData);
             }

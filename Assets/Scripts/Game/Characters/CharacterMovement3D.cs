@@ -61,9 +61,9 @@ namespace pdxpartyparrot.Game.Characters
 
         #endregion
 
-        public override void Initialize(ActorBehaviorComponentData behaviorData)
+        public override void Reset(ActorBehaviorComponentData behaviorData)
         {
-            base.Initialize(behaviorData);
+            base.Reset(behaviorData);
 
             Assert.IsTrue(Owner.Behavior is CharacterBehavior);
         }

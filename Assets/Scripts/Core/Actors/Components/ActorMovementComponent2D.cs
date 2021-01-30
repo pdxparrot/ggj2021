@@ -160,9 +160,9 @@ namespace pdxpartyparrot.Core.Actors.Components
             base.Initialize(owner);
         }
 
-        public override void Initialize(ActorBehaviorComponentData behaviorData)
+        public override void Reset(ActorBehaviorComponentData behaviorData)
         {
-            base.Initialize(behaviorData);
+            base.Reset(behaviorData);
 
             InitRigidbody(behaviorData);
         }

@@ -359,7 +359,6 @@ GameObject:
   - component: {fileID: 3401848030230953443}
   - component: {fileID: 2963733724673814978}
   - component: {fileID: 4460146216915277088}
-  - component: {fileID: 399718828145249249}
   - component: {fileID: 7562309965549829660}
   m_Layer: 9
   m_Name: Viewer
@@ -452,7 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f8881eeddf0cfa99f4f87f465ac8a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: 0
+  _id: -1
   _camera: {fileID: 2283529947499019221}
   _uiCamera: {fileID: 1113340593216270193}
   _globalPostProcessVolume: {fileID: 4626027892622854272}
@@ -460,28 +459,6 @@ MonoBehaviour:
   _defaultCameraPosition: {x: 0, y: 0, z: 0}
   _mode: 1
   _virtualCamera: {fileID: 0}
---- !u!114 &399718828145249249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6921679846223155448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 0, z: -10}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
-  m_AngularDampingMode: 0
-  m_PitchDamping: 0
-  m_YawDamping: 0
-  m_RollDamping: 0
-  m_AngularDamping: 0
 --- !u!114 &7562309965549829660
 MonoBehaviour:
   m_ObjectHideFlags: 0

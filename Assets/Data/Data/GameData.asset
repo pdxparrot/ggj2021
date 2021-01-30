@@ -21,3 +21,6 @@ MonoBehaviour:
   _floatingTextPrefab: {fileID: 4002503836432287892, guid: db8b19ec476cf58fe82437d4660d931a, type: 3}
   _floatingTextPoolSize: 10
   _mainGameStatePrefab: {fileID: 2927043203986919087, guid: 6d24d585933235652870177607e060f4, type: 3}
+  _sheepSpawnTag: Sheep
+  _sheepPrefab: {fileID: 6939698526023505838, guid: f4510caed99219066abbac3bd5b24974, type: 3}
+  _sheepBehaviorData: {fileID: 11400000, guid: 6cb1ab40368e69468b77ab0b40b6420b, type: 2}

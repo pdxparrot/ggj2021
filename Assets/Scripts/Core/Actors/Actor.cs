@@ -142,6 +142,8 @@ namespace pdxpartyparrot.Core.Actors
 
         public virtual void Initialize(Guid id)
         {
+            Assert.IsTrue(_id == Guid.Empty);
+
             if(ActorManager.Instance.EnableDebug) {
                 Debug.Log($"Initializing actor {id}");
             }

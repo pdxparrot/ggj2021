@@ -8,6 +8,7 @@ using pdxpartyparrot.Core.UI;
 
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Assertions;
 
 namespace pdxpartyparrot.Core.Camera
 {
@@ -15,7 +16,7 @@ namespace pdxpartyparrot.Core.Camera
     {
         [SerializeField]
         [ReadOnly]
-        private int _id;
+        private int _id = -1;
 
         public int Id => _id;
 
@@ -100,6 +101,8 @@ namespace pdxpartyparrot.Core.Camera
 
         public virtual void Initialize(int id)
         {
+            Assert.IsTrue(_id == -1 && id >= 0);
+
             _id = id;
 
             name = $"Viewer {Id}";

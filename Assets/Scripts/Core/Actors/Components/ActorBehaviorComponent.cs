@@ -9,6 +9,7 @@ using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Core.World;
 
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace pdxpartyparrot.Core.Actors.Components
 {
@@ -134,13 +135,15 @@ namespace pdxpartyparrot.Core.Actors.Components
 
         public virtual void Initialize(ActorBehaviorComponentData behaviorData)
         {
+            Assert.IsNull(_behaviorData);
+
             _behaviorData = behaviorData;
 
             if(null != Owner) {
                 Owner.IsMoving = false;
 
                 if(null != Owner.Movement) {
-                    Owner.Movement.Initialize(behaviorData);
+                    Owner.Movement.Reset(behaviorData);
                 }
             }
         }
