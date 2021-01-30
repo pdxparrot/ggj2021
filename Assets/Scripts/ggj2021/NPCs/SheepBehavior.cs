@@ -39,6 +39,8 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         public bool IsCaught => _state == State.Chambered || _state == State.Enqueued || _state == State.Launched;
 
+        public bool IsLaunched => _state == State.Launched;
+
         [SerializeField]
         [ReadOnly]
         private Transform _target;

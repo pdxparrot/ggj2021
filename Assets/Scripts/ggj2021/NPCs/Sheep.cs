@@ -18,6 +18,8 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         public Type InteractableType => typeof(Sheep);
 
+        public bool CanScore => SheepBehavior.IsLaunched;
+
         #region Unity Lifecycle
 
         protected override void Awake()
@@ -102,6 +104,11 @@ namespace pdxpartyparrot.ggj2021.NPCs
             SetChambered(GameManager.Instance.BaseLevel.SheepPen, false);
 
             SheepBehavior.OnLaunch(start, direction);
+        }
+
+        public void OnScored()
+        {
+            DeSpawn(true);
         }
 
         #endregion

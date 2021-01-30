@@ -10,9 +10,9 @@ namespace pdxpartyparrot.Game.World
     [RequireComponent(typeof(NavMeshObstacle))]
     public class StaticObstacle : MonoBehaviour
     {
-        private Collider Collider { get; set; }
+        private Collider _collider;
 
-        private NavMeshObstacle NavMeshObstacle { get; set; }
+        private NavMeshObstacle _obstacle;
 
         #region Unity Lifecycle
 
@@ -20,11 +20,11 @@ namespace pdxpartyparrot.Game.World
         {
             gameObject.layer = GameStateManager.Instance.GameManager.GameData.WorldLayer;
 
-            Collider = GetComponent<Collider>();
-            Collider.sharedMaterial = PartyParrotManager.Instance.FrictionlessMaterial;
+            _collider = GetComponent<Collider>();
+            _collider.sharedMaterial = PartyParrotManager.Instance.FrictionlessMaterial;
 
-            NavMeshObstacle = GetComponent<NavMeshObstacle>();
-            NavMeshObstacle.carving = true;
+            _obstacle = GetComponent<NavMeshObstacle>();
+            _obstacle.carving = true;
         }
 
         #endregion

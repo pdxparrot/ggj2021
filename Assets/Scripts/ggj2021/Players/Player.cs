@@ -66,24 +66,9 @@ namespace pdxpartyparrot.ggj2021.Players
                 return false;
             }
 
-            /*if(!_shepherd.OnSpawn(spawnpoint)) {
-                return false;
-            }*/
-
-            PlayerGameViewer.FollowTarget(gameObject);
-
-            return true;
-        }
-
-        public override bool OnReSpawn(SpawnPoint spawnpoint)
-        {
-            if(!base.OnReSpawn(spawnpoint)) {
+            if(!_shepherd.OnSpawn(spawnpoint)) {
                 return false;
             }
-
-            /*if(!_shepherd.OnReSpawn(spawnpoint)) {
-                return false;
-            }*/
 
             PlayerGameViewer.FollowTarget(gameObject);
 
@@ -92,7 +77,7 @@ namespace pdxpartyparrot.ggj2021.Players
 
         public override void OnDeSpawn()
         {
-            //_shepherd.OnDeSpawn();
+            _shepherd.OnDeSpawn();
 
             PlayerGameViewer.FollowTarget(null);
 

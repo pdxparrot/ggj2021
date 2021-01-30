@@ -4,6 +4,7 @@ using System.Linq;
 using JetBrains.Annotations;
 
 using pdxpartyparrot.Core.Util;
+using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Interactables;
 using pdxpartyparrot.ggj2021.NPCs;
 
@@ -155,6 +156,19 @@ namespace pdxpartyparrot.ggj2021.Players
                     ? Owner.transform
                     : _magazine.ElementAt(i - 1).transform);
             }
+        }
+
+        #endregion
+
+        #region Spawn
+
+        public bool OnSpawn(SpawnPoint spawnpoint)
+        {
+            return true;
+        }
+
+        public void OnDeSpawn()
+        {
         }
 
         #endregion

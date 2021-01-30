@@ -41,10 +41,16 @@ namespace pdxpartyparrot.ggj2021.Data
 
         public float SheepLaunchSpeed => _sheepLaunchSpeed;
 
+        // TODO: move to sheep behavior data
         [SerializeField]
         [Tooltip("Should queued sheep target the player or try to form a line?")]
         private bool _sheepTargetPlayer;
 
         public bool SheepTargetPlayer => _sheepTargetPlayer;
+
+        [SerializeField]
+        private string _goalLayer = "GoalTrigger";
+
+        public LayerMask GoalLayer => LayerMask.NameToLayer(_goalLayer);
     }
 }
