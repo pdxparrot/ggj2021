@@ -4,7 +4,6 @@ using System.Collections;
 using JetBrains.Annotations;
 
 using pdxpartyparrot.Core.Actors;
-using pdxpartyparrot.Core.Data.Actors.Components;
 using pdxpartyparrot.Core.ObjectPool;
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Game.State;
@@ -18,6 +17,7 @@ using UnityEngine.Rendering;
 namespace pdxpartyparrot.Game.Characters.NPCs
 {
     [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(NavMeshObstacle))]
     public abstract class NPC3D : Actor3D, INPC
     {
         public GameObject GameObject => gameObject;
@@ -66,6 +66,8 @@ namespace pdxpartyparrot.Game.Characters.NPCs
 
         private NavMeshAgent _agent;
 
+        private NavMeshObstacle _obstacle;
+
         private Coroutine _agentStuckCheck;
 
         [Space(10)]
@@ -101,6 +103,13 @@ namespace pdxpartyparrot.Game.Characters.NPCs
             base.Awake();
 
             _agent = GetComponent<NavMeshAgent>();
+
+            _obstacle = GetComponent<NavMeshObstacle>();
+            _obstacle.carving = true;
+
+            if(_agent.enabled && _obstacle.enabled) {
+                Debug.LogWarning("Either the NavMeshAgent or the NavMeshObstacle component must start disabled!");
+            }
 
             _pooledObject = GetComponent<PooledObject>();
             if(null != _pooledObject) {
@@ -162,6 +171,29 @@ namespace pdxpartyparrot.Game.Characters.NPCs
             _agentStuckCheck = StartCoroutine(AgentStuckCheck());
         }
 
+        #region Agent
+
+        public void SetPassive()
+        {
+            _agent.enabled = false;
+            _obstacle.enabled = false;
+        }
+
+
+        public void SetObstacle()
+        {
+            _agent.enabled = false;
+            _obstacle.enabled = true;
+        }
+
+        public void SetAgent()
+        {
+            _obstacle.enabled = false;
+            _agent.enabled = true;
+        }
+
+        #endregion
+
         #region Pathing
 
         public bool UpdatePath(Vector3 target)
@@ -202,13 +234,6 @@ namespace pdxpartyparrot.Game.Characters.NPCs
         }
 #endif
 
-        #endregion
-
-        public void EnableAgent(bool enable)
-        {
-            _agent.enabled = enable;
-        }
-
         public void Stop(bool resetPath, bool idle)
         {
             _agent.velocity = Vector3.zero;
@@ -219,6 +244,8 @@ namespace pdxpartyparrot.Game.Characters.NPCs
                 NPCBehavior.OnIdle();
             }
         }
+
+        #endregion
 
         public void Recycle()
         {

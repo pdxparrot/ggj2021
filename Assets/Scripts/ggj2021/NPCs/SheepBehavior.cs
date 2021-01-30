@@ -83,13 +83,17 @@ namespace pdxpartyparrot.ggj2021.NPCs
             switch(_state) {
             case State.Idle:
                 NPCOwner.Stop(true, true);
+                Sheep.SetObstacle();
                 break;
             case State.Chambered:
+                Sheep.SetPassive();
                 break;
             case State.Enqueued:
+                Sheep.SetAgent();
                 NPCOwner.Stop(true, false);
                 break;
             case State.Launched:
+                Sheep.SetPassive();
                 break;
             }
         }
@@ -117,6 +121,9 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         private void HandleLaunched()
         {
+            /*if(Owner.Movement.AtRest) {
+                SetState(State.Idle);
+            }*/
         }
 
         #endregion

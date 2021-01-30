@@ -72,6 +72,8 @@ namespace pdxpartyparrot.Core.Actors.Components
             set { }
         }
 
+        public bool AtRest => Mathf.Approximately(Velocity.sqrMagnitude, 0.0f);
+
         #endregion
 
         #region Unity Lifecycle
