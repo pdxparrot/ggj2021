@@ -70,21 +70,29 @@ namespace pdxpartyparrot.ggj2021.NPCs
             base.OnDeSpawn();
         }
 
-        public void OnChambered()
+        public void OnChambered(Transform parent)
         {
+            transform.SetParent(parent);
+
             Model.gameObject.SetActive(false);
             EnableAgent(false);
+
+            Rigidbody.isKinematic = true;
 
             SheepBehavior.OnChambered();
         }
 
-        public void OnEnqueued(GameObject target)
+        public void OnEnqueued(Transform target)
         {
             SheepBehavior.OnEnqueued(target);
         }
 
         public void OnLaunch(Vector3 start, Vector3 direction)
         {
+            Rigidbody.isKinematic = false;
+
+            transform.SetParent(GameManager.Instance.BaseLevel.SheepPen);
+
             SheepBehavior.OnLaunch(start, direction);
 
             Model.gameObject.SetActive(true);

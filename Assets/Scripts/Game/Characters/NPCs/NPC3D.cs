@@ -152,7 +152,7 @@ namespace pdxpartyparrot.Game.Characters.NPCs
             _agent.height = Height;
         }
 
-        public void OnBehaviorInitialized()
+        public virtual void OnBehaviorInitialized()
         {
             _agent.speed = NPCBehavior.NPCBehaviorData.MoveSpeed;
             _agent.angularSpeed = NPCBehavior.NPCBehaviorData.AngularMoveSpeed;

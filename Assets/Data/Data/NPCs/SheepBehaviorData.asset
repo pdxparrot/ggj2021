@@ -28,6 +28,6 @@ MonoBehaviour:
   _fallingParam: Falling
   _actionBufferSize: 1
   _actionBufferTimeoutMs: 500
-  _angularMoveSpeed: 120
+  _angularMoveSpeed: 0
   _moveAcceleration: 10
   _stoppingDistance: 0.1

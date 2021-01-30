@@ -71,15 +71,12 @@ namespace pdxpartyparrot.ggj2021.Players
                 return false;
             }
 
+            Debug.Log($"Caught sheep {sheep.Id}");
+
             if(null == _chamber) {
                 ChamberSheep(sheep);
             } else {
-                _magazine.Add(sheep);
-                if(_magazine.Count == 1) {
-                    sheep.OnEnqueued(Owner.gameObject);
-                } else {
-                    sheep.OnEnqueued(_magazine.ElementAt(_magazine.Count - 1).gameObject);
-                }
+                EnqueueSheep(sheep);
             }
 
             _interactables.RemoveInteractable(sheep);
@@ -92,11 +89,24 @@ namespace pdxpartyparrot.ggj2021.Players
             Assert.IsNull(_chamber);
 
             _chamber = sheep;
-            sheep.OnChambered();
+            sheep.OnChambered(_chamberParent);
 
-            _chamber.transform.SetParent(_chamberParent);
+            Debug.Log($"Chambered sheep {_chamber.Id}");
+        }
 
-            Debug.Log($"Enable attached sheep");
+        private void EnqueueSheep(Sheep sheep)
+        {
+            Assert.IsTrue(HasCapacity);
+
+            _magazine.Add(sheep);
+
+            if(_magazine.Count == 1) {
+                sheep.OnEnqueued(Owner.transform);
+            } else {
+                sheep.OnEnqueued(GameManager.Instance.GameGameData.SheepTargetPlayer
+                    ? Owner.transform
+                    : _magazine.ElementAt(_magazine.Count - 2).transform);
+            }
         }
 
         public bool LaunchSheep()
@@ -108,9 +118,8 @@ namespace pdxpartyparrot.ggj2021.Players
             Sheep sheep = _chamber;
             _chamber = null;
 
-            Debug.Log($"Disable attached sheep");
+            Debug.Log($"Launching sheep {sheep.Id}");
 
-            sheep.transform.SetParent(GameManager.Instance.BaseLevel.SheepPen);
             sheep.OnLaunch(Owner.Movement.Position, Owner.FacingDirection);
 
             CycleRound();
@@ -128,16 +137,24 @@ namespace pdxpartyparrot.ggj2021.Players
             _magazine.RemoveAt(0);
 
             ChamberSheep(sheep);
-            if(_magazine.Count < 1) {
-                return true;
-            }
 
-            _magazine.ElementAt(0).OnEnqueued(Owner.gameObject);
-            for(int i = 1; i < _magazine.Count; ++i) {
-                _magazine.ElementAt(i).OnEnqueued(_magazine.ElementAt(i - 1).gameObject);
-            }
+            RackSheep();
 
             return true;
+        }
+
+        private void RackSheep()
+        {
+            if(_magazine.Count < 1) {
+                return;
+            }
+
+            _magazine.ElementAt(0).OnEnqueued(Owner.transform);
+            for(int i = 1; i < _magazine.Count; ++i) {
+                _magazine.ElementAt(i).OnEnqueued(GameManager.Instance.GameGameData.SheepTargetPlayer
+                    ? Owner.transform
+                    : _magazine.ElementAt(i - 1).transform);
+            }
         }
 
         #endregion

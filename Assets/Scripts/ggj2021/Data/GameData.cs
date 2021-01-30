@@ -14,6 +14,8 @@ namespace pdxpartyparrot.ggj2021.Data
     {
         public GameViewer GameViewerPrefab => (GameViewer)ViewerPrefab;
 
+        [Space(10)]
+
         [SerializeField]
         private string _sheepSpawnTag = "Sheep";
 
@@ -33,5 +35,11 @@ namespace pdxpartyparrot.ggj2021.Data
         private int _maxQueuedSheep = 4;
 
         public int MaxQueuedSheep => _maxQueuedSheep;
+
+        [SerializeField]
+        [Tooltip("Should queued sheep target the player or try to form a line?")]
+        private bool _sheepTargetPlayer;
+
+        public bool SheepTargetPlayer => _sheepTargetPlayer;
     }
 }

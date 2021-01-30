@@ -39,6 +39,10 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         public bool IsCaught => _state == State.Chambered || _state == State.Enqueued || _state == State.Launched;
 
+        [SerializeField]
+        [ReadOnly]
+        private Transform _target;
+
         public override void Initialize(ActorBehaviorComponentData behaviorData)
         {
             Assert.IsTrue(Owner is Sheep);
@@ -81,13 +85,11 @@ namespace pdxpartyparrot.ggj2021.NPCs
                 NPCOwner.Stop(true, true);
                 break;
             case State.Chambered:
-                NPCOwner.Stop(true, false);
                 break;
             case State.Enqueued:
                 NPCOwner.Stop(true, false);
                 break;
             case State.Launched:
-                NPCOwner.Stop(true, false);
                 break;
             }
         }
@@ -102,6 +104,15 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         private void HandleEnqueued()
         {
+            if(null == _target) {
+                SetState(State.Idle);
+                return;
+            }
+
+            if(!Sheep.UpdatePath(_target.position)) {
+                _target = null;
+                return;
+            }
         }
 
         private void HandleLaunched()
@@ -114,15 +125,23 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         public void OnChambered()
         {
+            _target = null;
+            SetState(State.Chambered);
         }
 
-        public void OnEnqueued(GameObject target)
+        public void OnEnqueued(Transform target)
         {
+            _target = target;
+            SetState(State.Enqueued);
         }
 
         public void OnLaunch(Vector3 start, Vector3 direction)
         {
-            transform.position = start;
+            Owner.Movement.Teleport(start);
+
+            Debug.Log("TODO: launch!");
+
+            SetState(State.Launched);
         }
 
         #endregion

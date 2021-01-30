@@ -58,7 +58,7 @@ namespace pdxpartyparrot.Game.Characters.NPCs
             Assert.IsTrue(Behavior is NPCBehavior);
         }
 
-        public void OnBehaviorInitialized()
+        public virtual void OnBehaviorInitialized()
         {
         }
 
