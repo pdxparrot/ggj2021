@@ -37,6 +37,11 @@ namespace pdxpartyparrot.ggj2021.Data
         public int MaxQueuedSheep => _maxQueuedSheep;
 
         [SerializeField]
+        private float _sheepLaunchSpeed = 50.0f;
+
+        public float SheepLaunchSpeed => _sheepLaunchSpeed;
+
+        [SerializeField]
         [Tooltip("Should queued sheep target the player or try to form a line?")]
         private bool _sheepTargetPlayer;
 

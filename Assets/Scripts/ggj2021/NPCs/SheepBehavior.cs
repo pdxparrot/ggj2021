@@ -82,7 +82,6 @@ namespace pdxpartyparrot.ggj2021.NPCs
             _state = state;
             switch(_state) {
             case State.Idle:
-                NPCOwner.Stop(true, true);
                 Sheep.SetObstacle();
                 break;
             case State.Chambered:
@@ -121,9 +120,9 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         private void HandleLaunched()
         {
-            /*if(Owner.Movement.AtRest) {
+            if(Owner.Movement.AtRest) {
                 SetState(State.Idle);
-            }*/
+            }
         }
 
         #endregion
@@ -146,7 +145,9 @@ namespace pdxpartyparrot.ggj2021.NPCs
         {
             Owner.Movement.Teleport(start);
 
-            Debug.Log("TODO: launch!");
+            Vector3 velocity = direction * GameManager.Instance.GameGameData.SheepLaunchSpeed;
+            Debug.Log($"Launching {velocity}");
+            Owner.Movement.Velocity = velocity;
 
             SetState(State.Launched);
         }
