@@ -1,0 +1,19 @@
+{
+    "name": "com.pdxpartyparrot.ggj2021.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:671848a6b13e590d482993295ddafa40",
+        "GUID:0cf7241c18d686b568ec72bcfae80458"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
