@@ -9,7 +9,9 @@ namespace pdxpartyparrot.ggj2021.World
     [RequireComponent(typeof(NavMeshObstacle))]
     public sealed class Obstacle : MonoBehaviour
     {
-        public Collider Collider { get; private set; }
+        private Collider Collider { get; set; }
+
+        private NavMeshObstacle NavMeshObstacle { get; set; }
 
         #region Unity Lifecycle
 
@@ -19,6 +21,9 @@ namespace pdxpartyparrot.ggj2021.World
 
             Collider = GetComponent<Collider>();
             Collider.sharedMaterial = PartyParrotManager.Instance.FrictionlessMaterial;
+
+            NavMeshObstacle = GetComponent<NavMeshObstacle>();
+            NavMeshObstacle.carving = true;
         }
 
         #endregion

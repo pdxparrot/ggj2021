@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 3201555510832323535}
   - component: {fileID: 1123478296482173327}
   - component: {fileID: 7921826898231426393}
+  - component: {fileID: 2561023361454097196}
   - component: {fileID: 5167719427659824102}
   - component: {fileID: 156809200627806474}
   - component: {fileID: 6939698526023505838}
@@ -281,6 +282,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!208 &2561023361454097196
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186541207018609456}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 2, y: 1, z: 2}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!195 &5167719427659824102
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -288,7 +305,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4186541207018609456}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 1
   m_Speed: 3.5
@@ -483,3 +500,4 @@ MonoBehaviour:
   _idleEffect: {fileID: 0}
   _movingEffectTrigger: {fileID: 0}
   _state: 0
+  _target: {fileID: 0}

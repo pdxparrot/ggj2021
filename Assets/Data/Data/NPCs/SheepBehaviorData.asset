@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SheepBehaviorData
   m_EditorClassIdentifier: 
   _actorLayer: NPC
-  _mass: 45
+  _mass: 100
   _drag: 0
   _angularDrag: 0
   _isKinematic: 0
@@ -29,5 +29,5 @@ MonoBehaviour:
   _actionBufferSize: 1
   _actionBufferTimeoutMs: 500
   _angularMoveSpeed: 0
-  _moveAcceleration: 10
-  _stoppingDistance: 0.1
+  _moveAcceleration: 50
+  _stoppingDistance: 2

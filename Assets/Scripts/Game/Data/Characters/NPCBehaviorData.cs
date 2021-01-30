@@ -19,7 +19,7 @@ namespace pdxpartyparrot.Game.Data.Characters
         public float AngularMoveSpeed => _angularMoveSpeed;
 
         [SerializeField]
-        [Range(0, 50)]
+        [Range(0, 200)]
         [Tooltip("Move acceleration in m/s^2")]
         private float _moveAcceleration = 10.0f;
 

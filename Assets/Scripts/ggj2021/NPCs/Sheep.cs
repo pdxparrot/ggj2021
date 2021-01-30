@@ -5,11 +5,13 @@ using pdxpartyparrot.Game.Characters.NPCs;
 using pdxpartyparrot.Game.Interactables;
 
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Assertions;
 
 namespace pdxpartyparrot.ggj2021.NPCs
 {
     [RequireComponent(typeof(AudioSource))]
+    [RequireComponent(typeof(NavMeshObstacle))]
     public sealed class Sheep : NPC25D, IInteractable
     {
         private SheepBehavior SheepBehavior => (SheepBehavior)NPCBehavior;
@@ -17,6 +19,8 @@ namespace pdxpartyparrot.ggj2021.NPCs
         public bool CanInteract => !SheepBehavior.IsCaught;
 
         public Type InteractableType => typeof(Sheep);
+
+        private NavMeshObstacle Obstacle { get; set; }
 
         #region Unity Lifecycle
 
@@ -28,6 +32,13 @@ namespace pdxpartyparrot.ggj2021.NPCs
             Collider.isTrigger = true;
 
             GetComponent<AudioSource>().spatialBlend = 0.0f;
+
+            // spawn as an obstacle
+            Obstacle = GetComponent<NavMeshObstacle>();
+            Obstacle.carving = true;
+
+            // start with AI off
+            EnableAgent(false);
         }
 
         #endregion
@@ -75,7 +86,10 @@ namespace pdxpartyparrot.ggj2021.NPCs
             transform.SetParent(parent);
 
             Model.gameObject.SetActive(false);
+
+            // disable AI and obstacle
             EnableAgent(false);
+            Obstacle.enabled = false;
 
             Rigidbody.isKinematic = true;
 
@@ -84,6 +98,10 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         public void OnEnqueued(Transform target)
         {
+            // enable AI, disable obstacle
+            EnableAgent(true);
+            Obstacle.enabled = false;
+
             SheepBehavior.OnEnqueued(target);
         }
 
@@ -92,6 +110,10 @@ namespace pdxpartyparrot.ggj2021.NPCs
             Rigidbody.isKinematic = false;
 
             transform.SetParent(GameManager.Instance.BaseLevel.SheepPen);
+
+            // disable AI and obstacle
+            EnableAgent(false);
+            Obstacle.enabled = false;
 
             SheepBehavior.OnLaunch(start, direction);
 

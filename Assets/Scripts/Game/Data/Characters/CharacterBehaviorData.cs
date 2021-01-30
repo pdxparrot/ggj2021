@@ -14,7 +14,7 @@ namespace pdxpartyparrot.Game.Data.Characters
         [Header("Character Physics")]
 
         [SerializeField]
-        [Range(0, 50)]
+        [Range(0, 200)]
         [Tooltip("Move speed in m/s")]
         private float _moveSpeed = 30.0f;
 
