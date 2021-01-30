@@ -29,6 +29,8 @@ namespace pdxpartyparrot.Game.Characters.NPCs
             Assert.IsTrue(behaviorData is NPCBehaviorData);
 
             base.Initialize(behaviorData);
+
+            NPCOwner.OnBehaviorInitialized();
         }
 
         protected override void AnimationUpdate(float dt)

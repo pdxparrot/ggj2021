@@ -4,6 +4,7 @@ using System.Collections;
 using JetBrains.Annotations;
 
 using pdxpartyparrot.Core.Actors;
+using pdxpartyparrot.Core.Data.Actors.Components;
 using pdxpartyparrot.Core.ObjectPool;
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Game.State;
@@ -146,15 +147,17 @@ namespace pdxpartyparrot.Game.Characters.NPCs
 
             Assert.IsTrue(Behavior is NPCBehavior);
 
-            // TODO: this might crash now that the behavior is not initialized by this
+            _agent.autoBraking = true;
+            _agent.radius = Radius;
+            _agent.height = Height;
+        }
+
+        public void OnBehaviorInitialized()
+        {
             _agent.speed = NPCBehavior.NPCBehaviorData.MoveSpeed;
             _agent.angularSpeed = NPCBehavior.NPCBehaviorData.AngularMoveSpeed;
             _agent.acceleration = NPCBehavior.NPCBehaviorData.MoveAcceleration;
             _agent.stoppingDistance = Radius + NPCBehavior.NPCBehaviorData.StoppingDistance;
-            _agent.autoBraking = true;
-
-            _agent.radius = Radius;
-            _agent.height = Height;
 
             _agentStuckCheck = StartCoroutine(AgentStuckCheck());
         }

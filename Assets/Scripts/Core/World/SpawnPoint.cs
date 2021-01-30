@@ -78,9 +78,9 @@ namespace pdxpartyparrot.Core.World
 
         private void InitActor(Actor actor, Guid id, ActorBehaviorComponentData behaviorData)
         {
-            InitActor(actor);
-
             actor.Initialize(id);
+
+            InitActor(actor);
 
             if(null != actor.Behavior && null != behaviorData) {
                 actor.Behavior.Initialize(behaviorData);

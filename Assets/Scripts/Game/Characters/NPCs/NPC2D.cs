@@ -58,6 +58,10 @@ namespace pdxpartyparrot.Game.Characters.NPCs
             Assert.IsTrue(Behavior is NPCBehavior);
         }
 
+        public void OnBehaviorInitialized()
+        {
+        }
+
         public override void SetFacing(Vector3 direction)
         {
             direction = new Vector3(direction.x, 0.0f, 0.0f);

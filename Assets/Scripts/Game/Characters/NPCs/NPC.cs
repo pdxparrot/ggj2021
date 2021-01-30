@@ -37,5 +37,7 @@ namespace pdxpartyparrot.Game.Characters.NPCs
         void Stop(bool resetPath, bool idle);
 
         void Recycle();
+
+        void OnBehaviorInitialized();
     }
 }

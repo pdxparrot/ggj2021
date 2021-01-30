@@ -1,7 +1,4 @@
-using pdxpartyparrot.Core;
-
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace pdxpartyparrot.ggj2021.World
 {
