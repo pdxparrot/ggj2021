@@ -55,6 +55,9 @@ namespace pdxpartyparrot.ggj2021.Players
         #endregion
 
         [SerializeField]
+        private GameObject _aimer;
+
+        [SerializeField]
         [ReadOnly]
         private ITimer _launchCooldown;
 
@@ -73,6 +76,8 @@ namespace pdxpartyparrot.ggj2021.Players
 
         private void Update()
         {
+            _aimer.transform.forward = -Owner.FacingDirection;
+
             CatchSheep();
         }
 
