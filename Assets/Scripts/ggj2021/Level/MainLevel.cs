@@ -79,7 +79,9 @@ namespace pdxpartyparrot.ggj2021.Level
 #if UNITY_EDITOR
             if(Keyboard.current[_cheatKey].wasPressedThisFrame) {
                 while(GameManager.Instance.Score < GameManager.Instance.Goal) {
-                    GameManager.Instance.OnGoalScored();
+                    if(!GameManager.Instance.OnGoalScored()) {
+                        break;
+                    }
                 }
             }
 #endif

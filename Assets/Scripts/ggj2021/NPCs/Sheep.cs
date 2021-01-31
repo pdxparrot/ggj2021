@@ -35,6 +35,13 @@ namespace pdxpartyparrot.ggj2021.NPCs
             SetObstacle();
         }
 
+        protected override void OnDestroy()
+        {
+            NPCManager.Instance.UnregisterNPC(this);
+
+            base.OnDestroy();
+        }
+
         private void FixedUpdate()
         {
             // hacky fix for the sheep not wanting to stay centered

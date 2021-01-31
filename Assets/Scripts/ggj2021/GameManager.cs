@@ -72,8 +72,12 @@ namespace pdxpartyparrot.ggj2021
             }
         }
 
-        public void OnGoalScored()
+        public bool OnGoalScored()
         {
+            if(!IsGameReady || IsGameOver) {
+                return false;
+            }
+
             Debug.Log("Goooooaaaalllll!");
 
             _score++;
@@ -85,8 +89,10 @@ namespace pdxpartyparrot.ggj2021
             if(_goal > 0 && _score >= _goal) {
                 Debug.Log("You win this round!");
                 RoundWonEvent?.Invoke(this, null);
-                return;
+                return true;
             }
+
+            return true;
         }
 
         #endregion

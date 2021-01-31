@@ -88,12 +88,16 @@ namespace pdxpartyparrot.Game.NPCs
 
         public void RegisterNPC(INPC npc)
         {
-            _npcs.Add(npc);
+            if(_npcs.Add(npc)) {
+                Debug.Log($"Registered NPC {npc.Id}");
+            }
         }
 
         public void UnregisterNPC(INPC npc)
         {
-            _npcs.Remove(npc);
+            if(_npcs.Remove(npc)) {
+                Debug.Log($"Unregistered NPC {npc.Id}");
+            }
         }
 
         public bool RespawnNPC(INPC npc, string tag)
