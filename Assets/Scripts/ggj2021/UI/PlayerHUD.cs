@@ -33,7 +33,7 @@ namespace pdxpartyparrot.ggj2021.UI
         public void UpdateTimer(float pctRemaining)
         {
             Vector3 rot = _timer.eulerAngles;
-            rot.z = (1.0f - pctRemaining) * 180.0f;
+            rot.z = (1.0f - pctRemaining) * -180.0f;
             _timer.eulerAngles = rot;
         }
 
