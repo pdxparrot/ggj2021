@@ -1,5 +1,72 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2699467766699944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1621323005684708065}
+  - component: {fileID: 2960399136056104507}
+  - component: {fileID: 8644052931903589416}
+  m_Layer: 15
+  m_Name: Idle Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1621323005684708065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2699467766699944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3201555510832323535}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2960399136056104507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2699467766699944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2a4737a92e7a1888e3c6574332558b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerOnComplete: []
+  _components:
+  - {fileID: 8644052931903589416}
+  _isRunning: 0
+  _complete: 0
+--- !u!114 &8644052931903589416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2699467766699944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ce0f34c8ebea201b1f9ef2cb42bbb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spineAnimation: {fileID: 8387168736222356194}
+  _spineAnimationName: FrontIdle
+  _spineAnimationTrack: 0
+  _loop: 0
+  _trackStartTime: 0
+  _waitForComplete: 1
 --- !u!1 &1047066222155954823
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,6 +237,8 @@ Transform:
   - {fileID: 4631681059007864752}
   - {fileID: 4535068852023465409}
   - {fileID: 6552908878773849065}
+  - {fileID: 1621323005684708065}
+  - {fileID: 5140906761604764757}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -482,6 +551,73 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _owner: {fileID: 6939698526023505838}
+--- !u!1 &8680258379521940472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5140906761604764757}
+  - component: {fileID: 1130073369580832040}
+  - component: {fileID: 394942077456009468}
+  m_Layer: 15
+  m_Name: Move Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5140906761604764757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8680258379521940472}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3201555510832323535}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1130073369580832040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8680258379521940472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2a4737a92e7a1888e3c6574332558b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerOnComplete: []
+  _components:
+  - {fileID: 394942077456009468}
+  _isRunning: 0
+  _complete: 0
+--- !u!114 &394942077456009468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8680258379521940472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ce0f34c8ebea201b1f9ef2cb42bbb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spineAnimation: {fileID: 8387168736222356194}
+  _spineAnimationName: FrontMove
+  _spineAnimationTrack: 0
+  _loop: 0
+  _trackStartTime: 0
+  _waitForComplete: 1
 --- !u!1 &8748045445818171317
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,8 +675,8 @@ MonoBehaviour:
   _components: []
   _isGrounded: 0
   _isSliding: 0
-  _idleEffect: {fileID: 0}
-  _movingEffectTrigger: {fileID: 0}
+  _idleEffect: {fileID: 2960399136056104507}
+  _movingEffectTrigger: {fileID: 1130073369580832040}
   _state: 0
   _target: {fileID: 0}
 --- !u!1001 &1529446671041034034

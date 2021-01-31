@@ -3,6 +3,7 @@ using System.Linq;
 
 using JetBrains.Annotations;
 
+using pdxpartyparrot.Core.Effects;
 using pdxpartyparrot.Core.Time;
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Core.World;
@@ -40,6 +41,16 @@ namespace pdxpartyparrot.ggj2021.Players
         private List<Sheep> _magazine = new List<Sheep>();
 
         public bool HasCapacity => null == _chamber || (GameManager.HasInstance && _magazine.Count < GameManager.Instance.GameGameData.MaxQueuedSheep);
+
+        #endregion
+
+        #region Effects
+
+        [SerializeField]
+        private EffectTrigger _grabEffect;
+
+        [SerializeField]
+        private EffectTrigger _launchEffect;
 
         #endregion
 
@@ -95,6 +106,8 @@ namespace pdxpartyparrot.ggj2021.Players
 
             if(null == _chamber) {
                 ChamberSheep(sheep);
+
+                _grabEffect.Trigger();
             } else {
                 EnqueueSheep(sheep);
             }
@@ -141,6 +154,8 @@ namespace pdxpartyparrot.ggj2021.Players
             _chamber = null;
 
             Debug.Log($"Launching sheep {sheep.Id}");
+
+            _launchEffect.Trigger();
 
             sheep.OnLaunch(Owner.Movement.Position, Owner.FacingDirection);
 

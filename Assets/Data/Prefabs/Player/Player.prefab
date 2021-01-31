@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8136978070064989695}
+  - component: {fileID: 5368440378911663993}
   - component: {fileID: 8659946713465597842}
   m_Layer: 10
   m_Name: Model
@@ -33,6 +34,19 @@ Transform:
   m_Father: {fileID: 5988821913990690062}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5368440378911663993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744759722683349762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738ce3e3cfd3c2804b8ca06d925459f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skeletonAnimation: {fileID: 1120480998710053116}
 --- !u!114 &8659946713465597842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,6 +302,73 @@ MonoBehaviour:
     Velocity: {x: 0, y: 0, z: 0}
     AngularVelocity: {x: 0, y: 0, z: 0}
   _isComponentControlling: 0
+--- !u!1 &2788309991081877193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3157426946622353715}
+  - component: {fileID: 8333519642458435229}
+  - component: {fileID: 7021323380490540829}
+  m_Layer: 10
+  m_Name: Idle Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3157426946622353715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2788309991081877193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5988821913990690062}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8333519642458435229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2788309991081877193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2a4737a92e7a1888e3c6574332558b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerOnComplete: []
+  _components:
+  - {fileID: 7021323380490540829}
+  _isRunning: 0
+  _complete: 0
+--- !u!114 &7021323380490540829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2788309991081877193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ce0f34c8ebea201b1f9ef2cb42bbb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spineAnimation: {fileID: 5368440378911663993}
+  _spineAnimationName: FrontIdle
+  _spineAnimationTrack: 0
+  _loop: 0
+  _trackStartTime: 0
+  _waitForComplete: 1
 --- !u!1 &2896964373797534512
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +399,140 @@ Transform:
   m_Father: {fileID: 5988821913990690062}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4657643125737281632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2369105934370564854}
+  - component: {fileID: 5708668014852099471}
+  - component: {fileID: 7721623740637534888}
+  m_Layer: 10
+  m_Name: Launch Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2369105934370564854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657643125737281632}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5988821913990690062}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5708668014852099471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657643125737281632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2a4737a92e7a1888e3c6574332558b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerOnComplete: []
+  _components:
+  - {fileID: 7721623740637534888}
+  _isRunning: 0
+  _complete: 0
+--- !u!114 &7721623740637534888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657643125737281632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ce0f34c8ebea201b1f9ef2cb42bbb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spineAnimation: {fileID: 5368440378911663993}
+  _spineAnimationName: FrontSheepLaunch
+  _spineAnimationTrack: 1
+  _loop: 0
+  _trackStartTime: 0
+  _waitForComplete: 1
+--- !u!1 &5401884448216375803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5509364843815988277}
+  - component: {fileID: 3077957630161247360}
+  - component: {fileID: 5282598601810505409}
+  m_Layer: 10
+  m_Name: Grab Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5509364843815988277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5401884448216375803}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5988821913990690062}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3077957630161247360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5401884448216375803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2a4737a92e7a1888e3c6574332558b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerOnComplete: []
+  _components:
+  - {fileID: 5282598601810505409}
+  _isRunning: 0
+  _complete: 0
+--- !u!114 &5282598601810505409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5401884448216375803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ce0f34c8ebea201b1f9ef2cb42bbb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spineAnimation: {fileID: 5368440378911663993}
+  _spineAnimationName: FrontSheepGrab
+  _spineAnimationTrack: 1
+  _loop: 0
+  _trackStartTime: 0
+  _waitForComplete: 1
 --- !u!1 &5988821913990690063
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,6 +569,10 @@ Transform:
   - {fileID: 2521455584264789216}
   - {fileID: 5692897743308017819}
   - {fileID: 3436142926806816642}
+  - {fileID: 3157426946622353715}
+  - {fileID: 5337810453693796265}
+  - {fileID: 5509364843815988277}
+  - {fileID: 2369105934370564854}
   - {fileID: 7272770916534833361}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -617,7 +836,7 @@ Transform:
   m_Children:
   - {fileID: 5235382290597774712}
   m_Father: {fileID: 5988821913990690062}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8635814204767799990
 GameObject:
@@ -694,6 +913,8 @@ MonoBehaviour:
   _chamberParent: {fileID: 3436142926806816642}
   _chamber: {fileID: 0}
   _magazine: []
+  _grabEffect: {fileID: 3077957630161247360}
+  _launchEffect: {fileID: 5708668014852099471}
 --- !u!114 &4223570603007877474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,7 +929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _owner: {fileID: 0}
   _behaviorData: {fileID: 0}
-  _spineAnimationHelper: {fileID: 0}
+  _spineAnimationHelper: {fileID: 5368440378911663993}
   _spineSkinHelper: {fileID: 0}
   _spriteAnimationHelper: {fileID: 0}
   _animator: {fileID: 0}
@@ -720,9 +941,76 @@ MonoBehaviour:
   _components: []
   _isGrounded: 0
   _isSliding: 0
-  _idleEffect: {fileID: 0}
-  _movingEffectTrigger: {fileID: 0}
+  _idleEffect: {fileID: 8333519642458435229}
+  _movingEffectTrigger: {fileID: 6574176602027572728}
   _moveDirection: {x: 0, y: 0, z: 0}
+--- !u!1 &9034394046619978762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5337810453693796265}
+  - component: {fileID: 6574176602027572728}
+  - component: {fileID: 7637864537959553925}
+  m_Layer: 10
+  m_Name: Move Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5337810453693796265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9034394046619978762}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5988821913990690062}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6574176602027572728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9034394046619978762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2a4737a92e7a1888e3c6574332558b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerOnComplete: []
+  _components:
+  - {fileID: 7637864537959553925}
+  _isRunning: 0
+  _complete: 0
+--- !u!114 &7637864537959553925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9034394046619978762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ce0f34c8ebea201b1f9ef2cb42bbb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spineAnimation: {fileID: 5368440378911663993}
+  _spineAnimationName: FrontMove
+  _spineAnimationTrack: 0
+  _loop: 0
+  _trackStartTime: 0
+  _waitForComplete: 1
 --- !u!1001 &3660750358941957177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -737,6 +1025,10 @@ PrefabInstance:
     - target: {fileID: 2572557520429329033, guid: 81493885ee9416c4683bc74ef312df29, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4413851468741637317, guid: 81493885ee9416c4683bc74ef312df29, type: 3}
+      propertyPath: _animationName
+      value: FrontIdle
       objectReference: {fileID: 0}
     - target: {fileID: 5984582389321110509, guid: 81493885ee9416c4683bc74ef312df29, type: 3}
       propertyPath: m_RootOrder
@@ -801,3 +1093,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5984582389321110509, guid: 81493885ee9416c4683bc74ef312df29, type: 3}
   m_PrefabInstance: {fileID: 3660750358941957177}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1120480998710053116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4413851468741637317, guid: 81493885ee9416c4683bc74ef312df29, type: 3}
+  m_PrefabInstance: {fileID: 3660750358941957177}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
