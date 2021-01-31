@@ -68,6 +68,8 @@ namespace pdxpartyparrot.Game.Level
 
         protected void TransitionLevel()
         {
+            GameStateManager.Instance.GameManager.GameUnReady();
+
             // load the next level if we have one
             if(!string.IsNullOrWhiteSpace(_nextLevel)) {
                 if(null != _levelExitEffect) {
@@ -82,10 +84,20 @@ namespace pdxpartyparrot.Game.Level
 
         private void DoLevelTransition()
         {
-            GameStateManager.Instance.GameManager.GameUnReady();
             GameStateManager.Instance.GameManager.TransitionScene(_nextLevel, () => {
-                GameStateManager.Instance.GameManager.GameReady();
+                ReadyUp();
             });
+        }
+
+        private void ReadyUp()
+        {
+            // TODO: we really should communicate our ready state to the server
+            // and then have it communicate back to us when everybody is ready
+            if(null != _levelEnterEffect) {
+                _levelEnterEffect.Trigger(GameStateManager.Instance.GameManager.GameReady);
+            } else {
+                GameStateManager.Instance.GameManager.GameReady();
+            }
         }
 
         #region Event Handlers
@@ -107,13 +119,7 @@ namespace pdxpartyparrot.Game.Level
         {
             Debug.Log("[Level] Client start...");
 
-            // TODO: we really should communicate our ready state to the server
-            // and then have it communicate back to us when everybody is ready
-            if(null != _levelEnterEffect) {
-                _levelEnterEffect.Trigger(GameStateManager.Instance.GameManager.GameReady);
-            } else {
-                GameStateManager.Instance.GameManager.GameReady();
-            }
+            ReadyUp();
         }
 
         protected virtual void GameReadyEventHandler(object sender, EventArgs args)

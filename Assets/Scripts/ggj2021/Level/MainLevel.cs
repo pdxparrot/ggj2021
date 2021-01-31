@@ -140,12 +140,7 @@ namespace pdxpartyparrot.ggj2021.Level
         {
             _timer.Stop();
 
-            if(!HasNextLevel) {
-                Debug.Log("You win!");
-
-                GameManager.Instance.GameOver();
-                return;
-            }
+            Debug.Log("You win!");
 
             TransitionLevel();
         }
