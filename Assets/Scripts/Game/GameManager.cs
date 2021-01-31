@@ -212,6 +212,10 @@ namespace pdxpartyparrot.Game
 
             IsGameReady = true;
 
+            // TODO: this might also need to be responsible for actually spawning players
+            // in the event of a level transition
+            // (and any other state that might be in a weird spot while transitioning)
+
             GameReadyEvent?.Invoke(this, EventArgs.Empty);
         }
 
@@ -220,6 +224,10 @@ namespace pdxpartyparrot.Game
             Debug.Log("Game UnReady");
 
             IsGameReady = false;
+
+            // TODO: this might also need to be responsible for despawning players
+            // while the next scene loads
+            // (and any other state that might be in a weird spot while transitioning)
 
             GameUnReadyEvent?.Invoke(this, EventArgs.Empty);
         }
@@ -233,6 +241,7 @@ namespace pdxpartyparrot.Game
             GameOverEvent?.Invoke(this, EventArgs.Empty);
         }
 
+        // TODO: this isn't handled by networking *at all*
         public virtual void TransitionScene(string nextScene, Action onComplete)
         {
             GameStateManager.Instance.CurrentState.ChangeSceneAsync(nextScene, onComplete);
