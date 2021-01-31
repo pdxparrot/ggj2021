@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actorLayer: NPC
   _mass: 100
-  _drag: 3
+  _drag: 0
   _angularDrag: 0
   _isKinematic: 0
   _animateModel: 0

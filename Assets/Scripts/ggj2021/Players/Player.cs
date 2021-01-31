@@ -2,6 +2,7 @@ using System;
 
 using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Characters.Players;
+using pdxpartyparrot.Game.World;
 using pdxpartyparrot.ggj2021.Camera;
 
 using UnityEngine;
@@ -9,7 +10,7 @@ using UnityEngine.Assertions;
 
 namespace pdxpartyparrot.ggj2021.Players
 {
-    public sealed class Player : Player3D
+    public sealed class Player : Player3D, IWorldBoundaryCollisionListener
     {
         public PlayerBehavior GamePlayerBehavior => (PlayerBehavior)PlayerBehavior;
 
@@ -35,7 +36,7 @@ namespace pdxpartyparrot.ggj2021.Players
 
             Assert.IsTrue(PlayerInputHandler is PlayerInputHandler);
 
-            Rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+            Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
 
         #endregion
@@ -84,6 +85,15 @@ namespace pdxpartyparrot.ggj2021.Players
             PlayerGameViewer.FollowTarget(null);
 
             base.OnDeSpawn();
+        }
+
+        #endregion
+
+        #region IWorldBoundaryCollisionListener
+
+        public void OnWorldBoundaryCollision(WorldBoundary boundary)
+        {
+            PlayerManager.Instance.RespawnPlayer(this);
         }
 
         #endregion

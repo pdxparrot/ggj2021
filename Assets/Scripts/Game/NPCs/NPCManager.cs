@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 
+using pdxpartyparrot.Core.Actors;
 using pdxpartyparrot.Core.DebugMenu;
 using pdxpartyparrot.Core.Time;
 using pdxpartyparrot.Core.Util;
+using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Characters.NPCs;
 using pdxpartyparrot.Game.State;
 
@@ -92,6 +94,19 @@ namespace pdxpartyparrot.Game.NPCs
         public void UnregisterNPC(INPC npc)
         {
             _npcs.Remove(npc);
+        }
+
+        public bool RespawnNPC(INPC npc, string tag)
+        {
+            Debug.Log($"Respawning NPC {npc.Id}");
+
+            SpawnPoint spawnPoint = SpawnManager.Instance.GetSpawnPoint(tag);
+            if(null == spawnPoint) {
+                Debug.LogError("Failed to get NPC spawnpoint!");
+                return false;
+            }
+
+            return spawnPoint.ReSpawn((Actor)npc);
         }
 
         private void InitDebugMenu()

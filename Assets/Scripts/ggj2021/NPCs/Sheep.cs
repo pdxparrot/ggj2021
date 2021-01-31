@@ -3,6 +3,7 @@ using System;
 using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Characters.NPCs;
 using pdxpartyparrot.Game.Interactables;
+using pdxpartyparrot.Game.World;
 
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -10,7 +11,7 @@ using UnityEngine.Assertions;
 namespace pdxpartyparrot.ggj2021.NPCs
 {
     [RequireComponent(typeof(AudioSource))]
-    public sealed class Sheep : NPC3D, IInteractable
+    public sealed class Sheep : NPC3D, IInteractable, IWorldBoundaryCollisionListener
     {
         private SheepBehavior SheepBehavior => (SheepBehavior)NPCBehavior;
 
@@ -26,7 +27,7 @@ namespace pdxpartyparrot.ggj2021.NPCs
         {
             base.Awake();
 
-            Rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+            Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             Collider.isTrigger = true;
 
             GetComponent<AudioSource>().spatialBlend = 0.0f;
@@ -121,6 +122,15 @@ namespace pdxpartyparrot.ggj2021.NPCs
         public void OnScored()
         {
             DeSpawn(true);
+        }
+
+        #endregion
+
+        #region IWorldBoundaryCollisionListener
+
+        public void OnWorldBoundaryCollision(WorldBoundary boundary)
+        {
+            NPCManager.Instance.RespawnNPC(this, GameManager.Instance.GameGameData.SheepSpawnTag);
         }
 
         #endregion

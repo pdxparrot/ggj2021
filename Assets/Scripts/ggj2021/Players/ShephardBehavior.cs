@@ -7,7 +7,6 @@ using pdxpartyparrot.Core.Time;
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Interactables;
-using pdxpartyparrot.ggj2021.Data.NPCs;
 using pdxpartyparrot.ggj2021.NPCs;
 
 using UnityEngine;
