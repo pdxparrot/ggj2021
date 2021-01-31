@@ -50,6 +50,7 @@ namespace pdxpartyparrot.ggj2021.Level
 
         protected override void OnDestroy()
         {
+            // TODO: clean this up somewhere else (game over or unready or something)
             Destroy(_sheepPen);
             Destroy(_goal.gameObject);
 
@@ -119,12 +120,16 @@ namespace pdxpartyparrot.ggj2021.Level
             if(!HasNextLevel) {
                 Debug.Log("You win!");
 
+                _timer.Stop();
+
                 GameManager.Instance.GameOver();
                 return;
             }
 
             TransitionLevel();
         }
+
+        // TODO: handle game unready for cleanup?
 
         #endregion
     }

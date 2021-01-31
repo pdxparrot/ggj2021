@@ -47,6 +47,7 @@ namespace pdxpartyparrot.Game.Level
             GameStateManager.Instance.GameManager.GameStartServerEvent += GameStartServerEventHandler;
             GameStateManager.Instance.GameManager.GameStartClientEvent += GameStartClientEventHandler;
             GameStateManager.Instance.GameManager.GameReadyEvent += GameReadyEventHandler;
+            GameStateManager.Instance.GameManager.GameUnReadyEvent += GameUnReadyEventHandler;
             GameStateManager.Instance.GameManager.GameOverEvent += GameOverEventHandler;
         }
 
@@ -54,6 +55,7 @@ namespace pdxpartyparrot.Game.Level
         {
             if(GameStateManager.HasInstance && null != GameStateManager.Instance.GameManager) {
                 GameStateManager.Instance.GameManager.GameOverEvent -= GameOverEventHandler;
+                GameStateManager.Instance.GameManager.GameUnReadyEvent -= GameUnReadyEventHandler;
                 GameStateManager.Instance.GameManager.GameReadyEvent -= GameReadyEventHandler;
                 GameStateManager.Instance.GameManager.GameStartClientEvent -= GameStartClientEventHandler;
                 GameStateManager.Instance.GameManager.GameStartServerEvent -= GameStartServerEventHandler;
@@ -113,6 +115,10 @@ namespace pdxpartyparrot.Game.Level
         }
 
         protected virtual void GameReadyEventHandler(object sender, EventArgs args)
+        {
+        }
+
+        protected virtual void GameUnReadyEventHandler(object sender, EventArgs args)
         {
         }
 
