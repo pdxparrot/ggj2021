@@ -76,6 +76,7 @@ namespace pdxpartyparrot.ggj2021.Players
 
         private void Update()
         {
+            // TODO: not sure why this needs to be negative, tbh
             _aimer.transform.forward = -Owner.FacingDirection;
 
             CatchSheep();
