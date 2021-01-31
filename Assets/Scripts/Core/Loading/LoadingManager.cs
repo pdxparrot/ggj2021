@@ -30,6 +30,8 @@ namespace pdxpartyparrot.Core.Loading
         void ShowLoadingScreen(bool show);
 
         void UpdateLoadingScreen(float percent, string text);
+
+        void ShowTransitionScreen(bool show);
     }
 
     public abstract class LoadingManager<T> : SingletonBehavior<T>, ILoadingManager where T : LoadingManager<T>
@@ -230,19 +232,27 @@ namespace pdxpartyparrot.Core.Loading
             _loadingScreen.gameObject.SetActive(show);
 
             if(show) {
-                ResetLoadingScreen();
+                ResetLoadingScreen(false);
             } else {
                 _loadingTipTimer.Stop();
             }
         }
 
-        public void ResetLoadingScreen()
+        public void ResetLoadingScreen(bool transition)
         {
-            SetLoadingScreenPercent(0.0f);
-            SetLoadingScreenText("Loading...");
+            if(transition) {
+                _loadingScreen.SetTransitioning();
+            } else {
+                _loadingScreen.SetLoading();
+
+                SetLoadingScreenPercent(0.0f);
+                SetLoadingScreenText("Loading...");
+            }
             _loadingScreen.ShowLoadingTip("");
 
-            ShowNextLoadingTip();
+            if(!transition) {
+                ShowNextLoadingTip();
+            }
         }
 
         public void UpdateLoadingScreen(float percent, string text)
@@ -251,6 +261,16 @@ namespace pdxpartyparrot.Core.Loading
             SetLoadingScreenText(text);
 
             Debug.Log($"{percent * 100}%: {text}");
+        }
+
+        public void ShowTransitionScreen(bool show)
+        {
+            _mainCamera.cullingMask = show ? -1 : 0;
+            _loadingScreen.gameObject.SetActive(show);
+
+            if(show) {
+                ResetLoadingScreen(true);
+            }
         }
 
         public void SetLoadingScreenText(string text)

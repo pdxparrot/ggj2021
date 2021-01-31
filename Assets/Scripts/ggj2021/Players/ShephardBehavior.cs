@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -72,6 +73,8 @@ namespace pdxpartyparrot.ggj2021.Players
             _interactables = GetComponent<Interactables>();
 
             _launchCooldown = TimeManager.Instance.AddTimer();
+
+            GameManager.Instance.GameUnReadyEvent += GameUnReadyEventHandler;
         }
 
         private void Update()
@@ -84,6 +87,10 @@ namespace pdxpartyparrot.ggj2021.Players
 
         private void OnDestroy()
         {
+            if(GameManager.HasInstance) {
+                GameManager.Instance.GameUnReadyEvent -= GameUnReadyEventHandler;
+            }
+
             if(TimeManager.HasInstance) {
                 TimeManager.Instance.RemoveTimer(_launchCooldown);
             }
@@ -236,6 +243,21 @@ namespace pdxpartyparrot.ggj2021.Players
         public void OnDeSpawn()
         {
             FreeSheep();
+        }
+
+        #endregion
+
+        #region Event Handlers
+
+        private void GameUnReadyEventHandler(object sender, EventArgs args)
+        {
+            // TODO: if there's ever some other "level cleanup" event
+            // that's where we should be doing this instead of on unready
+
+            if(null != _chamber) {
+                Destroy(_chamber.gameObject);
+                _chamber = null;
+            }
         }
 
         #endregion

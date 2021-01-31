@@ -100,6 +100,13 @@ namespace pdxpartyparrot.ggj2021.Level
             }
         }
 
+        private void SpawnGoal()
+        {
+            SpawnPoint spawnPoint = SpawnManager.Instance.GetSpawnPoint(GameManager.Instance.GameGameData.GoalSpawnTag);
+            _goal = spawnPoint.SpawnFromPrefab(GameManager.Instance.GameGameData.GoalPrefab, null) as Goal;
+            _goal.Initialize(_initialGoalWaypoint, _goalSpeed);
+        }
+
         #region Event Handlers
 
         protected override void GameReadyEventHandler(object sender, EventArgs args)
@@ -115,9 +122,7 @@ namespace pdxpartyparrot.ggj2021.Level
 
             GameManager.Instance.Reset(NPCManager.Instance.NPCs.Count);
 
-            SpawnPoint spawnPoint = SpawnManager.Instance.GetSpawnPoint(GameManager.Instance.GameGameData.GoalSpawnTag);
-            _goal = spawnPoint.SpawnFromPrefab(GameManager.Instance.GameGameData.GoalPrefab, null) as Goal;
-            _goal.Initialize(_initialGoalWaypoint, _goalSpeed);
+            SpawnGoal();
 
             _timer.Start(_roundSeconds);
         }
@@ -126,11 +131,18 @@ namespace pdxpartyparrot.ggj2021.Level
         {
             GameManager.Instance.RoundWonEvent -= RoundWonEventHandler;
 
-            Destroy(_sheepPen);
-            _sheepPen = null;
+            // TODO: this would be better if it was behind
+            // some new event that fires after the loading screen is up
 
-            Destroy(_goal.gameObject);
-            _goal = null;
+            if(null != _sheepPen) {
+                Destroy(_sheepPen);
+                _sheepPen = null;
+            }
+
+            if(null != _goal) {
+                Destroy(_goal.gameObject);
+                _goal = null;
+            }
 
             base.GameUnReadyEventHandler(sender, args);
         }
@@ -146,7 +158,7 @@ namespace pdxpartyparrot.ggj2021.Level
         {
             _timer.Stop();
 
-            Debug.Log("You win!");
+            Debug.Log("You win this round!");
 
             TransitionLevel();
         }

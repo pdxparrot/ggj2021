@@ -40,6 +40,16 @@ namespace pdxpartyparrot.Core.Loading
 
         #endregion
 
+        public void SetLoading()
+        {
+            _progressBar.gameObject.SetActive(true);
+        }
+
+        public void SetTransitioning()
+        {
+            _progressBar.gameObject.SetActive(false);
+        }
+
         public void ShowLoadingTip([CanBeNull] string loadingTip)
         {
             if(null == _loadingTips || null == loadingTip) {

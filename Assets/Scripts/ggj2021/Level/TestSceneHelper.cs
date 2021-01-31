@@ -41,10 +41,17 @@ namespace pdxpartyparrot.ggj2021.Level
 
         #endregion
 
-        public void SpawnSheep()
+        private void SpawnSheep()
         {
             SpawnPoint spawnPoint = SpawnManager.Instance.GetSpawnPoint(GameManager.Instance.GameGameData.SheepSpawnTag);
             spawnPoint.SpawnNPCPrefab(GameManager.Instance.GameGameData.SheepPrefab, GameManager.Instance.GameGameData.SheepBehaviorData, _sheepPen.transform);
+        }
+
+        private void SpawnGoal()
+        {
+            SpawnPoint spawnPoint = SpawnManager.Instance.GetSpawnPoint(GameManager.Instance.GameGameData.GoalSpawnTag);
+            _goal = spawnPoint.SpawnFromPrefab(GameManager.Instance.GameGameData.GoalPrefab, null) as Goal;
+            _goal.Initialize(_initialGoalWaypoint, _goalSpeed);
         }
 
         #region Event Handlers
@@ -56,13 +63,14 @@ namespace pdxpartyparrot.ggj2021.Level
             Assert.IsNull(_sheepPen);
             _sheepPen = new GameObject("Sheep Pen");
 
-            SpawnPoint spawnPoint = SpawnManager.Instance.GetSpawnPoint(GameManager.Instance.GameGameData.GoalSpawnTag);
-            _goal = spawnPoint.SpawnFromPrefab(GameManager.Instance.GameGameData.GoalPrefab, null) as Goal;
-            _goal.Initialize(_initialGoalWaypoint, _goalSpeed);
+            SpawnGoal();
         }
 
         protected override void GameUnReadyEventHandler(object sender, EventArgs args)
         {
+            // TODO: this would be better if it was behind
+            // some new event that fires after the loading screen is up
+
             Destroy(_sheepPen);
             _sheepPen = null;
 

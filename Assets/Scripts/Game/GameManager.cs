@@ -2,6 +2,7 @@ using System;
 
 using JetBrains.Annotations;
 
+using pdxpartyparrot.Core;
 using pdxpartyparrot.Core.ObjectPool;
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Game.Data;
@@ -212,10 +213,6 @@ namespace pdxpartyparrot.Game
 
             IsGameReady = true;
 
-            // TODO: this might also need to be responsible for actually spawning players
-            // in the event of a level transition
-            // (and any other state that might be in a weird spot while transitioning)
-
             GameReadyEvent?.Invoke(this, EventArgs.Empty);
         }
 
@@ -224,10 +221,6 @@ namespace pdxpartyparrot.Game
             Debug.Log("Game UnReady");
 
             IsGameReady = false;
-
-            // TODO: this might also need to be responsible for despawning players
-            // while the next scene loads
-            // (and any other state that might be in a weird spot while transitioning)
 
             GameUnReadyEvent?.Invoke(this, EventArgs.Empty);
         }
@@ -244,7 +237,21 @@ namespace pdxpartyparrot.Game
         // TODO: this isn't handled by networking *at all*
         public virtual void TransitionScene(string nextScene, Action onComplete)
         {
-            GameStateManager.Instance.CurrentState.ChangeSceneAsync(nextScene, onComplete);
+            PartyParrotManager.Instance.LoadingManager.ShowTransitionScreen(true);
+
+            // TODO: do we need an event here to tell the level to cleanup?
+
+            GameStateManager.Instance.CurrentState.ChangeSceneAsync(nextScene, () => {
+                onComplete?.Invoke();
+
+                // TODO: this might be wrong, not sure
+                // basically this is trying to tell the new
+                // LevelHelper that we're ready to start
+                StartGameServer();
+                StartGameClient();
+
+                PartyParrotManager.Instance.LoadingManager.ShowTransitionScreen(false);
+            });
         }
     }
 }
