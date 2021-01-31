@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initialSceneName: 
   _currentSceneName: 
-  _makeInitialSceneActive: 0
+  _makeInitialSceneActive: 1
   _enterEffect: {fileID: 6870276244106675974}
   _exitEffect: {fileID: 2234634585981851045}
   _gameOverState: {fileID: 0}

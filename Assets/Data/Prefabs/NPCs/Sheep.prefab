@@ -64,9 +64,9 @@ MonoBehaviour:
   _spineAnimation: {fileID: 8387168736222356194}
   _spineAnimationName: FrontIdle
   _spineAnimationTrack: 0
-  _loop: 0
+  _loop: 1
   _trackStartTime: 0
-  _waitForComplete: 1
+  _waitForComplete: 0
 --- !u!1 &1047066222155954823
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,9 +615,9 @@ MonoBehaviour:
   _spineAnimation: {fileID: 8387168736222356194}
   _spineAnimationName: FrontMove
   _spineAnimationTrack: 0
-  _loop: 0
+  _loop: 1
   _trackStartTime: 0
-  _waitForComplete: 1
+  _waitForComplete: 0
 --- !u!1 &8748045445818171317
 GameObject:
   m_ObjectHideFlags: 0
