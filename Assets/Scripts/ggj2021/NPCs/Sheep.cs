@@ -37,7 +37,9 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         protected override void OnDestroy()
         {
-            NPCManager.Instance.UnregisterNPC(this);
+            if(NPCManager.HasInstance) {
+                NPCManager.Instance.UnregisterNPC(this);
+            }
 
             base.OnDestroy();
         }
