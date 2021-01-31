@@ -53,11 +53,20 @@ namespace pdxpartyparrot.ggj2021
             _goal = goal;
             _score = 0;
 
-            GameUIManager.Instance.GameGameUI.PlayerHUD.SetGoal(_goal);
-            GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateScore(_score);
+            GameUIManager.Instance.GameGameUI.PlayerHUD.Reset(_goal);
         }
 
         #region Event Handlers
+
+        public void OnSheepCollected()
+        {
+            GameUIManager.Instance.GameGameUI.PlayerHUD.AddSlot();
+        }
+
+        public void OnSheepLost()
+        {
+            GameUIManager.Instance.GameGameUI.PlayerHUD.RemoveSlot();
+        }
 
         public void OnGoalScored()
         {

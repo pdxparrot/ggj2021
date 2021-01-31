@@ -4,6 +4,7 @@ using pdxpartyparrot.Core.Time;
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Level;
+using pdxpartyparrot.ggj2021.UI;
 using pdxpartyparrot.ggj2021.World;
 
 using UnityEngine;
@@ -38,6 +39,13 @@ namespace pdxpartyparrot.ggj2021.Level
 
             _timer = TimeManager.Instance.AddTimer();
             _timer.TimesUpEvent += LevelTimesUpEventHandler;
+        }
+
+        private void Update()
+        {
+            if(null != GameUIManager.Instance.GameGameUI) {
+                GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateTimer(_timer.SecondsRemaining / _roundSeconds);
+            }
         }
 
         protected override void OnDestroy()

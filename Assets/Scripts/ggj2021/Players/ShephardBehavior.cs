@@ -99,6 +99,8 @@ namespace pdxpartyparrot.ggj2021.Players
                 EnqueueSheep(sheep);
             }
 
+            GameManager.Instance.OnSheepCollected();
+
             _interactables.RemoveInteractable(sheep);
 
             return true;
@@ -141,6 +143,8 @@ namespace pdxpartyparrot.ggj2021.Players
             Debug.Log($"Launching sheep {sheep.Id}");
 
             sheep.OnLaunch(Owner.Movement.Position, Owner.FacingDirection);
+
+            GameManager.Instance.OnSheepLost();
 
             CycleRound();
 
@@ -185,6 +189,8 @@ namespace pdxpartyparrot.ggj2021.Players
 
             foreach(Sheep sheep in _magazine) {
                 sheep.OnFree();
+
+                GameManager.Instance.OnSheepLost();
             }
             _magazine.Clear();
         }
