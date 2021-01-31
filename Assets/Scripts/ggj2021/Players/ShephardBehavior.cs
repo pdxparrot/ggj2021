@@ -179,6 +179,16 @@ namespace pdxpartyparrot.ggj2021.Players
             }
         }
 
+        private void FreeSheep()
+        {
+            // we get to keep the chambered sheep
+
+            foreach(Sheep sheep in _magazine) {
+                sheep.OnFree();
+            }
+            _magazine.Clear();
+        }
+
         #endregion
 
         #region Spawn
@@ -188,8 +198,16 @@ namespace pdxpartyparrot.ggj2021.Players
             return true;
         }
 
+        public bool OnReSpawn(SpawnPoint spawnpoint)
+        {
+            FreeSheep();
+
+            return true;
+        }
+
         public void OnDeSpawn()
         {
+            FreeSheep();
         }
 
         #endregion

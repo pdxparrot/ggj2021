@@ -112,6 +112,11 @@ namespace pdxpartyparrot.ggj2021.NPCs
             SheepBehavior.OnEnqueued(target);
         }
 
+        public void OnFree()
+        {
+            SheepBehavior.OnFree();
+        }
+
         public void OnLaunch(Vector3 start, Vector3 direction)
         {
             SetChambered(GameManager.Instance.BaseLevel.SheepPen, false);
