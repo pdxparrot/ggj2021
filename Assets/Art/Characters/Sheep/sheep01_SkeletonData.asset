@@ -18,9 +18,11 @@ MonoBehaviour:
   skeletonJSON: {fileID: 4900000, guid: 29761185f7eb198488d03636f245d963, type: 3}
   isUpgradingBlendModeMaterials: 0
   blendModeMaterials:
-    requiresBlendModeMaterials: 0
+    requiresBlendModeMaterials: 1
     applyAdditiveMaterial: 1
-    additiveMaterials: []
+    additiveMaterials:
+    - pageName: sheep01.png
+      material: {fileID: 2100000, guid: 68cda5e87d1c7eadd85cdc86f207b8a4, type: 2}
     multiplyMaterials: []
     screenMaterials: []
   skeletonDataModifiers: []

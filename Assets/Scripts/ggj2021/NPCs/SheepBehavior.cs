@@ -24,12 +24,12 @@ namespace pdxpartyparrot.ggj2021.NPCs
         {
             get
             {
-                if(IsCaught || !Sheep.HasPath) {
+                if(_state != State.Enqueued || !Sheep.HasPath) {
                     return Vector3.zero;
                 }
 
                 Vector3 nextPosition = Sheep.NextPosition;
-                return nextPosition - Owner.Movement.Position;
+                return (Owner.Movement.Position - nextPosition).normalized;
             }
         }
 
@@ -53,6 +53,34 @@ namespace pdxpartyparrot.ggj2021.NPCs
             Assert.IsTrue(behaviorData is SheepBehaviorData);
 
             base.Initialize(behaviorData);
+        }
+
+        public override bool OnSetFacing(Vector3 direction)
+        {
+            base.OnSetFacing(direction);
+
+            // TODO: this is spamming animation changes
+            // when it really shouldn't need to do that
+            SetAnimation();
+
+            return false;
+        }
+
+        private void SetAnimation()
+        {
+            if(_state == State.Idle) {
+                if(Owner.FacingDirection.z >= 0) {
+                    SpineAnimationHelper.SetAnimation("FrontIdle", true);
+                } else {
+                    SpineAnimationHelper.SetAnimation("BackIdle", true);
+                }
+            } else if(_state == State.Enqueued) {
+                if(Owner.FacingDirection.z >= 0) {
+                    SpineAnimationHelper.SetAnimation("FrontMove", true);
+                } else {
+                    SpineAnimationHelper.SetAnimation("BackMove", true);
+                }
+            }
         }
 
         public override bool OnThink(float dt)
@@ -87,6 +115,7 @@ namespace pdxpartyparrot.ggj2021.NPCs
             switch(_state) {
             case State.Idle:
                 Sheep.SetObstacle();
+                SetAnimation();
                 break;
             case State.Chambered:
                 Sheep.SetPassive();
@@ -94,6 +123,7 @@ namespace pdxpartyparrot.ggj2021.NPCs
             case State.Enqueued:
                 Sheep.SetAgent();
                 NPCOwner.Stop(true, false);
+                SetAnimation();
                 break;
             case State.Launched:
                 Sheep.SetPassive();

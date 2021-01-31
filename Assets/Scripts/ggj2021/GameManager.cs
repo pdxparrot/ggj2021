@@ -60,12 +60,16 @@ namespace pdxpartyparrot.ggj2021
 
         public void OnSheepCollected()
         {
-            GameUIManager.Instance.GameGameUI.PlayerHUD.AddSlot();
+            if(null != GameUIManager.Instance.GameGameUI) {
+                GameUIManager.Instance.GameGameUI.PlayerHUD.AddSlot();
+            }
         }
 
         public void OnSheepLost()
         {
-            GameUIManager.Instance.GameGameUI.PlayerHUD.RemoveSlot();
+            if(null != GameUIManager.Instance.GameGameUI) {
+                GameUIManager.Instance.GameGameUI.PlayerHUD.RemoveSlot();
+            }
         }
 
         public void OnGoalScored()
@@ -73,7 +77,10 @@ namespace pdxpartyparrot.ggj2021
             Debug.Log("Goooooaaaalllll!");
 
             _score++;
-            GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateScore(_score);
+
+            if(null != GameUIManager.Instance.GameGameUI) {
+                GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateScore(_score);
+            }
 
             if(_goal > 0 && _score >= _goal) {
                 Debug.Log("You win this round!");
