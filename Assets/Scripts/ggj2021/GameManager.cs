@@ -6,6 +6,7 @@ using pdxpartyparrot.Game;
 using pdxpartyparrot.ggj2021.Camera;
 using pdxpartyparrot.ggj2021.Data;
 using pdxpartyparrot.ggj2021.Level;
+using pdxpartyparrot.ggj2021.UI;
 
 using UnityEngine;
 
@@ -51,6 +52,9 @@ namespace pdxpartyparrot.ggj2021
         {
             _goal = goal;
             _score = 0;
+
+            GameUIManager.Instance.GameGameUI.PlayerHUD.SetGoal(_goal);
+            GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateScore(_score);
         }
 
         #region Event Handlers
@@ -60,6 +64,7 @@ namespace pdxpartyparrot.ggj2021
             Debug.Log("Goooooaaaalllll!");
 
             _score++;
+            GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateScore(_score);
 
             if(_goal > 0 && _score >= _goal) {
                 Debug.Log("You win this round!");

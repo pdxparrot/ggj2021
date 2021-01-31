@@ -4,5 +4,6 @@ namespace pdxpartyparrot.ggj2021.UI
 {
     public sealed class GameUIManager : GameUIManager<GameUIManager>
     {
+        public GameUI GameGameUI => (GameUI)GameUI;
     }
 }

@@ -6,5 +6,7 @@ namespace pdxpartyparrot.ggj2021.UI
     {
         [SerializeField]
         private PlayerHUD _playerHUD;
+
+        public PlayerHUD PlayerHUD => _playerHUD;
     }
 }
