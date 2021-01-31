@@ -145,6 +145,12 @@ namespace pdxpartyparrot.ggj2021.NPCs
             SetState(State.Enqueued);
         }
 
+        public void OnFree()
+        {
+            _target = null;
+            SetState(State.Idle);
+        }
+
         public void OnLaunch(Vector3 start, Vector3 direction)
         {
             Owner.Movement.Teleport(start);
