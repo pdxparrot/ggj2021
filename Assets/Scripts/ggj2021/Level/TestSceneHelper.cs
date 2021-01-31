@@ -17,6 +17,9 @@ namespace pdxpartyparrot.ggj2021.Level
         private Key _spawnSheepKey = Key.L;
 
         [SerializeField]
+        private Key _scoreKey = Key.G;
+
+        [SerializeField]
         private GoalWaypoint _initialGoalWaypoint;
 
         [SerializeField]
@@ -36,6 +39,10 @@ namespace pdxpartyparrot.ggj2021.Level
         {
             if(Keyboard.current[_spawnSheepKey].wasPressedThisFrame) {
                 SpawnSheep();
+            }
+
+            if(Keyboard.current[_scoreKey].wasPressedThisFrame) {
+                GameManager.Instance.OnGoalScored();
             }
         }
 

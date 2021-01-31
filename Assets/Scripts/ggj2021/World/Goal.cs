@@ -1,4 +1,7 @@
+using System;
+
 using pdxpartyparrot.Core.Actors;
+using pdxpartyparrot.Core.Effects;
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.ggj2021.NPCs;
 
@@ -17,6 +20,13 @@ namespace pdxpartyparrot.ggj2021.World
         [ReadOnly]
         private float _speed;
 
+        #region Effects
+
+        [SerializeField]
+        private EffectTrigger _goalScoredEffect;
+
+        #endregion
+
         #region Unity Lifecycle
 
         protected override void Awake()
@@ -27,6 +37,17 @@ namespace pdxpartyparrot.ggj2021.World
 
             Rigidbody.isKinematic = true;
             Collider.isTrigger = true;
+
+            GameManager.Instance.GoalScoredEvent += GoalScoredEventHandler;
+        }
+
+        protected override void OnDestroy()
+        {
+            if(GameManager.HasInstance) {
+                GameManager.Instance.GoalScoredEvent -= GoalScoredEventHandler;
+            }
+
+            base.OnDestroy();
         }
 
         private void FixedUpdate()
@@ -88,6 +109,11 @@ namespace pdxpartyparrot.ggj2021.World
             sheep.OnScored();
 
             GameManager.Instance.OnGoalScored();
+        }
+
+        private void GoalScoredEventHandler(object sender, EventArgs args)
+        {
+            _goalScoredEffect.Trigger();
         }
 
         #endregion
