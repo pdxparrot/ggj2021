@@ -41,12 +41,14 @@ namespace pdxpartyparrot.Game.Menu
 
         public void OnResume()
         {
-            OnBack();
+            PartyParrotManager.Instance.TogglePause();
         }
 
         public override void OnBack()
         {
-            PartyParrotManager.Instance.TogglePause();
+            // TODO: this auto-fires if escape is used both for pausing and canceling
+            // so for now disable it and just rely on OnResume()
+            //PartyParrotManager.Instance.TogglePause();
         }
 
         public void OnExitMainMenu()
