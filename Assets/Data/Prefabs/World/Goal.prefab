@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3967f88945edec4a9d6d7edd7e42922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _owner: {fileID: 7065093185959490570}
   _goalScoredContainer: {fileID: 2280608054128245292}
 --- !u!1 &2280608054128245292
 GameObject:

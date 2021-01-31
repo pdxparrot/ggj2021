@@ -27,11 +27,15 @@ namespace pdxpartyparrot.ggj2021.World
 
         #endregion
 
+        private GoalModel _goalModel;
+
         #region Unity Lifecycle
 
         protected override void Awake()
         {
             base.Awake();
+
+            _goalModel = Model.GetComponent<GoalModel>();
 
             gameObject.layer = GameManager.Instance.GameGameData.GoalLayer;
 
@@ -96,6 +100,7 @@ namespace pdxpartyparrot.ggj2021.World
             }
 
             transform.forward = _nextWaypoint.GoalFacing;
+            _goalModel.RotateGoalScored();
         }
 
         #region Event Handlers
