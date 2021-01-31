@@ -59,6 +59,3 @@ Assets/Spine*
 Assets/Editor/SpineSettings.asset
 Assets/Editor/SpineSettings.asset.meta
 Assets/Spine/Runtime/spine-unity.asmdef.meta
-Assets/Resources/DOTweenSettings.asset
-Packages/packages-lock.json
-ProjectSettings/Packages/com.unity.probuilder/Settings.json
