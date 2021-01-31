@@ -12,11 +12,15 @@ using pdxpartyparrot.ggj2021.World;
 
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
 
 namespace pdxpartyparrot.ggj2021.Level
 {
     public sealed class MainLevel : LevelHelper, IBaseLevel
     {
+        [SerializeField]
+        private Key _cheatKey = Key.T;
+
         [SerializeField]
         private GoalWaypoint _initialGoalWaypoint;
 
@@ -61,6 +65,17 @@ namespace pdxpartyparrot.ggj2021.Level
             if(null != GameUIManager.Instance.GameGameUI) {
                 GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateTimer(_timer.SecondsRemaining / _roundSeconds);
             }
+        }
+
+        private void FixedUpdate()
+        {
+#if UNITY_EDITOR
+            if(Keyboard.current[_cheatKey].wasPressedThisFrame) {
+                while(GameManager.Instance.Score < GameManager.Instance.Goal) {
+                    GameManager.Instance.OnGoalScored();
+                }
+            }
+#endif
         }
 
         #endregion
