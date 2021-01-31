@@ -127,6 +127,8 @@ namespace pdxpartyparrot.ggj2021.Level
             SpawnGoal();
 
             _timer.Start(_roundSeconds);
+
+            GameManager.Instance.OnLevelEntered();
         }
 
         protected override void GameUnReadyEventHandler(object sender, EventArgs args)

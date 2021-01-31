@@ -5,6 +5,7 @@ using System.Linq;
 using JetBrains.Annotations;
 
 using pdxpartyparrot.Core.Effects;
+using pdxpartyparrot.Core.Effects.EffectTriggerComponents;
 using pdxpartyparrot.Core.Time;
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Core.World;
@@ -48,10 +49,22 @@ namespace pdxpartyparrot.ggj2021.Players
         #region Effects
 
         [SerializeField]
+        private EffectTrigger _levelEnteredEffect;
+
+        [SerializeField]
+        private EffectTrigger _goalScoredEffect;
+
+        [SerializeField]
+        private EffectTrigger _roundWonEffect;
+
+        [SerializeField]
         private EffectTrigger _grabEffect;
 
         [SerializeField]
         private EffectTrigger _launchEffect;
+
+        [SerializeField]
+        private RumbleEffectTriggerComponent[] _rumbleEffects;
 
         #endregion
 
@@ -75,6 +88,9 @@ namespace pdxpartyparrot.ggj2021.Players
             _launchCooldown = TimeManager.Instance.AddTimer();
 
             GameManager.Instance.GameUnReadyEvent += GameUnReadyEventHandler;
+            GameManager.Instance.LevelEnterEvent += LevelEnterEventHandler;
+            GameManager.Instance.GoalScoredEvent += GoalScoredEventHandler;
+            GameManager.Instance.RoundWonEvent += RoundWonEventHandler;
         }
 
         private void Update()
@@ -88,6 +104,9 @@ namespace pdxpartyparrot.ggj2021.Players
         private void OnDestroy()
         {
             if(GameManager.HasInstance) {
+                GameManager.Instance.RoundWonEvent -= RoundWonEventHandler;
+                GameManager.Instance.GoalScoredEvent -= GoalScoredEventHandler;
+                GameManager.Instance.LevelEnterEvent -= LevelEnterEventHandler;
                 GameManager.Instance.GameUnReadyEvent -= GameUnReadyEventHandler;
             }
 
@@ -100,6 +119,9 @@ namespace pdxpartyparrot.ggj2021.Players
 
         public void Initialize()
         {
+            foreach(RumbleEffectTriggerComponent rumble in _rumbleEffects) {
+                rumble.PlayerInput = Owner.PlayerInputHandler.InputHelper;
+            }
         }
 
         #region Sheep
@@ -258,6 +280,21 @@ namespace pdxpartyparrot.ggj2021.Players
                 Destroy(_chamber.gameObject);
                 _chamber = null;
             }
+        }
+
+        private void LevelEnterEventHandler(object sender, EventArgs args)
+        {
+            _levelEnteredEffect.Trigger();
+        }
+
+        private void GoalScoredEventHandler(object sender, EventArgs args)
+        {
+            _goalScoredEffect.Trigger();
+        }
+
+        private void RoundWonEventHandler(object sender, EventArgs args)
+        {
+            _roundWonEffect.Trigger();
         }
 
         #endregion

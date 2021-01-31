@@ -64,6 +64,8 @@ namespace pdxpartyparrot.ggj2021.Level
             _sheepPen = new GameObject("Sheep Pen");
 
             SpawnGoal();
+
+            GameManager.Instance.OnLevelEntered();
         }
 
         protected override void GameUnReadyEventHandler(object sender, EventArgs args)
