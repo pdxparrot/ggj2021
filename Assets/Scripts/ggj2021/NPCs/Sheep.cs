@@ -34,6 +34,14 @@ namespace pdxpartyparrot.ggj2021.NPCs
             SetObstacle();
         }
 
+        private void FixedUpdate()
+        {
+            // hacky fix for the sheep not wanting to stay centered
+            if(SheepBehavior.IsChambered) {
+                transform.localPosition = Vector3.zero;
+            }
+        }
+
         #endregion
 
         public override void Initialize(Guid id)
@@ -50,6 +58,10 @@ namespace pdxpartyparrot.ggj2021.NPCs
             Model.gameObject.SetActive(!chambered);
 
             Rigidbody.isKinematic = chambered;
+
+            if(chambered) {
+                Movement.Position = parent.position;
+            }
         }
 
         #region Spawn

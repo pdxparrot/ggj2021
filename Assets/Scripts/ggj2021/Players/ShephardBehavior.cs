@@ -3,9 +3,11 @@ using System.Linq;
 
 using JetBrains.Annotations;
 
+using pdxpartyparrot.Core.Time;
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Interactables;
+using pdxpartyparrot.ggj2021.Data.NPCs;
 using pdxpartyparrot.ggj2021.NPCs;
 
 using UnityEngine;
@@ -42,6 +44,12 @@ namespace pdxpartyparrot.ggj2021.Players
 
         #endregion
 
+        [SerializeField]
+        [ReadOnly]
+        private ITimer _launchCooldown;
+
+        public bool CanLaunch => null != _chamber && !_launchCooldown.IsRunning;
+
         private Interactables _interactables;
 
         #region Unity Lifecycle
@@ -50,7 +58,19 @@ namespace pdxpartyparrot.ggj2021.Players
         {
             _interactables = GetComponent<Interactables>();
 
-            _interactables.InteractableAddedEvent += InteractableAddedEventHandler;
+            _launchCooldown = TimeManager.Instance.AddTimer();
+        }
+
+        private void Update()
+        {
+            CatchSheep();
+        }
+
+        private void OnDestroy()
+        {
+            if(TimeManager.HasInstance) {
+                TimeManager.Instance.RemoveTimer(_launchCooldown);
+            }
         }
 
         #endregion
@@ -68,7 +88,7 @@ namespace pdxpartyparrot.ggj2021.Players
             }
 
             Sheep sheep = _interactables.GetRandomInteractable<Sheep>();
-            if(null == sheep) {
+            if(null == sheep || sheep.CanScore) {
                 return false;
             }
 
@@ -112,7 +132,7 @@ namespace pdxpartyparrot.ggj2021.Players
 
         public bool LaunchSheep()
         {
-            if(null == _chamber) {
+            if(!CanLaunch) {
                 return false;
             }
 
@@ -124,6 +144,8 @@ namespace pdxpartyparrot.ggj2021.Players
             sheep.OnLaunch(Owner.Movement.Position, Owner.FacingDirection);
 
             CycleRound();
+
+            _launchCooldown.Start(Owner.GamePlayerBehavior.GamePlayerBehaviorData.LaunchCooldown);
 
             return true;
         }
@@ -169,19 +191,6 @@ namespace pdxpartyparrot.ggj2021.Players
 
         public void OnDeSpawn()
         {
-        }
-
-        #endregion
-
-        #region Event Handlers
-
-        private void InteractableAddedEventHandler(object sender, InteractableEventArgs args)
-        {
-            if(!(args.Interactable is Sheep)) {
-                return;
-            }
-
-            CatchSheep();
         }
 
         #endregion

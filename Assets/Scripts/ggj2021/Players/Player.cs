@@ -11,6 +11,8 @@ namespace pdxpartyparrot.ggj2021.Players
 {
     public sealed class Player : Player3D
     {
+        public PlayerBehavior GamePlayerBehavior => (PlayerBehavior)PlayerBehavior;
+
         private GameViewer PlayerGameViewer => (GameViewer)Viewer;
 
         [Space(10)]

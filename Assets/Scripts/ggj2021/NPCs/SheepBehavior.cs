@@ -37,7 +37,9 @@ namespace pdxpartyparrot.ggj2021.NPCs
         [ReadOnly]
         private State _state = State.Idle;
 
-        public bool IsCaught => _state == State.Chambered || _state == State.Enqueued || _state == State.Launched;
+        public bool IsCaught => _state == State.Chambered || _state == State.Enqueued;
+
+        public bool IsChambered => _state == State.Chambered;
 
         public bool IsLaunched => _state == State.Launched;
 

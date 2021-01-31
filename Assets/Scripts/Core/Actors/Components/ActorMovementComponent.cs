@@ -1,6 +1,7 @@
 ﻿using System;
 
 using pdxpartyparrot.Core.Data.Actors.Components;
+using pdxpartyparrot.Core.Math;
 
 using UnityEngine;
 
@@ -72,7 +73,7 @@ namespace pdxpartyparrot.Core.Actors.Components
             set { }
         }
 
-        public bool AtRest => Mathf.Approximately(Velocity.sqrMagnitude, 0.0f);
+        public bool AtRest => Velocity.sqrMagnitude <= 0.01;
 
         #endregion
 

@@ -8,5 +8,9 @@ namespace pdxpartyparrot.ggj2021.Data.Players
     [Serializable]
     public sealed class PlayerBehaviorData : Game.Data.Characters.PlayerBehaviorData
     {
+        [SerializeField]
+        private float _launchCooldown = 0.25f;
+
+        public float LaunchCooldown => _launchCooldown;
     }
 }

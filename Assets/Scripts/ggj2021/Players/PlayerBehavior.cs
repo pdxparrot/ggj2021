@@ -9,6 +9,8 @@ namespace pdxpartyparrot.ggj2021.Players
     [RequireComponent(typeof(ShephardBehavior))]
     public sealed class PlayerBehavior : Game.Characters.Players.PlayerBehavior
     {
+        public PlayerBehaviorData GamePlayerBehaviorData => (PlayerBehaviorData)PlayerBehaviorData;
+
         public override void Initialize(ActorBehaviorComponentData behaviorData)
         {
             Assert.IsTrue(Owner is Player);
