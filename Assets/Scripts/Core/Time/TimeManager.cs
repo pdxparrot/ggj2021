@@ -400,9 +400,13 @@ namespace pdxpartyparrot.Core.Time
                 GUILayout.Label($"Current Unix Seconds: {CurrentUnixSeconds}");
                 GUILayout.Label($"Current Unix Milliseconds: {CurrentUnixMs}");
 
-                // TODO: print timers
+                GUILayout.BeginVertical($"{_timers.Count} Timers", GUI.skin.box);
+                GUILayout.Label("TODO: timers");
+                GUILayout.EndVertical();
 
-                // TODO: print stopwatches
+                GUILayout.BeginVertical($"{_stopwatches.Count} Timers", GUI.skin.box);
+                GUILayout.Label("TODO: stopwatches");
+                GUILayout.EndVertical();
             };
         }
     }

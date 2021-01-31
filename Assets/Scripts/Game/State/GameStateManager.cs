@@ -236,6 +236,10 @@ namespace pdxpartyparrot.Game.State
         {
             PartyParrotManager.Instance.LoadingManager.ShowLoadingScreen(true);
 
+            // this helps give things that need to end *this frame*
+            // a chance to do so (the GameOverState is one notorious case of needing this)
+            yield return null;
+
             IEnumerator exitRunner = ExitCurrentStateRoutine();
             while(exitRunner.MoveNext()) {
                 yield return null;
@@ -270,11 +274,13 @@ namespace pdxpartyparrot.Game.State
             PartyParrotManager.Instance.LoadingManager.UpdateLoadingScreen(1.0f, "State transition complete!");
             yield return null;
 
-            PartyParrotManager.Instance.LoadingManager.ShowLoadingScreen(false);
-
             _currentGameState.OnEnter();
+            yield return null;
 
             onStateLoaded?.Invoke();
+            yield return null;
+
+            PartyParrotManager.Instance.LoadingManager.ShowLoadingScreen(false);
         }
 
         private IEnumerator ExitCurrentStateRoutine()

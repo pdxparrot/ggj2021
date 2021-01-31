@@ -99,6 +99,7 @@ namespace pdxpartyparrot.Game.State
                 yield return null;
             }
 
+            yield return null;
             onComplete?.Invoke();
         }
 
