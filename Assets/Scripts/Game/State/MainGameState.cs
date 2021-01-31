@@ -90,6 +90,15 @@ namespace pdxpartyparrot.Game.State
             yield return new LoadStatus(1.0f, "Main game state shutdown!");
         }
 
+        public override void OnExit()
+        {
+            if(null != GameStateManager.Instance.GameManager) {
+                GameStateManager.Instance.GameManager.GameUnReady();
+            }
+
+            base.OnExit();
+        }
+
         #region Initialize
 
         private IEnumerator<LoadStatus> InitializeRoutine()

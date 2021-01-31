@@ -235,10 +235,6 @@ namespace pdxpartyparrot.Game
 
         public virtual void TransitionScene(string nextScene, Action onComplete)
         {
-            // TODO: we need to clean up the current scene (despawn / destroy everything)
-            // and then when the next scene is loaded, start it fresh
-            // ... it's kind of like we want to exist the game state and re-enter it
-
             GameStateManager.Instance.CurrentState.ChangeSceneAsync(nextScene, onComplete);
         }
     }

@@ -1,10 +1,12 @@
 using System;
 
-using pdxpartyparrot.Core.Actors;
+using JetBrains.Annotations;
+
 using pdxpartyparrot.Core.World;
 using pdxpartyparrot.ggj2021.World;
 
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 
 namespace pdxpartyparrot.ggj2021.Level
@@ -17,28 +19,15 @@ namespace pdxpartyparrot.ggj2021.Level
         [SerializeField]
         private GoalWaypoint _initialGoalWaypoint;
 
+        [CanBeNull]
         private GameObject _sheepPen;
 
-        public Transform SheepPen => _sheepPen.transform;
+        [CanBeNull]
+        public Transform SheepPen => null == _sheepPen ? null : _sheepPen.transform;
 
         private Goal _goal;
 
         #region Unity Lifecycle
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            _sheepPen = new GameObject("Sheep Pen");
-        }
-
-        protected override void OnDestroy()
-        {
-            Destroy(_sheepPen);
-            Destroy(_goal.gameObject);
-
-            base.OnDestroy();
-        }
 
         private void FixedUpdate()
         {
@@ -57,13 +46,27 @@ namespace pdxpartyparrot.ggj2021.Level
 
         #region Event Handlers
 
-        protected override void GameStartServerEventHandler(object sender, EventArgs args)
+        protected override void GameReadyEventHandler(object sender, EventArgs args)
         {
-            base.GameStartServerEventHandler(sender, args);
+            base.GameReadyEventHandler(sender, args);
+
+            Assert.IsNull(_sheepPen);
+            _sheepPen = new GameObject("Sheep Pen");
 
             SpawnPoint spawnPoint = SpawnManager.Instance.GetSpawnPoint(GameManager.Instance.GameGameData.GoalSpawnTag);
             _goal = spawnPoint.SpawnFromPrefab(GameManager.Instance.GameGameData.GoalPrefab, null) as Goal;
             _goal.SetWaypoint(_initialGoalWaypoint);
+        }
+
+        protected override void GameUnReadyEventHandler(object sender, EventArgs args)
+        {
+            Destroy(_sheepPen);
+            _sheepPen = null;
+
+            Destroy(_goal.gameObject);
+            _goal = null;
+
+            base.GameUnReadyEventHandler(sender, args);
         }
 
         #endregion

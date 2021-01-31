@@ -1,13 +1,17 @@
 using System;
 
+using JetBrains.Annotations;
+
 using pdxpartyparrot.Core.Time;
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Level;
+using pdxpartyparrot.ggj2021.NPCs;
 using pdxpartyparrot.ggj2021.UI;
 using pdxpartyparrot.ggj2021.World;
 
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace pdxpartyparrot.ggj2021.Level
 {
@@ -23,11 +27,14 @@ namespace pdxpartyparrot.ggj2021.Level
         [ReadOnly]
         private ITimer _timer;
 
+        [CanBeNull]
         private GameObject _sheepPen;
 
+        [CanBeNull]
         private Goal _goal;
 
-        public Transform SheepPen => _sheepPen.transform;
+        [CanBeNull]
+        public Transform SheepPen => null == _sheepPen ? null : _sheepPen.transform;
 
         #region Unity Lifecycle
 
@@ -35,10 +42,18 @@ namespace pdxpartyparrot.ggj2021.Level
         {
             base.Awake();
 
-            _sheepPen = new GameObject("Sheep Pen");
-
             _timer = TimeManager.Instance.AddTimer();
             _timer.TimesUpEvent += LevelTimesUpEventHandler;
+        }
+
+        protected override void OnDestroy()
+        {
+            if(TimeManager.HasInstance) {
+                TimeManager.Instance.RemoveTimer(_timer);
+                _timer = null;
+            }
+
+            base.OnDestroy();
         }
 
         private void Update()
@@ -46,20 +61,6 @@ namespace pdxpartyparrot.ggj2021.Level
             if(null != GameUIManager.Instance.GameGameUI) {
                 GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateTimer(_timer.SecondsRemaining / _roundSeconds);
             }
-        }
-
-        protected override void OnDestroy()
-        {
-            // TODO: clean this up somewhere else (game over or unready or something)
-            Destroy(_sheepPen);
-            Destroy(_goal.gameObject);
-
-            if(TimeManager.HasInstance) {
-                TimeManager.Instance.RemoveTimer(_timer);
-                _timer = null;
-            }
-
-            base.OnDestroy();
         }
 
         #endregion
@@ -73,39 +74,41 @@ namespace pdxpartyparrot.ggj2021.Level
                 SpawnPoint spawnPoint = SpawnManager.Instance.GetSpawnPoint(GameManager.Instance.GameGameData.SheepSpawnTag);
                 spawnPoint.SpawnNPCPrefab(GameManager.Instance.GameGameData.SheepPrefab, GameManager.Instance.GameGameData.SheepBehaviorData, _sheepPen.transform);
             }
-
-            GameManager.Instance.Reset(count);
         }
 
         #region Event Handlers
 
-        protected override void GameStartServerEventHandler(object sender, EventArgs args)
+        protected override void GameReadyEventHandler(object sender, EventArgs args)
         {
-            base.GameStartServerEventHandler(sender, args);
+            base.GameReadyEventHandler(sender, args);
+
+            GameManager.Instance.RoundWonEvent += RoundWonEventHandler;
+
+            Assert.IsNull(_sheepPen);
+            _sheepPen = new GameObject("Sheep Pen");
+
+            SpawnSheep();
+
+            GameManager.Instance.Reset(NPCManager.Instance.NPCs.Count);
 
             SpawnPoint spawnPoint = SpawnManager.Instance.GetSpawnPoint(GameManager.Instance.GameGameData.GoalSpawnTag);
             _goal = spawnPoint.SpawnFromPrefab(GameManager.Instance.GameGameData.GoalPrefab, null) as Goal;
             _goal.SetWaypoint(_initialGoalWaypoint);
 
-            GameManager.Instance.RoundWonEvent += RoundWonEventHandler;
-        }
-
-        protected override void GameStartClientEventHandler(object sender, EventArgs args)
-        {
-            base.GameStartClientEventHandler(sender, args);
-
-            // TODO: if we have an intro, we want to get notified of it finishing here
-            //GameManager.Instance.IntroCompleteEvent += IntroCompleteEventHandler;
-            IntroCompleteEventHandler(null, null);
-        }
-
-        private void IntroCompleteEventHandler(object sender, EventArgs args)
-        {
-            //GameManager.Instance.IntroCompleteEvent -= IntroCompleteEventHandler;
-
-            SpawnSheep();
-
             _timer.Start(_roundSeconds);
+        }
+
+        protected override void GameUnReadyEventHandler(object sender, EventArgs args)
+        {
+            GameManager.Instance.RoundWonEvent -= RoundWonEventHandler;
+
+            Destroy(_sheepPen);
+            _sheepPen = null;
+
+            Destroy(_goal.gameObject);
+            _goal = null;
+
+            base.GameUnReadyEventHandler(sender, args);
         }
 
         private void LevelTimesUpEventHandler(object sender, EventArgs args)
@@ -117,10 +120,10 @@ namespace pdxpartyparrot.ggj2021.Level
 
         private void RoundWonEventHandler(object sender, EventArgs args)
         {
+            _timer.Stop();
+
             if(!HasNextLevel) {
                 Debug.Log("You win!");
-
-                _timer.Stop();
 
                 GameManager.Instance.GameOver();
                 return;
@@ -128,8 +131,6 @@ namespace pdxpartyparrot.ggj2021.Level
 
             TransitionLevel();
         }
-
-        // TODO: handle game unready for cleanup?
 
         #endregion
     }

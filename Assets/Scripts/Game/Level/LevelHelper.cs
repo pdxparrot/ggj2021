@@ -83,7 +83,9 @@ namespace pdxpartyparrot.Game.Level
         private void DoLevelTransition()
         {
             GameStateManager.Instance.GameManager.GameUnReady();
-            GameStateManager.Instance.GameManager.TransitionScene(_nextLevel, null);
+            GameStateManager.Instance.GameManager.TransitionScene(_nextLevel, () => {
+                GameStateManager.Instance.GameManager.GameReady();
+            });
         }
 
         #region Event Handlers
