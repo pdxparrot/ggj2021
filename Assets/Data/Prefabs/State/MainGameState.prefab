@@ -62,6 +62,7 @@ GameObject:
   - component: {fileID: 5717553462340770541}
   - component: {fileID: 3457715597376902583}
   - component: {fileID: 1301503084257155510}
+  - component: {fileID: 354038039283731816}
   m_Layer: 0
   m_Name: Exit Effect
   m_TagString: Untagged
@@ -98,6 +99,7 @@ MonoBehaviour:
   _triggerOnComplete: []
   _components:
   - {fileID: 1301503084257155510}
+  - {fileID: 354038039283731816}
   _isRunning: 0
   _complete: 0
 --- !u!114 &1301503084257155510
@@ -112,6 +114,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e1eb9a9a89bc6eab65783946b6540e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &354038039283731816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7444868243796620536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cbab902d1f53f658f98ead36d00b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiObjectName: hud
+  _show: 0
 --- !u!1 &7697567409837982092
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +140,8 @@ GameObject:
   - component: {fileID: 3152624020299231750}
   - component: {fileID: 4357823837475882346}
   - component: {fileID: 2501069705025865291}
+  - component: {fileID: 540963974704933781}
+  - component: {fileID: 1724717237780930903}
   m_Layer: 0
   m_Name: Enter Effect
   m_TagString: Untagged
@@ -161,6 +179,8 @@ MonoBehaviour:
   _components:
   - {fileID: 4357823837475882346}
   - {fileID: 2501069705025865291}
+  - {fileID: 540963974704933781}
+  - {fileID: 1724717237780930903}
   _isRunning: 0
   _complete: 0
 --- !u!114 &4357823837475882346
@@ -189,3 +209,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _music: {fileID: 8300000, guid: 9ebaf969f511b224aa61ee6e1e219185, type: 3}
   _transitionSeconds: 0
+--- !u!114 &540963974704933781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7697567409837982092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cbab902d1f53f658f98ead36d00b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiObjectName: hud
+  _show: 1
+--- !u!114 &1724717237780930903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7697567409837982092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cbab902d1f53f658f98ead36d00b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiObjectName: game_over
+  _show: 0

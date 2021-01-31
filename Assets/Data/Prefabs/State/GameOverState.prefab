@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3737521042165662043}
   - component: {fileID: 7098941904493393329}
   - component: {fileID: 2582027777553741421}
+  - component: {fileID: 1378687918241217003}
   m_Layer: 0
   m_Name: Exit Effect
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   _triggerOnComplete: []
   _components:
   - {fileID: 2582027777553741421}
+  - {fileID: 1378687918241217003}
   _isRunning: 0
   _complete: 0
 --- !u!114 &2582027777553741421
@@ -61,6 +63,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e1eb9a9a89bc6eab65783946b6540e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1378687918241217003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812182507109710132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cbab902d1f53f658f98ead36d00b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiObjectName: game_over
+  _show: 0
 --- !u!1 &7413368067708830377
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,6 +89,7 @@ GameObject:
   - component: {fileID: 7583683181143273195}
   - component: {fileID: 4376106111907126872}
   - component: {fileID: 1035822245348262625}
+  - component: {fileID: 3935612783606807312}
   m_Layer: 0
   m_Name: Enter Effect
   m_TagString: Untagged
@@ -110,6 +127,7 @@ MonoBehaviour:
   _components:
   - {fileID: 4376106111907126872}
   - {fileID: 1035822245348262625}
+  - {fileID: 3935612783606807312}
   _isRunning: 0
   _complete: 0
 --- !u!114 &4376106111907126872
@@ -138,6 +156,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stinger: {fileID: 8300000, guid: 923fd95dfe3de9446ad70e10a1c0281f, type: 3}
   _waitForComplete: 1
+--- !u!114 &3935612783606807312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7413368067708830377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cbab902d1f53f658f98ead36d00b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiObjectName: game_over
+  _show: 1
 --- !u!1 &9030960958763025424
 GameObject:
   m_ObjectHideFlags: 0
