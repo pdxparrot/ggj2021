@@ -16,6 +16,10 @@ namespace pdxpartyparrot.ggj2021
     {
         #region Events
 
+        public event EventHandler<EventArgs> LevelEnterEvent;
+
+        public event EventHandler<EventArgs> GoalScoredEvent;
+
         public event EventHandler<EventArgs> RoundWonEvent;
 
         #endregion
@@ -58,6 +62,11 @@ namespace pdxpartyparrot.ggj2021
 
         #region Event Handlers
 
+        public void OnLevelEntered()
+        {
+            LevelEnterEvent?.Invoke(this, null);
+        }
+
         public void OnSheepCollected()
         {
             if(null != GameUIManager.Instance.GameGameUI) {
@@ -77,6 +86,8 @@ namespace pdxpartyparrot.ggj2021
             if(!IsGameReady || IsGameOver) {
                 return false;
             }
+
+            GoalScoredEvent?.Invoke(this, null);
 
             Debug.Log("Goooooaaaalllll!");
 
