@@ -20,6 +20,8 @@ namespace pdxpartyparrot.Game.Level
         [SerializeField]
         private string _nextLevel;
 
+        public bool HasNextLevel => !string.IsNullOrWhiteSpace(_nextLevel);
+
         [Space(10)]
 
         [SerializeField]

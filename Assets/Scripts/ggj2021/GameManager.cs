@@ -1,3 +1,5 @@
+using System;
+
 using pdxpartyparrot.Core.Camera;
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Game;
@@ -11,6 +13,12 @@ namespace pdxpartyparrot.ggj2021
 {
     public sealed class GameManager : GameManager<GameManager>
     {
+        #region Events
+
+        public event EventHandler<EventArgs> RoundWonEvent;
+
+        #endregion
+
         public GameData GameGameData => (GameData)GameData;
 
         public IBaseLevel BaseLevel => (IBaseLevel)LevelHelper;
@@ -21,11 +29,7 @@ namespace pdxpartyparrot.ggj2021
         [ReadOnly]
         private int _goal;
 
-        public int Goal
-        {
-            get => _goal;
-            set => _goal = value;
-        }
+        public int Goal => _goal;
 
         [SerializeField]
         [ReadOnly]
@@ -43,6 +47,12 @@ namespace pdxpartyparrot.ggj2021
             Viewer.Initialize(GameGameData);
         }
 
+        public void Reset(int goal)
+        {
+            _goal = goal;
+            _score = 0;
+        }
+
         #region Event Handlers
 
         public void OnGoalScored()
@@ -50,10 +60,11 @@ namespace pdxpartyparrot.ggj2021
             Debug.Log("Goooooaaaalllll!");
 
             _score++;
-            if(_goal > 0 && _score >= _goal) {
-                Debug.Log("You win!");
 
-                GameOver();
+            if(_goal > 0 && _score >= _goal) {
+                Debug.Log("You win this round!");
+                RoundWonEvent?.Invoke(this, null);
+                return;
             }
         }
 

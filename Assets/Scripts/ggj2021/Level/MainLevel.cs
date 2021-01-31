@@ -65,7 +65,7 @@ namespace pdxpartyparrot.ggj2021.Level
                 spawnPoint.SpawnNPCPrefab(GameManager.Instance.GameGameData.SheepPrefab, GameManager.Instance.GameGameData.SheepBehaviorData, _sheepPen.transform);
             }
 
-            GameManager.Instance.Goal = count;
+            GameManager.Instance.Reset(count);
         }
 
         #region Event Handlers
@@ -77,6 +77,8 @@ namespace pdxpartyparrot.ggj2021.Level
             SpawnPoint spawnPoint = SpawnManager.Instance.GetSpawnPoint(GameManager.Instance.GameGameData.GoalSpawnTag);
             _goal = spawnPoint.SpawnFromPrefab(GameManager.Instance.GameGameData.GoalPrefab, null) as Goal;
             _goal.SetWaypoint(_initialGoalWaypoint);
+
+            GameManager.Instance.RoundWonEvent += RoundWonEventHandler;
         }
 
         protected override void GameStartClientEventHandler(object sender, EventArgs args)
@@ -102,6 +104,18 @@ namespace pdxpartyparrot.ggj2021.Level
             Debug.Log("Times up!");
 
             GameManager.Instance.GameOver();
+        }
+
+        private void RoundWonEventHandler(object sender, EventArgs args)
+        {
+            if(!HasNextLevel) {
+                Debug.Log("You win!");
+
+                GameManager.Instance.GameOver();
+                return;
+            }
+
+            TransitionLevel();
         }
 
         #endregion

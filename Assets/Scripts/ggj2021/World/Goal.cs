@@ -74,9 +74,9 @@ namespace pdxpartyparrot.ggj2021.World
                 return;
             }
 
-            GameManager.Instance.OnGoalScored();
-
             sheep.OnScored();
+
+            GameManager.Instance.OnGoalScored();
         }
 
         #endregion
