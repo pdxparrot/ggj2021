@@ -1,4 +1,5 @@
 using pdxpartyparrot.Core.Actors;
+using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.ggj2021.NPCs;
 
 using UnityEngine;
@@ -11,6 +12,10 @@ namespace pdxpartyparrot.ggj2021.World
 
         [SerializeField]
         private GoalWaypoint _nextWaypoint;
+
+        [SerializeField]
+        [ReadOnly]
+        private float _speed;
 
         #region Unity Lifecycle
 
@@ -32,7 +37,7 @@ namespace pdxpartyparrot.ggj2021.World
                 return;
             }
 
-            Movement.MoveTowards(_nextWaypoint.transform.position, GameManager.Instance.GameGameData.GoalSpeed, dt);
+            Movement.MoveTowards(_nextWaypoint.transform.position, _speed, dt);
 
             if(Vector3.Distance(Movement.Position, _nextWaypoint.transform.position) < float.Epsilon) {
                 Movement.Position = _nextWaypoint.transform.position;
@@ -53,7 +58,13 @@ namespace pdxpartyparrot.ggj2021.World
 
         #endregion
 
-        public void SetWaypoint(GoalWaypoint waypoint)
+        public void Initialize(GoalWaypoint initialWaypoint, float speed)
+        {
+            _speed = speed;
+            SetWaypoint(initialWaypoint);
+        }
+
+        private void SetWaypoint(GoalWaypoint waypoint)
         {
             _nextWaypoint = waypoint;
 

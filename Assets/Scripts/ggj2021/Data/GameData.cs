@@ -65,10 +65,5 @@ namespace pdxpartyparrot.ggj2021.Data
         private string _goalLayer = "GoalTrigger";
 
         public LayerMask GoalLayer => LayerMask.NameToLayer(_goalLayer);
-
-        [SerializeField]
-        private float _goalSpeed = 5.0f;
-
-        public float GoalSpeed => _goalSpeed;
     }
 }

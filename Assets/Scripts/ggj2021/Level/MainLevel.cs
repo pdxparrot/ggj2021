@@ -22,10 +22,13 @@ namespace pdxpartyparrot.ggj2021.Level
         private Key _cheatKey = Key.T;
 
         [SerializeField]
+        private float _roundSeconds = 60.0f;
+
+        [SerializeField]
         private GoalWaypoint _initialGoalWaypoint;
 
         [SerializeField]
-        private float _roundSeconds = 60.0f;
+        private float _goalSpeed = 5.0f;
 
         [SerializeReference]
         [ReadOnly]
@@ -108,7 +111,7 @@ namespace pdxpartyparrot.ggj2021.Level
 
             SpawnPoint spawnPoint = SpawnManager.Instance.GetSpawnPoint(GameManager.Instance.GameGameData.GoalSpawnTag);
             _goal = spawnPoint.SpawnFromPrefab(GameManager.Instance.GameGameData.GoalPrefab, null) as Goal;
-            _goal.SetWaypoint(_initialGoalWaypoint);
+            _goal.Initialize(_initialGoalWaypoint, _goalSpeed);
 
             _timer.Start(_roundSeconds);
         }
