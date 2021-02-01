@@ -15,7 +15,7 @@ MonoBehaviour:
   _preAmble: 
   _credits:
   - _title: Team
-    _allowInContributorString: 0
+    _allowInContributorString: 1
     _contributors:
     - PDXParrot
   - _title: Animation
