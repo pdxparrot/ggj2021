@@ -29,5 +29,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/demo level 02.unity
     guid: 17e69dbe190802a438173a05fffcae49
+  - enabled: 1
+    path: Assets/Scenes/demo level 03.unity
+    guid: 37d4ba9ba03cdf54ca36116dadc3296a
+  - enabled: 1
+    path: Assets/Scenes/demo level 04.unity
+    guid: c233a2abe359613459018e0508472b05
+  - enabled: 1
+    path: Assets/Scenes/demo level 05.unity
+    guid: 253ede330189fa54d9cd20eabb2f972d
+  - enabled: 1
+    path: Assets/Scenes/demo level 06.unity
+    guid: 97ee3c88bfff1394a9a709d449b03157
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c7441425f1c717f6c98e3cfcb5b412b6, type: 2}
