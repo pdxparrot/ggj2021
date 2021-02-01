@@ -544,6 +544,7 @@ GameObject:
   - component: {fileID: 2369105934370564854}
   - component: {fileID: 5708668014852099471}
   - component: {fileID: 7721623740637534888}
+  - component: {fileID: 8988955559645406460}
   m_Layer: 10
   m_Name: Launch Effect
   m_TagString: Untagged
@@ -580,6 +581,7 @@ MonoBehaviour:
   _triggerOnComplete: []
   _components:
   - {fileID: 7721623740637534888}
+  - {fileID: 8988955559645406460}
   _isRunning: 0
   _complete: 0
 --- !u!114 &7721623740637534888
@@ -600,6 +602,28 @@ MonoBehaviour:
   _loop: 0
   _trackStartTime: 0
   _waitForComplete: 1
+--- !u!114 &8988955559645406460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657643125737281632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 335ad97a393c4ea01af726ea24f0a3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClip: {fileID: 8300000, guid: 0b88132980bee0f4992a86418c138d7c, type: 3}
+  _audioSource: {fileID: 0}
+  _loop: 0
+  _waitForComplete: 0
+  _audioTimer:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!1 &5401884448216375803
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,6 +635,7 @@ GameObject:
   - component: {fileID: 5509364843815988277}
   - component: {fileID: 3077957630161247360}
   - component: {fileID: 5282598601810505409}
+  - component: {fileID: 2854709736728856955}
   m_Layer: 10
   m_Name: Grab Effect
   m_TagString: Untagged
@@ -647,6 +672,7 @@ MonoBehaviour:
   _triggerOnComplete: []
   _components:
   - {fileID: 5282598601810505409}
+  - {fileID: 2854709736728856955}
   _isRunning: 0
   _complete: 0
 --- !u!114 &5282598601810505409
@@ -667,6 +693,28 @@ MonoBehaviour:
   _loop: 0
   _trackStartTime: 0
   _waitForComplete: 1
+--- !u!114 &2854709736728856955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5401884448216375803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 335ad97a393c4ea01af726ea24f0a3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClip: {fileID: 8300000, guid: a159548e2468c414f9214cfe0cf1f6f9, type: 3}
+  _audioSource: {fileID: 0}
+  _loop: 0
+  _waitForComplete: 0
+  _audioTimer:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!1 &5988821913990690063
 GameObject:
   m_ObjectHideFlags: 0
