@@ -173,7 +173,6 @@ namespace pdxpartyparrot.Core.Loading
             yield return null;
 
             ShowLoadingScreen(false);
-            yield return null;
         }
 
         private void PreCreateManagers()
@@ -228,6 +227,11 @@ namespace pdxpartyparrot.Core.Loading
 
         public void ShowLoadingScreen(bool show)
         {
+            Debug.Log($"Show loading screen: {show}");
+            if(show == _loadingScreen.gameObject.activeInHierarchy) {
+                Debug.LogWarning($"Loading screen active mismatch: {show}");
+            }
+
             _mainCamera.cullingMask = show ? -1 : 0;
             _loadingScreen.gameObject.SetActive(show);
 
@@ -265,6 +269,10 @@ namespace pdxpartyparrot.Core.Loading
 
         public void ShowTransitionScreen(bool show)
         {
+            if(show == _loadingScreen.gameObject.activeInHierarchy) {
+                Debug.LogWarning($"Transition screen active mismatch: {show}");
+            }
+
             _mainCamera.cullingMask = show ? -1 : 0;
             _loadingScreen.gameObject.SetActive(show);
 
