@@ -1,5 +1,6 @@
 using System;
 
+using pdxpartyparrot.Core;
 using pdxpartyparrot.Core.Actors;
 using pdxpartyparrot.Core.Effects;
 using pdxpartyparrot.Core.Util;
@@ -59,6 +60,10 @@ namespace pdxpartyparrot.ggj2021.World
             float dt = Time.fixedDeltaTime;
 
             if(null == _nextWaypoint) {
+                return;
+            }
+
+            if(PartyParrotManager.Instance.IsPaused || !GameManager.Instance.IsGameReady || GameManager.Instance.IsGameOver) {
                 return;
             }
 
