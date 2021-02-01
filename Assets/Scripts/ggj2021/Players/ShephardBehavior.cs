@@ -22,10 +22,21 @@ namespace pdxpartyparrot.ggj2021.Players
     [RequireComponent(typeof(Interactables3D))]
     public sealed class ShephardBehavior : MonoBehaviour
     {
+        private enum State
+        {
+            Idle,
+            Chambering,
+            Launching,
+        }
+
         [SerializeField]
         private Player _owner;
 
         public Player Owner => _owner;
+
+        [SerializeField]
+        [ReadOnly]
+        private State _state = State.Idle;
 
         [Space(10)]
 
@@ -39,13 +50,10 @@ namespace pdxpartyparrot.ggj2021.Players
         [CanBeNull]
         private Sheep _chamber;
 
-        public bool CarryingSheep => null != _chamber;
-
+        // TODO: should be a HashSet
         [SerializeField]
         [ReadOnly]
         private List<Sheep> _magazine = new List<Sheep>();
-
-        public bool HasCapacity => null == _chamber || (GameManager.HasInstance && _magazine.Count < GameManager.Instance.GameGameData.MaxQueuedSheep);
 
         #endregion
 
@@ -74,11 +82,13 @@ namespace pdxpartyparrot.ggj2021.Players
         [SerializeField]
         private GameObject _aimer;
 
-        [SerializeField]
-        [ReadOnly]
-        private ITimer _launchCooldown;
+        public bool CarryingSheep => null != _chamber;
 
-        public bool CanLaunch => null != _chamber && !_launchCooldown.IsRunning;
+        private bool HasCapacity => null == _chamber || (GameManager.HasInstance && _magazine.Count < GameManager.Instance.GameGameData.MaxQueuedSheep);
+
+        private bool CanChamber => null == _chamber && _state == State.Idle;
+
+        private bool CanLaunch => null != _chamber && _state == State.Idle;
 
         private Interactables _interactables;
 
@@ -87,8 +97,6 @@ namespace pdxpartyparrot.ggj2021.Players
         private void Awake()
         {
             _interactables = GetComponent<Interactables>();
-
-            _launchCooldown = TimeManager.Instance.AddTimer();
 
             GameManager.Instance.GameUnReadyEvent += GameUnReadyEventHandler;
             GameManager.Instance.LevelEnterEvent += LevelEnterEventHandler;
@@ -126,10 +134,6 @@ namespace pdxpartyparrot.ggj2021.Players
                 GameManager.Instance.LevelEnterEvent -= LevelEnterEventHandler;
                 GameManager.Instance.GameUnReadyEvent -= GameUnReadyEventHandler;
             }
-
-            if(TimeManager.HasInstance) {
-                TimeManager.Instance.RemoveTimer(_launchCooldown);
-            }
         }
 
         #endregion
@@ -154,15 +158,15 @@ namespace pdxpartyparrot.ggj2021.Players
                 return false;
             }
 
-            Debug.Log($"Caught sheep {sheep.Id}");
-
             if(null == _chamber) {
-                ChamberSheep(sheep);
-
-                _grabEffect.Trigger();
+                if(!ChamberSheep(sheep)) {
+                    return false;
+                }
             } else {
                 EnqueueSheep(sheep);
             }
+
+            Debug.Log($"Caught sheep {sheep.Id}");
 
             GameManager.Instance.OnSheepCollected();
 
@@ -171,16 +175,26 @@ namespace pdxpartyparrot.ggj2021.Players
             return true;
         }
 
-        private void ChamberSheep(Sheep sheep)
+        // TODO: GrabSheep(), make sure to remove from the queue if it's in there
+        private bool ChamberSheep(Sheep sheep)
         {
-            Assert.IsNull(_chamber);
+            if(!CanChamber) {
+                return false;
+            }
 
             _chamber = sheep;
             sheep.OnChambered(_chamberParent);
 
-            Debug.Log($"Chambered sheep {_chamber.Id}");
+            _state = State.Chambering;
+            _grabEffect.Trigger(() => {
+                _state = State.Idle;
 
-            Owner.GamePlayerBehavior.OnCarryingSheepChanged();
+                Debug.Log($"Chambered sheep {sheep.Id}");
+
+                Owner.GamePlayerBehavior.OnCarryingSheepChanged();
+            });
+
+            return true;
         }
 
         private void EnqueueSheep(Sheep sheep)
@@ -207,40 +221,48 @@ namespace pdxpartyparrot.ggj2021.Players
             Sheep sheep = _chamber;
             _chamber = null;
 
-            Debug.Log($"Launching sheep {sheep.Id}");
+            // TODO: this doesn't line up with the animation *at all*
 
-            _launchEffect.Trigger();
+            Debug.Log($"Launching sheep {sheep.Id}");
 
             Vector3 direction = (Owner.FacingDirection + new Vector3(0.0f, 1.0f, 0.0f)).normalized;
             sheep.OnLaunch(Owner.Movement.Position, direction);
 
             GameManager.Instance.OnSheepLost();
 
-            CycleRound();
+            _state = State.Launching;
+            _launchEffect.Trigger(() => {
+                _state = State.Idle;
 
-            _launchCooldown.Start(Owner.GamePlayerBehavior.GamePlayerBehaviorData.LaunchCooldown);
+                // TODO: if this fails, nothing will try and cycle later
+                CycleRound();
 
-            Owner.GamePlayerBehavior.OnCarryingSheepChanged();
+                Owner.GamePlayerBehavior.OnCarryingSheepChanged();
+            });
 
             return true;
         }
 
+        // TODO: rather than even doing this, we should just have a "follow" list
+        // and let the player naturally pick them up. that'd feel a lot less weird
         private bool CycleRound()
         {
             if(_magazine.Count < 1) {
-                return false;
+                return true;
             }
 
             Sheep sheep = _magazine.ElementAt(0);
+            if(!ChamberSheep(sheep)) {
+                return false;
+            }
             _magazine.RemoveAt(0);
-
-            ChamberSheep(sheep);
 
             RackSheep();
 
             return true;
         }
 
+        // TODO: this goes away when cycling goes away
         private void RackSheep()
         {
             if(_magazine.Count < 1) {

@@ -1,7 +1,5 @@
 using pdxpartyparrot.Core.Camera;
 
-using UnityEngine;
-
 namespace pdxpartyparrot.ggj2021.State
 {
     public class SceneTester : Game.State.SceneTester
