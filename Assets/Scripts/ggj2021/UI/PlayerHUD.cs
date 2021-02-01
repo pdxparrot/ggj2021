@@ -20,6 +20,9 @@ namespace pdxpartyparrot.ggj2021.UI
         [SerializeField]
         private GameObject[] _slots;
 
+        [SerializeField]
+        private GameObject _compassNeedle;
+
         public void Reset(int goal)
         {
             _score.text = "0";
@@ -30,6 +33,7 @@ namespace pdxpartyparrot.ggj2021.UI
             }
 
             UpdateTimer(1.0f);
+            UpdateGoalCompass(0.0f);
         }
 
         public void UpdateTimer(float pctRemaining)
@@ -37,6 +41,13 @@ namespace pdxpartyparrot.ggj2021.UI
             Vector3 rot = _timer.eulerAngles;
             rot.z = (1.0f - pctRemaining) * -180.0f;
             _timer.eulerAngles = rot;
+        }
+
+        public void UpdateGoalCompass(float angle)
+        {
+            Vector3 rot = _compassNeedle.transform.eulerAngles;
+            rot.z = -angle;
+            _compassNeedle.transform.eulerAngles = rot;
         }
 
         public void UpdateScore(int score)

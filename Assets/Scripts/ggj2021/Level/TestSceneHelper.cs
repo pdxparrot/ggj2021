@@ -33,6 +33,9 @@ namespace pdxpartyparrot.ggj2021.Level
 
         private Goal _goal;
 
+        [CanBeNull]
+        public Goal Goal => _goal;
+
         #region Unity Lifecycle
 
         private void FixedUpdate()

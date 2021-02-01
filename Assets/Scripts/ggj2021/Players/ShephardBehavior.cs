@@ -10,7 +10,9 @@ using pdxpartyparrot.Core.Time;
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Interactables;
+using pdxpartyparrot.Game.UI;
 using pdxpartyparrot.ggj2021.NPCs;
+using pdxpartyparrot.ggj2021.UI;
 
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -95,10 +97,24 @@ namespace pdxpartyparrot.ggj2021.Players
 
         private void Update()
         {
+            if(!GameManager.Instance.IsGameReady) {
+                return;
+            }
+
             // TODO: not sure why this needs to be negative, tbh
             _aimer.transform.forward = -Owner.FacingDirection;
 
             CatchSheep();
+
+            if(null != GameUIManager.Instance.GameGameUI) {
+                if(null != GameManager.Instance.BaseLevel.Goal) {
+                    Vector3 d = GameManager.Instance.BaseLevel.Goal.transform.position - transform.position;
+                    float angle = Vector3.SignedAngle(Vector3.forward, d, Vector3.up);
+                    GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateGoalCompass(angle);
+                } else {
+                    GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateGoalCompass(0.0f);
+                }
+            }
         }
 
         private void OnDestroy()

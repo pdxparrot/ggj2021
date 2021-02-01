@@ -45,6 +45,9 @@ namespace pdxpartyparrot.ggj2021.Level
         private Goal _goal;
 
         [CanBeNull]
+        public Goal Goal => _goal;
+
+        [CanBeNull]
         public Transform SheepPen => null == _sheepPen ? null : _sheepPen.transform;
 
         #region Unity Lifecycle
