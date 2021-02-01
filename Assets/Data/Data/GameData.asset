@@ -24,10 +24,9 @@ MonoBehaviour:
   _sheepSpawnTag: Sheep
   _sheepPrefab: {fileID: 6939698526023505838, guid: f4510caed99219066abbac3bd5b24974, type: 3}
   _sheepBehaviorData: {fileID: 11400000, guid: 6cb1ab40368e69468b77ab0b40b6420b, type: 2}
-  _maxQueuedSheep: 4
+  _maxQueuedSheep: 3
   _sheepLaunchSpeed: 75
   _sheepTargetPlayer: 0
   _goalSpawnTag: Goal
   _goalPrefab: {fileID: 7065093185959490570, guid: 1556a80286400df35bbc420050682226, type: 3}
   _goalLayer: GoalTrigger
-  _goalSpeed: 5
