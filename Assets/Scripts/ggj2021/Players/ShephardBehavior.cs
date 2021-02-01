@@ -10,7 +10,6 @@ using pdxpartyparrot.Core.Time;
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Interactables;
-using pdxpartyparrot.Game.UI;
 using pdxpartyparrot.ggj2021.NPCs;
 using pdxpartyparrot.ggj2021.UI;
 
@@ -39,6 +38,8 @@ namespace pdxpartyparrot.ggj2021.Players
         [ReadOnly]
         [CanBeNull]
         private Sheep _chamber;
+
+        public bool CarryingSheep => null != _chamber;
 
         [SerializeField]
         [ReadOnly]
@@ -178,6 +179,8 @@ namespace pdxpartyparrot.ggj2021.Players
             sheep.OnChambered(_chamberParent);
 
             Debug.Log($"Chambered sheep {_chamber.Id}");
+
+            Owner.GamePlayerBehavior.OnCarryingSheepChanged();
         }
 
         private void EnqueueSheep(Sheep sheep)
@@ -216,6 +219,8 @@ namespace pdxpartyparrot.ggj2021.Players
             CycleRound();
 
             _launchCooldown.Start(Owner.GamePlayerBehavior.GamePlayerBehaviorData.LaunchCooldown);
+
+            Owner.GamePlayerBehavior.OnCarryingSheepChanged();
 
             return true;
         }
