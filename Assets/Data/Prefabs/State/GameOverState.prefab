@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d389640fb1884b41f9944e897caa73cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stinger: {fileID: 8300000, guid: 923fd95dfe3de9446ad70e10a1c0281f, type: 3}
+  _stinger: {fileID: 8300000, guid: 7225f0da3aa73f444940b42f9dd4ef94, type: 3}
   _waitForComplete: 1
 --- !u!1 &9030960958763025424
 GameObject:

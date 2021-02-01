@@ -149,5 +149,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d389640fb1884b41f9944e897caa73cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stinger: {fileID: 8300000, guid: 34d215dd356d2ac44a8650e82bb93b96, type: 3}
+  _stinger: {fileID: 8300000, guid: a5d702328b5f01543ab5b313ea83334a, type: 3}
   _waitForComplete: 1
