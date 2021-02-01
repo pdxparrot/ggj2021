@@ -101,7 +101,7 @@ namespace pdxpartyparrot.Core.UI
             }
 
             if(_enableDebug) {
-                Debug.Log($"Showing UI object {name}: {show}");
+                Debug.Log($"Showing UI object {id}: {show}");
             }
 
             uiObject.gameObject.SetActive(show);

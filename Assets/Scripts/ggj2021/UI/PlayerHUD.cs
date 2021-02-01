@@ -28,6 +28,8 @@ namespace pdxpartyparrot.ggj2021.UI
             foreach(GameObject slot in _slots) {
                 slot.SetActive(false);
             }
+
+            UpdateTimer(1.0f);
         }
 
         public void UpdateTimer(float pctRemaining)

@@ -69,7 +69,7 @@ namespace pdxpartyparrot.ggj2021.Level
 
         private void Update()
         {
-            if(null != GameUIManager.Instance.GameGameUI) {
+            if(GameManager.Instance.IsGameReady && null != GameUIManager.Instance.GameGameUI) {
                 GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateTimer(_timer.SecondsRemaining / _roundSeconds);
             }
         }
@@ -110,6 +110,13 @@ namespace pdxpartyparrot.ggj2021.Level
         }
 
         #region Event Handlers
+
+        protected override void GameStartClientEventHandler(object sender, EventArgs args)
+        {
+            GameManager.Instance.Reset(0);
+
+            base.GameStartClientEventHandler(sender, args);
+        }
 
         protected override void GameReadyEventHandler(object sender, EventArgs args)
         {
