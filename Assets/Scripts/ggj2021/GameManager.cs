@@ -42,6 +42,10 @@ namespace pdxpartyparrot.ggj2021
 
         public int Score => _score;
 
+        public bool IsGameWon => IsGameOver && _score >= _goal;
+
+        public bool IsGameLost => IsGameOver && _score < _goal;
+
         public void InitViewer()
         {
             Viewer = ViewerManager.Instance.AcquireViewer<GameViewer>();
