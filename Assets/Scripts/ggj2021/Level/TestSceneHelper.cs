@@ -3,7 +3,6 @@ using System;
 using JetBrains.Annotations;
 
 using pdxpartyparrot.Core.World;
-using pdxpartyparrot.ggj2021.World;
 
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -19,22 +18,12 @@ namespace pdxpartyparrot.ggj2021.Level
         [SerializeField]
         private Key _scoreKey = Key.G;
 
-        [SerializeField]
-        private GoalWaypoint _initialGoalWaypoint;
-
-        [SerializeField]
-        private float _goalSpeed = 5.0f;
-
+        // TODO: NPCManager should handle this
         [CanBeNull]
         private GameObject _sheepPen;
 
         [CanBeNull]
         public Transform SheepPen => null == _sheepPen ? null : _sheepPen.transform;
-
-        private Goal _goal;
-
-        [CanBeNull]
-        public Goal Goal => _goal;
 
         #region Unity Lifecycle
 
@@ -57,13 +46,6 @@ namespace pdxpartyparrot.ggj2021.Level
             spawnPoint.SpawnNPCPrefab(GameManager.Instance.GameGameData.SheepPrefab, GameManager.Instance.GameGameData.SheepBehaviorData, _sheepPen.transform);
         }
 
-        private void SpawnGoal()
-        {
-            SpawnPoint spawnPoint = SpawnManager.Instance.GetSpawnPoint(GameManager.Instance.GameGameData.GoalSpawnTag);
-            _goal = spawnPoint.SpawnFromPrefab(GameManager.Instance.GameGameData.GoalPrefab, null) as Goal;
-            _goal.Initialize(_initialGoalWaypoint, _goalSpeed);
-        }
-
         #region Event Handlers
 
         protected override void GameReadyEventHandler(object sender, EventArgs args)
@@ -71,9 +53,7 @@ namespace pdxpartyparrot.ggj2021.Level
             base.GameReadyEventHandler(sender, args);
 
             Assert.IsNull(_sheepPen);
-            _sheepPen = new GameObject("Sheep Pen");
-
-            SpawnGoal();
+            _sheepPen = new GameObject("Sheep");
 
             GameManager.Instance.OnLevelEntered();
         }
@@ -85,9 +65,6 @@ namespace pdxpartyparrot.ggj2021.Level
 
             Destroy(_sheepPen);
             _sheepPen = null;
-
-            Destroy(_goal.gameObject);
-            _goal = null;
 
             base.GameUnReadyEventHandler(sender, args);
         }

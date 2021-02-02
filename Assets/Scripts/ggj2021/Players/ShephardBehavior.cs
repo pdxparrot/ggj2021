@@ -12,6 +12,7 @@ using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Interactables;
 using pdxpartyparrot.ggj2021.NPCs;
 using pdxpartyparrot.ggj2021.UI;
+using pdxpartyparrot.ggj2021.World;
 
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -116,8 +117,9 @@ namespace pdxpartyparrot.ggj2021.Players
             CatchSheep();
 
             if(null != GameUIManager.Instance.GameGameUI) {
-                if(null != GameManager.Instance.BaseLevel.Goal) {
-                    Vector3 d = GameManager.Instance.BaseLevel.Goal.transform.position - transform.position;
+                Goal goal = GoalManager.Instance.GetNearestGoal(transform);
+                if(null != goal) {
+                    Vector3 d = goal.transform.position - transform.position;
                     float angle = Vector3.SignedAngle(Vector3.forward, d, Vector3.up);
                     GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateGoalCompass(angle);
                 } else {

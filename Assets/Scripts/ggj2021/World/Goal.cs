@@ -15,11 +15,14 @@ namespace pdxpartyparrot.ggj2021.World
         public override bool IsLocalActor => false;
 
         [SerializeField]
-        private GoalWaypoint _nextWaypoint;
+        private GoalWaypoint _initialWaypoint;
+
+        [SerializeField]
+        private float _speed = 5.0f;
 
         [SerializeField]
         [ReadOnly]
-        private float _speed;
+        private GoalWaypoint _nextWaypoint;
 
         #region Effects
 
@@ -36,6 +39,10 @@ namespace pdxpartyparrot.ggj2021.World
         {
             base.Awake();
 
+            Initialize(Guid.NewGuid());
+
+            GoalManager.Instance.RegisterGoal(this);
+
             _goalModel = Model.GetComponent<GoalModel>();
 
             gameObject.layer = GameManager.Instance.GameGameData.GoalLayer;
@@ -44,12 +51,18 @@ namespace pdxpartyparrot.ggj2021.World
             Collider.isTrigger = true;
 
             GameManager.Instance.GoalScoredEvent += GoalScoredEventHandler;
+
+            SetWaypoint(_initialWaypoint);
         }
 
         protected override void OnDestroy()
         {
             if(GameManager.HasInstance) {
                 GameManager.Instance.GoalScoredEvent -= GoalScoredEventHandler;
+            }
+
+            if(GoalManager.HasInstance) {
+                GoalManager.Instance.UnRegisterGoal(this);
             }
 
             base.OnDestroy();
@@ -87,12 +100,6 @@ namespace pdxpartyparrot.ggj2021.World
         }
 
         #endregion
-
-        public void Initialize(GoalWaypoint initialWaypoint, float speed)
-        {
-            _speed = speed;
-            SetWaypoint(initialWaypoint);
-        }
 
         private void SetWaypoint(GoalWaypoint waypoint)
         {

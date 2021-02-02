@@ -4,6 +4,7 @@ using pdxpartyparrot.Game.Loading;
 using pdxpartyparrot.ggj2021.Players;
 using pdxpartyparrot.ggj2021.UI;
 using pdxpartyparrot.ggj2021.NPCs;
+using pdxpartyparrot.ggj2021.World;
 
 namespace pdxpartyparrot.ggj2021.Loading
 {
@@ -27,6 +28,9 @@ namespace pdxpartyparrot.ggj2021.Loading
         [SerializeField]
         private NPCManager _npcManager;
 
+        [SerializeField]
+        private GoalManager _goalManager;
+
         #endregion
 
         protected override void CreateManagers()
@@ -37,6 +41,7 @@ namespace pdxpartyparrot.ggj2021.Loading
             GameUIManager.CreateFromPrefab(_gameUiManagerPrefab, ManagersContainer);
             PlayerManager.CreateFromPrefab(_playerManager, ManagersContainer);
             NPCManager.CreateFromPrefab(_npcManager, ManagersContainer);
+            GoalManager.CreateFromPrefab(_goalManager, ManagersContainer);
         }
     }
 }

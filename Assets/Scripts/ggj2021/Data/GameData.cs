@@ -3,7 +3,6 @@ using System;
 using pdxpartyparrot.ggj2021.Camera;
 using pdxpartyparrot.ggj2021.Data.NPCs;
 using pdxpartyparrot.ggj2021.NPCs;
-using pdxpartyparrot.ggj2021.World;
 
 using UnityEngine;
 
@@ -50,16 +49,6 @@ namespace pdxpartyparrot.ggj2021.Data
         public bool SheepTargetPlayer => _sheepTargetPlayer;
 
         [Space(10)]
-
-        [SerializeField]
-        private string _goalSpawnTag = "Goal";
-
-        public string GoalSpawnTag => _goalSpawnTag;
-
-        [SerializeField]
-        private Goal _goalPrefab;
-
-        public Goal GoalPrefab => _goalPrefab;
 
         [SerializeField]
         private string _goalLayer = "GoalTrigger";

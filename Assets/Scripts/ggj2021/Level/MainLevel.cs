@@ -8,7 +8,6 @@ using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Level;
 using pdxpartyparrot.ggj2021.NPCs;
 using pdxpartyparrot.ggj2021.UI;
-using pdxpartyparrot.ggj2021.World;
 
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -25,12 +24,6 @@ namespace pdxpartyparrot.ggj2021.Level
         private float _roundSeconds = 60.0f;
 
         [SerializeField]
-        private GoalWaypoint _initialGoalWaypoint;
-
-        [SerializeField]
-        private float _goalSpeed = 5.0f;
-
-        [SerializeField]
         [Tooltip("Maximum number of sheep to spawn. 0 means spawn 1 per-spawnpoint. Will never spawn more than there are spawnpoints.")]
         private int _maxSheep;
 
@@ -38,14 +31,9 @@ namespace pdxpartyparrot.ggj2021.Level
         [ReadOnly]
         private ITimer _timer;
 
+        // TODO: NPCManager should handle this
         [CanBeNull]
         private GameObject _sheepPen;
-
-        [CanBeNull]
-        private Goal _goal;
-
-        [CanBeNull]
-        public Goal Goal => _goal;
 
         [CanBeNull]
         public Transform SheepPen => null == _sheepPen ? null : _sheepPen.transform;
@@ -105,13 +93,6 @@ namespace pdxpartyparrot.ggj2021.Level
             }
         }
 
-        private void SpawnGoal()
-        {
-            SpawnPoint spawnPoint = SpawnManager.Instance.GetSpawnPoint(GameManager.Instance.GameGameData.GoalSpawnTag);
-            _goal = spawnPoint.SpawnFromPrefab(GameManager.Instance.GameGameData.GoalPrefab, null) as Goal;
-            _goal.Initialize(_initialGoalWaypoint, _goalSpeed);
-        }
-
         #region Event Handlers
 
         protected override void GameStartClientEventHandler(object sender, EventArgs args)
@@ -128,13 +109,11 @@ namespace pdxpartyparrot.ggj2021.Level
             GameManager.Instance.RoundWonEvent += RoundWonEventHandler;
 
             Assert.IsNull(_sheepPen);
-            _sheepPen = new GameObject("Sheep Pen");
+            _sheepPen = new GameObject("Sheep");
 
             SpawnSheep();
 
             GameManager.Instance.Reset(NPCManager.Instance.NPCs.Count);
-
-            SpawnGoal();
 
             _timer.Start(_roundSeconds);
 
@@ -151,11 +130,6 @@ namespace pdxpartyparrot.ggj2021.Level
             if(null != _sheepPen) {
                 Destroy(_sheepPen);
                 _sheepPen = null;
-            }
-
-            if(null != _goal) {
-                Destroy(_goal.gameObject);
-                _goal = null;
             }
 
             base.GameUnReadyEventHandler(sender, args);

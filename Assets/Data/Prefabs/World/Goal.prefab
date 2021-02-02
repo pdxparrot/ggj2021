@@ -813,8 +813,9 @@ MonoBehaviour:
   _isMoving: 0
   _facingDirection: {x: 1, y: 0, z: 0}
   _manualAnimator: {fileID: 0}
+  _initialWaypoint: {fileID: 0}
+  _speed: 5
   _nextWaypoint: {fileID: 0}
-  _speed: 0
   _goalScoredEffect: {fileID: 7176421944330662989}
 --- !u!1 &8680608520225805845
 GameObject:
@@ -1108,11 +1109,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f229477ee6c858a4db46dd2e15e392da, type: 3}
---- !u!4 &2211658157587457655 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5516970956394238761, guid: f229477ee6c858a4db46dd2e15e392da, type: 3}
-  m_PrefabInstance: {fileID: 5918104545658860894}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4173419456035618782 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7767480484328245888, guid: f229477ee6c858a4db46dd2e15e392da, type: 3}
@@ -1124,3 +1120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &2211658157587457655 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5516970956394238761, guid: f229477ee6c858a4db46dd2e15e392da, type: 3}
+  m_PrefabInstance: {fileID: 5918104545658860894}
+  m_PrefabAsset: {fileID: 0}
