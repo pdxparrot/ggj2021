@@ -152,7 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de2c417fb992e2e78ad026f2be8e896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _splashScreens: []
+  _splashScreens:
+  - videoClip: {fileID: 32900000, guid: c7f07210a7193c0db9a49264aef03100, type: 3}
+    volume: []
   _mainSceneName: main
   _camera: {fileID: 1925839836}
   _currentSplashScreen: 0
