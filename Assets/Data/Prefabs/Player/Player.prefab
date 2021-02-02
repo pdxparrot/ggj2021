@@ -761,6 +761,7 @@ Transform:
   - {fileID: 2103748181986661171}
   - {fileID: 9052046465995292994}
   - {fileID: 6980949296387336146}
+  - {fileID: 2826110322297548482}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -832,6 +833,7 @@ MonoBehaviour:
   _inputHandler: {fileID: 7806986284324066881}
   _shepherd: {fileID: 4309703129247348672}
   _shephardModel: {fileID: 8659946713465597842}
+  _fallOutEffect: {fileID: 5366771569239768660}
 --- !u!1 &6107469387584975557
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +902,98 @@ MonoBehaviour:
   _playerInput: {fileID: 0}
   _waitForComplete: 0
   _isPlaying: 0
+--- !u!1 &6282429581568069924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2826110322297548482}
+  - component: {fileID: 5366771569239768660}
+  - component: {fileID: 3030018044868368614}
+  - component: {fileID: 2696050495561895110}
+  m_Layer: 10
+  m_Name: Fall Out Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2826110322297548482
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282429581568069924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5988821913990690062}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5366771569239768660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282429581568069924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2a4737a92e7a1888e3c6574332558b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerOnComplete: []
+  _components:
+  - {fileID: 3030018044868368614}
+  - {fileID: 2696050495561895110}
+  _isRunning: 0
+  _complete: 0
+--- !u!114 &3030018044868368614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282429581568069924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 958b3b9562b450bdca0a47c174417a0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rumbleConfig:
+    _seconds: 0.5
+    _lowFrequency: 0.5
+    _highFrequency: 0.5
+  _playerInput: {fileID: 0}
+  _waitForComplete: 0
+  _isPlaying: 0
+--- !u!114 &2696050495561895110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282429581568069924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 335ad97a393c4ea01af726ea24f0a3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClip: {fileID: 8300000, guid: dd5f0885d4cf50748ad206b48615bf76, type: 3}
+  _audioSource: {fileID: 0}
+  _loop: 0
+  _waitForComplete: 0
+  _audioTimer:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!1 &6401658837684571793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,6 +1313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _owner: {fileID: 8281382272004184653}
+  _state: 0
   _chamberParent: {fileID: 3436142926806816642}
   _chamber: {fileID: 0}
   _magazine: []
@@ -1231,6 +1326,7 @@ MonoBehaviour:
   - {fileID: 6503390463402030277}
   - {fileID: 5719144852622599411}
   - {fileID: 2452048554987602395}
+  - {fileID: 3030018044868368614}
   _aimer: {fileID: 8168605767177174224}
 --- !u!114 &4223570603007877474
 MonoBehaviour:
@@ -1399,11 +1495,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1b8030a23b1c334589d1a4ef6f2dad3, type: 3}
---- !u!4 &1135985634294423825 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2275751607794559845, guid: f1b8030a23b1c334589d1a4ef6f2dad3, type: 3}
-  m_PrefabInstance: {fileID: 1177353674264840820}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2171481278708173032 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1041574348680413852, guid: f1b8030a23b1c334589d1a4ef6f2dad3, type: 3}
@@ -1415,3 +1506,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1135985634294423825 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2275751607794559845, guid: f1b8030a23b1c334589d1a4ef6f2dad3, type: 3}
+  m_PrefabInstance: {fileID: 1177353674264840820}
+  m_PrefabAsset: {fileID: 0}

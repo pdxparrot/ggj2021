@@ -28,6 +28,8 @@ namespace pdxpartyparrot.Core.Time
 
         void ReStartMillis(long timerMs);
 
+        void ReStart(IntRangeConfig timerSeconds);
+
         void Stop();
 
         void Continue();

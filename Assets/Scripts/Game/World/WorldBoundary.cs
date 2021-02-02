@@ -9,14 +9,24 @@ namespace pdxpartyparrot.Game.World
 
         public bool Deadly => _deadly;
 
-        protected void HandleCollision(GameObject go)
+        protected void HandleCollisionEnter(GameObject go)
         {
             IWorldBoundaryCollisionListener listener = go.GetComponent<IWorldBoundaryCollisionListener>();
             if(null == listener) {
                 return;
             }
 
-            listener.OnWorldBoundaryCollision(this);
+            listener.OnWorldBoundaryCollisionEnter(this);
+        }
+
+        protected void HandleCollisionExit(GameObject go)
+        {
+            IWorldBoundaryCollisionListener listener = go.GetComponent<IWorldBoundaryCollisionListener>();
+            if(null == listener) {
+                return;
+            }
+
+            listener.OnWorldBoundaryCollisionExit(this);
         }
     }
 }

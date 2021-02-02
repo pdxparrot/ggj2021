@@ -1,5 +1,10 @@
+using System;
+
 using pdxpartyparrot.Core.Data.Actors.Components;
+using pdxpartyparrot.Core.Effects;
+using pdxpartyparrot.Core.Time;
 using pdxpartyparrot.Core.Util;
+using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Characters.NPCs;
 using pdxpartyparrot.ggj2021.Data.NPCs;
 
@@ -18,7 +23,9 @@ namespace pdxpartyparrot.ggj2021.NPCs
             Launched,
         }
 
-        public Sheep Sheep => (Sheep)Owner;
+        private Sheep Sheep => (Sheep)Owner;
+
+        private SheepBehaviorData SheepBehaviorData => (SheepBehaviorData)BehaviorData;
 
         public override Vector3 MoveDirection
         {
@@ -47,7 +54,35 @@ namespace pdxpartyparrot.ggj2021.NPCs
         [ReadOnly]
         private Transform _target;
 
-        private float _lastFacingZ;
+        #region Effects
+
+        [SerializeField]
+        private EffectTrigger _noiseEffect;
+
+        #endregion
+
+        [SerializeReference]
+        [ReadOnly]
+        private ITimer _noiseTimer;
+
+        #region Unity Lifecycle
+
+        protected override void Awake()
+        {
+            _noiseTimer = TimeManager.Instance.AddTimer();
+            _noiseTimer.TimesUpEvent += NoiseTimesUpEventHandler;
+        }
+
+        protected override void OnDestroy()
+        {
+            if(TimeManager.HasInstance) {
+                TimeManager.Instance.RemoveTimer(_noiseTimer);
+            }
+
+            _noiseTimer = null;
+        }
+
+        #endregion
 
         public override void Initialize(ActorBehaviorComponentData behaviorData)
         {
@@ -133,7 +168,34 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         #endregion
 
+        #region Spawn
+
+        public override bool OnSpawn(SpawnPoint spawnpoint)
+        {
+            base.OnSpawn(spawnpoint);
+
+            //_noiseTimer.Start(SheepBehaviorData.NoiseFrequency);
+
+            return false;
+        }
+
+        public override bool OnDeSpawn()
+        {
+            _noiseTimer.Stop();
+
+            return base.OnDeSpawn();
+        }
+
+        #endregion
+
         #region Event Handlers
+
+        private void NoiseTimesUpEventHandler(object sender, EventArgs args)
+        {
+            _noiseEffect.Trigger();
+
+            _noiseTimer.Start(SheepBehaviorData.NoiseFrequency);
+        }
 
         public void OnChambered()
         {

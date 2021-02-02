@@ -7,14 +7,19 @@ namespace pdxpartyparrot.Game.World
     {
         #region Unity Lifecycle
 
-        private void OnCollisionEnter(Collision collision)
+        private void Awake()
         {
-            HandleCollision(collision.gameObject);
+            GetComponent<Collider>().isTrigger = true;
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            HandleCollision(other.gameObject);
+            HandleCollisionEnter(other.gameObject);
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            HandleCollisionExit(other.gameObject);
         }
 
         #endregion

@@ -1,5 +1,6 @@
 using System;
 
+using pdxpartyparrot.Core.Effects;
 using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Characters.Players;
 using pdxpartyparrot.Game.World;
@@ -27,6 +28,13 @@ namespace pdxpartyparrot.ggj2021.Players
         private ShephardModel _shephardModel;
 
         public ShephardModel ShephardModel => _shephardModel;
+
+        #region Effects
+
+        [SerializeField]
+        private EffectTrigger _fallOutEffect;
+
+        #endregion
 
         #region Unity Lifecycle
 
@@ -106,7 +114,12 @@ namespace pdxpartyparrot.ggj2021.Players
 
         #region IWorldBoundaryCollisionListener
 
-        public void OnWorldBoundaryCollision(WorldBoundary boundary)
+        public void OnWorldBoundaryCollisionEnter(WorldBoundary boundary)
+        {
+            _fallOutEffect.Trigger();
+        }
+
+        public void OnWorldBoundaryCollisionExit(WorldBoundary boundary)
         {
             PlayerManager.Instance.RespawnPlayer(this);
         }

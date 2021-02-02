@@ -2,6 +2,8 @@
 {
     public interface IWorldBoundaryCollisionListener
     {
-        void OnWorldBoundaryCollision(WorldBoundary boundary);
+        void OnWorldBoundaryCollisionEnter(WorldBoundary boundary);
+
+        void OnWorldBoundaryCollisionExit(WorldBoundary boundary);
     }
 }

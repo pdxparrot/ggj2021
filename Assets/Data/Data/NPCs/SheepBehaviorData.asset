@@ -31,3 +31,6 @@ MonoBehaviour:
   _angularMoveSpeed: 0
   _moveAcceleration: 50
   _stoppingDistance: 2
+  _noiseFrequency:
+    _min: 5
+    _max: 15

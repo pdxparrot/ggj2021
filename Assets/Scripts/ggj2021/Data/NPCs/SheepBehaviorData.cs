@@ -1,5 +1,7 @@
 using System;
 
+using pdxpartyparrot.Core.Util;
+
 using UnityEngine;
 
 namespace pdxpartyparrot.ggj2021.Data.NPCs
@@ -8,5 +10,9 @@ namespace pdxpartyparrot.ggj2021.Data.NPCs
     [Serializable]
     public sealed class SheepBehaviorData : Game.Data.Characters.NPCBehaviorData
     {
+        [SerializeField]
+        private IntRangeConfig _noiseFrequency;
+
+        public IntRangeConfig NoiseFrequency => _noiseFrequency;
     }
 }

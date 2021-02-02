@@ -79,6 +79,12 @@ namespace pdxpartyparrot.Core.Time
                 ReStart(timerMs * MilliSecondsToSeconds);
             }
 
+            public void ReStart(IntRangeConfig timerSeconds)
+            {
+                Stop();
+                Start(timerSeconds);
+            }
+
             public void Stop()
             {
                 if(!IsRunning) {
