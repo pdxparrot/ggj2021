@@ -236,6 +236,12 @@ namespace pdxpartyparrot.ggj2021.NPCs
             SetState(State.Launched);
         }
 
+        public void OnTeleport(Transform exitPoint)
+        {
+            // TODO: this isn't working right
+            Owner.Movement.Teleport(exitPoint);
+        }
+
         #endregion
 
         #region Debug Menu

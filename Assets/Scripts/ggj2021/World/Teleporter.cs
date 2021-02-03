@@ -14,6 +14,9 @@ namespace pdxpartyparrot.ggj2021.World
         [SerializeField]
         private Transform _exitPoint;
 
+        [SerializeField]
+        private bool _sheepFollow;
+
         #region Effects
 
         [SerializeField]
@@ -53,8 +56,7 @@ namespace pdxpartyparrot.ggj2021.World
 
         private void Teleport(Player player)
         {
-            player.Movement.Teleport(_exitPoint);
-            player.GamePlayerBehavior.ShepherdBehavior.OnTeleport();
+            player.GamePlayerBehavior.ShepherdBehavior.OnTeleport(_exitPoint, _sheepFollow);
 
             _exitEffect.Trigger();
         }

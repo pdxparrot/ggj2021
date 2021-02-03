@@ -12,7 +12,7 @@ namespace pdxpartyparrot.ggj2021.NPCs
     [RequireComponent(typeof(AudioSource))]
     public sealed class Sheep : NPC3D, IInteractable
     {
-        private SheepBehavior SheepBehavior => (SheepBehavior)NPCBehavior;
+        public SheepBehavior SheepBehavior => (SheepBehavior)NPCBehavior;
 
         public bool CanInteract => !SheepBehavior.IsCarried && !SheepBehavior.IsLaunched;
 

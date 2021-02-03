@@ -346,9 +346,20 @@ namespace pdxpartyparrot.ggj2021.Players
             _roundWonEffect.Trigger();
         }
 
-        public void OnTeleport()
+        public void OnTeleport(Transform exitPoint, bool sheepFollow)
         {
-            FreeSheep();
+            Owner.Movement.Teleport(exitPoint);
+
+            if(sheepFollow) {
+                // TODO: this would be cooler if they path'd
+                // to the teleporter and then went through
+                foreach(Sheep sheep in _queue) {
+                    Debug.Log($"Sheep {sheep.Id} following");
+                    sheep.SheepBehavior.OnTeleport(exitPoint);
+                }
+            } else {
+                FreeSheep();
+            }
 
             _teleportTimer.Start(Owner.GamePlayerBehavior.GamePlayerBehaviorData.TeleportCooldown);
         }
