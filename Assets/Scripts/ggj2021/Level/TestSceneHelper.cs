@@ -53,23 +53,20 @@ namespace pdxpartyparrot.ggj2021.Level
         {
             base.GameReadyEventHandler(sender, args);
 
-            PlayerManager.Instance.RespawnPlayers();
-
             Assert.IsNull(_sheepPen);
             _sheepPen = new GameObject("Sheep");
 
             GameManager.Instance.OnLevelEntered();
         }
 
-        protected override void GameUnReadyEventHandler(object sender, EventArgs args)
+        protected override void LevelTransitioningEventHandler(object sender, EventArgs args)
         {
-            // TODO: this would be better if it was behind
-            // some new event that fires after the loading screen is up
+            if(null != _sheepPen) {
+                Destroy(_sheepPen);
+                _sheepPen = null;
+            }
 
-            Destroy(_sheepPen);
-            _sheepPen = null;
-
-            base.GameUnReadyEventHandler(sender, args);
+            base.LevelTransitioningEventHandler(sender, args);
         }
 
         #endregion

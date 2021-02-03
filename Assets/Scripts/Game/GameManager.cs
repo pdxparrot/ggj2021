@@ -25,6 +25,8 @@ namespace pdxpartyparrot.Game
         event EventHandler<EventArgs> GameUnReadyEvent;
         event EventHandler<EventArgs> GameOverEvent;
 
+        event EventHandler<EventArgs> LevelTransitioningEvent;
+
         #endregion
 
         GameData GameData { get; }
@@ -53,6 +55,8 @@ namespace pdxpartyparrot.Game
 
         void GameUnReady();
 
+        void LevelTransitioning();
+
         void GameOver();
 
         void TransitionScene(string nextScene, Action onComplete);
@@ -68,6 +72,8 @@ namespace pdxpartyparrot.Game
         public event EventHandler<EventArgs> GameReadyEvent;
         public event EventHandler<EventArgs> GameUnReadyEvent;
         public event EventHandler<EventArgs> GameOverEvent;
+
+        public event EventHandler<EventArgs> LevelTransitioningEvent;
 
         #endregion
 
@@ -158,7 +164,7 @@ namespace pdxpartyparrot.Game
             DestroyObjectPools();
 
             if(Core.Network.NetworkManager.Instance.IsServerActive() && null != GameStateManager.Instance.PlayerManager) {
-                GameStateManager.Instance.PlayerManager.DespawnPlayers();
+                GameStateManager.Instance.PlayerManager.DestroyPlayers();
             }
         }
 
@@ -209,6 +215,8 @@ namespace pdxpartyparrot.Game
 
         public virtual void GameReady()
         {
+            Assert.IsFalse(IsGameOver);
+
             Debug.Log("Game Ready");
 
             IsGameReady = true;
@@ -225,8 +233,20 @@ namespace pdxpartyparrot.Game
             GameUnReadyEvent?.Invoke(this, EventArgs.Empty);
         }
 
+        public virtual void LevelTransitioning()
+        {
+            Assert.IsFalse(IsGameReady);
+            Assert.IsFalse(IsGameOver);
+
+            Debug.Log("Level Transitioning");
+
+            LevelTransitioningEvent?.Invoke(this, EventArgs.Empty);
+        }
+
         public virtual void GameOver()
         {
+            Assert.IsFalse(IsGameReady);
+
             Debug.Log("Game Over");
 
             IsGameOver = true;

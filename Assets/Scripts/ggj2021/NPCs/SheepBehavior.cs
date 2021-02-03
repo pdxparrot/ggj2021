@@ -236,6 +236,11 @@ namespace pdxpartyparrot.ggj2021.NPCs
             SetState(State.Launched);
         }
 
+        public void OnDropped()
+        {
+            SetState(State.Idle);
+        }
+
         public void OnTeleport(Transform exitPoint)
         {
             // TODO: this isn't working right

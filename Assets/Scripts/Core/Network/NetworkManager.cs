@@ -298,7 +298,7 @@ namespace pdxpartyparrot.Core.Network
             return player;
         }
 
-        public void DespawnPlayers(NetworkConnection conn)
+        public void DestroyPlayer(NetworkConnection conn)
         {
             if(!IsServerActive()) {
                 Debug.LogWarning("Cannot despawn players without an active server!");

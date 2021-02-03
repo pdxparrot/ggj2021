@@ -108,6 +108,7 @@ namespace pdxpartyparrot.ggj2021.Players
             _interactables = GetComponent<Interactables>();
 
             GameManager.Instance.GameUnReadyEvent += GameUnReadyEventHandler;
+            GameManager.Instance.LevelTransitioningEvent += LevelTransitioningEventHandler;
             GameManager.Instance.LevelEnterEvent += LevelEnterEventHandler;
             GameManager.Instance.GoalScoredEvent += GoalScoredEventHandler;
             GameManager.Instance.RoundWonEvent += RoundWonEventHandler;
@@ -149,6 +150,7 @@ namespace pdxpartyparrot.ggj2021.Players
                 GameManager.Instance.GoalScoredEvent -= GoalScoredEventHandler;
                 GameManager.Instance.LevelEnterEvent -= LevelEnterEventHandler;
                 GameManager.Instance.GameUnReadyEvent -= GameUnReadyEventHandler;
+                GameManager.Instance.LevelTransitioningEvent -= LevelTransitioningEventHandler;
             }
 
             if(TimeManager.HasInstance) {
@@ -322,9 +324,11 @@ namespace pdxpartyparrot.ggj2021.Players
 
         private void GameUnReadyEventHandler(object sender, EventArgs args)
         {
-            // TODO: if there's ever some other "level cleanup" event
-            // that's where we should be doing this instead of on unready
+            FreeSheep();
+        }
 
+        private void LevelTransitioningEventHandler(object sender, EventArgs args)
+        {
             if(null != _carrying) {
                 Destroy(_carrying.gameObject);
                 _carrying = null;

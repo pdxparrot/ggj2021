@@ -48,6 +48,7 @@ namespace pdxpartyparrot.Game.Level
             GameStateManager.Instance.GameManager.GameStartClientEvent += GameStartClientEventHandler;
             GameStateManager.Instance.GameManager.GameReadyEvent += GameReadyEventHandler;
             GameStateManager.Instance.GameManager.GameUnReadyEvent += GameUnReadyEventHandler;
+            GameStateManager.Instance.GameManager.LevelTransitioningEvent += LevelTransitioningEventHandler;
             GameStateManager.Instance.GameManager.GameOverEvent += GameOverEventHandler;
         }
 
@@ -55,6 +56,7 @@ namespace pdxpartyparrot.Game.Level
         {
             if(GameStateManager.HasInstance && null != GameStateManager.Instance.GameManager) {
                 GameStateManager.Instance.GameManager.GameOverEvent -= GameOverEventHandler;
+                GameStateManager.Instance.GameManager.LevelTransitioningEvent -= LevelTransitioningEventHandler;
                 GameStateManager.Instance.GameManager.GameUnReadyEvent -= GameUnReadyEventHandler;
                 GameStateManager.Instance.GameManager.GameReadyEvent -= GameReadyEventHandler;
                 GameStateManager.Instance.GameManager.GameStartClientEvent -= GameStartClientEventHandler;
@@ -84,6 +86,8 @@ namespace pdxpartyparrot.Game.Level
 
         private void DoLevelTransition()
         {
+            GameStateManager.Instance.GameManager.LevelTransitioning();
+
             GameStateManager.Instance.GameManager.TransitionScene(_nextLevel, null);
         }
 
@@ -118,11 +122,20 @@ namespace pdxpartyparrot.Game.Level
         protected virtual void GameReadyEventHandler(object sender, EventArgs args)
         {
             Debug.Log("[Level] Game ready...");
+
+            GameStateManager.Instance.PlayerManager.RespawnPlayers();
         }
 
         protected virtual void GameUnReadyEventHandler(object sender, EventArgs args)
         {
             Debug.Log("[Level] Game unready...");
+        }
+
+        protected virtual void LevelTransitioningEventHandler(object sender, EventArgs args)
+        {
+            Debug.Log("[Level] Level transitioning...");
+
+            GameStateManager.Instance.PlayerManager.DespawnPlayers();
         }
 
         protected virtual void GameOverEventHandler(object sender, EventArgs args)

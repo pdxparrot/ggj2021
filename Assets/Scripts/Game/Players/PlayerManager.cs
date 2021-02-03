@@ -25,7 +25,11 @@ namespace pdxpartyparrot.Game.Players
 
         IReadOnlyCollection<IPlayer> Players { get; }
 
+        void RespawnPlayers();
+
         void DespawnPlayers();
+
+        void DestroyPlayers();
     }
 
     public abstract class PlayerManager<T> : SingletonBehavior<T>, IPlayerManager where T : PlayerManager<T>
@@ -193,16 +197,38 @@ namespace pdxpartyparrot.Game.Players
             }
         }
 
-        // TODO: despawning is never touching the NetworkManager, which is probably wrong
-        // but there's no way to despawn a single player for a connection, it's all or nothing
+        // TODO: despawning / destroying is never touching the NetworkManager, which is probably wrong
+        // but there's no way to despawn / destroy a single player for a connection, it's all or nothing
         // so... not sure what to do here
 
-        // TODO: figure out how to work this in when players disconnect
-        public void DespawnPlayer(IPlayer player, bool remove = true)
+        public void DespawnPlayer(IPlayer player)
         {
             Assert.IsTrue(NetworkManager.Instance.IsServerActive());
 
             Debug.Log($"Despawning player {player.Id}");
+
+            player.GameObject.SetActive(false);
+        }
+
+        public void DespawnPlayers()
+        {
+            if(PlayerCount < 1) {
+                return;
+            }
+
+            Assert.IsTrue(NetworkManager.Instance.IsServerActive());
+
+            foreach(IPlayer player in _players) {
+                DespawnPlayer(player);
+            }
+        }
+
+        // TODO: figure out how to work this in when players disconnect
+        public void DestroyPlayer(IPlayer player, bool remove = true)
+        {
+            Assert.IsTrue(NetworkManager.Instance.IsServerActive());
+
+            Debug.Log($"Destroying player {player.Id}");
 
 #if !USE_NETWORKING
             Destroy(player.GameObject);
@@ -213,8 +239,7 @@ namespace pdxpartyparrot.Game.Players
             }
         }
 
-        // TODO: figure out how to even do this
-        public void DespawnPlayers()
+        public void DestroyPlayers()
         {
             if(PlayerCount < 1) {
                 return;
@@ -223,7 +248,7 @@ namespace pdxpartyparrot.Game.Players
             Assert.IsTrue(NetworkManager.Instance.IsServerActive());
 
             foreach(IPlayer player in _players) {
-                DespawnPlayer(player, false);
+                DestroyPlayer(player, false);
             }
 
             _players.Clear();

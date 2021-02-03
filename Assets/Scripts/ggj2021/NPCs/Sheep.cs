@@ -134,6 +134,13 @@ namespace pdxpartyparrot.ggj2021.NPCs
             SheepBehavior.OnLaunch(start, direction);
         }
 
+        public void OnDropped()
+        {
+            SetCarried(GameManager.Instance.BaseLevel.SheepPen, false);
+
+            SheepBehavior.OnDropped();
+        }
+
         public void OnScored()
         {
             DeSpawn(true);

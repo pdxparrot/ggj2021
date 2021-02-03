@@ -107,8 +107,6 @@ namespace pdxpartyparrot.ggj2021.Level
         {
             base.GameReadyEventHandler(sender, args);
 
-            PlayerManager.Instance.RespawnPlayers();
-
             GameManager.Instance.RoundWonEvent += RoundWonEventHandler;
 
             Assert.IsNull(_sheepPen);
@@ -127,15 +125,17 @@ namespace pdxpartyparrot.ggj2021.Level
         {
             GameManager.Instance.RoundWonEvent -= RoundWonEventHandler;
 
-            // TODO: this would be better if it was behind
-            // some new event that fires after the loading screen is up
+            base.GameUnReadyEventHandler(sender, args);
+        }
 
+        protected override void LevelTransitioningEventHandler(object sender, EventArgs args)
+        {
             if(null != _sheepPen) {
                 Destroy(_sheepPen);
                 _sheepPen = null;
             }
 
-            base.GameUnReadyEventHandler(sender, args);
+            base.LevelTransitioningEventHandler(sender, args);
         }
 
         private void LevelTimesUpEventHandler(object sender, EventArgs args)
