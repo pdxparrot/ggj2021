@@ -139,16 +139,29 @@ namespace pdxpartyparrot.Game.Players
 
         public bool RespawnPlayer(IPlayer player)
         {
+            return RespawnPlayer(player, SpawnManager.Instance.GetPlayerSpawnPoint(player.NetworkPlayer.playerControllerId));
+        }
+
+        public bool RespawnPlayerRandom(IPlayer player)
+        {
+            return RespawnPlayer(player, SpawnManager.Instance.GetRandomPlayerSpawnPoint(player.NetworkPlayer.playerControllerId));
+        }
+
+        public bool RespawnPlayerNearest(IPlayer player)
+        {
+            return RespawnPlayer(player, SpawnManager.Instance.GetNearestPlayerSpawnPoint(player.NetworkPlayer.playerControllerId, player.Movement.Position));
+        }
+
+        private bool RespawnPlayer(IPlayer player, SpawnPoint spawnPoint)
+        {
             Assert.IsTrue(NetworkManager.Instance.IsServerActive());
 
             Debug.Log($"Respawning player {player.Id}");
 
-            SpawnPoint spawnPoint = SpawnManager.Instance.GetPlayerSpawnPoint(player.NetworkPlayer.playerControllerId);
             if(null == spawnPoint) {
                 Debug.LogError("Failed to get player spawnpoint!");
                 return false;
             }
-
             return spawnPoint.ReSpawn((Actor)player);
         }
 

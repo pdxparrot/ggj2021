@@ -1,6 +1,5 @@
 * Hook up sheep audio - this is really annoying as implemented
 * Hook up UI audio
-* Rework how grabbing sheep works (no clue what I was thinking with this)
 * Falling off should find the *nearest* spawnpoint to respawn at
 * Teleporter mechanic
   * Flag on game data for whether or not sheep follow
