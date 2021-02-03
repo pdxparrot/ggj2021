@@ -29,3 +29,4 @@ MonoBehaviour:
   _actionBufferSize: 1
   _actionBufferTimeoutMs: 500
   _alignMovementWithViewer: 0
+  _teleportCooldown: 2

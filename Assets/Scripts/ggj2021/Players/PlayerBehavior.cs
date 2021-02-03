@@ -20,6 +20,8 @@ namespace pdxpartyparrot.ggj2021.Players
 
         private ShephardBehavior _shepherdBehavior;
 
+        public ShephardBehavior ShepherdBehavior => _shepherdBehavior;
+
         #region Unity Lifecycle
 
         protected override void Awake()

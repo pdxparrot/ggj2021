@@ -91,6 +91,12 @@ namespace pdxpartyparrot.ggj2021.Players
 
         private bool CanLaunch => null != _chamber && _state == State.Idle;
 
+        [SerializeReference]
+        [ReadOnly]
+        private ITimer _teleportTimer;
+
+        public bool CanTeleport => !_teleportTimer.IsRunning;
+
         private Interactables _interactables;
 
         #region Unity Lifecycle
@@ -103,6 +109,8 @@ namespace pdxpartyparrot.ggj2021.Players
             GameManager.Instance.LevelEnterEvent += LevelEnterEventHandler;
             GameManager.Instance.GoalScoredEvent += GoalScoredEventHandler;
             GameManager.Instance.RoundWonEvent += RoundWonEventHandler;
+
+            _teleportTimer = TimeManager.Instance.AddTimer();
         }
 
         private void Update()
@@ -135,6 +143,11 @@ namespace pdxpartyparrot.ggj2021.Players
                 GameManager.Instance.GoalScoredEvent -= GoalScoredEventHandler;
                 GameManager.Instance.LevelEnterEvent -= LevelEnterEventHandler;
                 GameManager.Instance.GameUnReadyEvent -= GameUnReadyEventHandler;
+            }
+
+            if(TimeManager.HasInstance) {
+                TimeManager.Instance.RemoveTimer(_teleportTimer);
+                _teleportTimer = null;
             }
         }
 
@@ -340,6 +353,13 @@ namespace pdxpartyparrot.ggj2021.Players
         private void RoundWonEventHandler(object sender, EventArgs args)
         {
             _roundWonEffect.Trigger();
+        }
+
+        public void OnTeleport()
+        {
+            FreeSheep();
+
+            _teleportTimer.Start(Owner.GamePlayerBehavior.GamePlayerBehaviorData.TeleportCooldown);
         }
 
         #endregion

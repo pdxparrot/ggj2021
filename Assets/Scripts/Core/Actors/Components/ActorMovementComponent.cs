@@ -147,6 +147,12 @@ namespace pdxpartyparrot.Core.Actors.Components
             _transform.position = position;
         }
 
+        public void Teleport(Transform transform)
+        {
+            Teleport(transform.position);
+            _transform.rotation = transform.rotation;
+        }
+
         public virtual void Move(Vector3 amount)
         {
             _transform.position = Position + amount;
