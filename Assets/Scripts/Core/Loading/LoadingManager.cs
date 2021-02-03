@@ -22,6 +22,7 @@ using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Core.World;
 
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace pdxpartyparrot.Core.Loading
 {
@@ -41,6 +42,14 @@ namespace pdxpartyparrot.Core.Loading
 
         [SerializeField]
         private LoadingScreen _loadingScreen;
+
+        [SerializeField]
+        [ReadOnly]
+        private int _loadingScreenRefCount;
+
+        [SerializeField]
+        [ReadOnly]
+        private int _transitionScreenRefCount;
 
         [Space(10)]
 
@@ -227,9 +236,22 @@ namespace pdxpartyparrot.Core.Loading
 
         public void ShowLoadingScreen(bool show)
         {
-            Debug.Log($"Show loading screen: {show}");
-            if(show == _loadingScreen.gameObject.activeInHierarchy) {
-                Debug.LogWarning($"Loading screen active mismatch: {show}");
+            Debug.Log($"Show loading screen: {show} ({_loadingScreenRefCount})");
+
+            if(show) {
+                _loadingScreenRefCount++;
+                if(_loadingScreenRefCount > 1) {
+                    // loading screen already shown
+                    return;
+                }
+            } else {
+                Assert.IsTrue(_loadingScreenRefCount > 0);
+
+                _loadingScreenRefCount--;
+                if(_loadingScreenRefCount > 0) {
+                    // need to keep the loading screen up
+                    return;
+                }
             }
 
             _mainCamera.cullingMask = show ? -1 : 0;
@@ -269,8 +291,22 @@ namespace pdxpartyparrot.Core.Loading
 
         public void ShowTransitionScreen(bool show)
         {
-            if(show == _loadingScreen.gameObject.activeInHierarchy) {
-                Debug.LogWarning($"Transition screen active mismatch: {show}");
+            Debug.Log($"Show transition screen: {show} ({_transitionScreenRefCount})");
+
+            if(show) {
+                _transitionScreenRefCount++;
+                if(_transitionScreenRefCount > 1) {
+                    // transition screen already shown
+                    return;
+                }
+            } else {
+                Assert.IsTrue(_transitionScreenRefCount > 0);
+
+                _transitionScreenRefCount--;
+                if(_transitionScreenRefCount > 0) {
+                    // need to keep the transition screen up
+                    return;
+                }
             }
 
             _mainCamera.cullingMask = show ? -1 : 0;
