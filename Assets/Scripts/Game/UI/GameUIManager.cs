@@ -3,7 +3,6 @@ using System;
 using JetBrains.Annotations;
 
 using pdxpartyparrot.Core;
-using pdxpartyparrot.Core.Input;
 using pdxpartyparrot.Core.ObjectPool;
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Game.State;

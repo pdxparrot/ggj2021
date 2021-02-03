@@ -7,7 +7,6 @@ using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Level;
 using pdxpartyparrot.ggj2021.NPCs;
-using pdxpartyparrot.ggj2021.Players;
 using pdxpartyparrot.ggj2021.UI;
 
 using UnityEngine;

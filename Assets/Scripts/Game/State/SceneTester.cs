@@ -24,9 +24,9 @@ namespace pdxpartyparrot.Game.State
 
         protected override bool InitializeClient()
         {
-            // need to init the viewer before we start spawning players
+            // need to init the viewer(s) before we start spawning players
             // so that they have a viewer to attach to
-            InitViewer();
+            InitViewers();
 
             if(!base.InitializeClient()) {
                 Debug.LogWarning("Failed to initialize client!");
@@ -38,7 +38,7 @@ namespace pdxpartyparrot.Game.State
             return true;
         }
 
-        public abstract void InitViewer();
+        public abstract void InitViewers();
 
         public void SetScene(string sceneName)
         {

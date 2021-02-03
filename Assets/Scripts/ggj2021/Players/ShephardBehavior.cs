@@ -245,6 +245,8 @@ namespace pdxpartyparrot.ggj2021.Players
                 return;
             }
 
+            GameManager.Instance.OnSheepLost();
+
             if(_queue.Count < 1) {
                 return;
             }

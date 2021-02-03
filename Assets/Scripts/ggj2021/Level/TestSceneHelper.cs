@@ -3,7 +3,7 @@ using System;
 using JetBrains.Annotations;
 
 using pdxpartyparrot.Core.World;
-using pdxpartyparrot.ggj2021.Players;
+using pdxpartyparrot.ggj2021.UI;
 
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -55,6 +55,11 @@ namespace pdxpartyparrot.ggj2021.Level
 
             Assert.IsNull(_sheepPen);
             _sheepPen = new GameObject("Sheep");
+
+            GameManager.Instance.Reset(0);
+
+            GameUIManager.Instance.GameGameUI.Hide();
+            GameUIManager.Instance.GameGameUI.ShowHUD(true);
 
             GameManager.Instance.OnLevelEntered();
         }

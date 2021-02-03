@@ -4,9 +4,6 @@
 * Jump mechanic
   * Allow platforming
   * Enable / disable on level object
-* Level transition needs to despawn and then respawn players and anything else that carries through
-  * Need to hold off on despawning sheep until behind transition screen
-* HUD in test level
 * Test level black loading screen ??
 * Sheep idle AI ??
 * Animation hitching
