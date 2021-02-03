@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d354fea9158af07a39434ebc427efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tag: Goal
+  _tags:
+  - Goal
   _spawnRange:
     _min: 0
     _max: 0

@@ -1503,6 +1503,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2124948988}
     m_Modifications:
+    - target: {fileID: 3868086919266139138, guid: d5e276ae9fb6fd167a32690919d14416, type: 3}
+      propertyPath: _tags.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868086919266139138, guid: d5e276ae9fb6fd167a32690919d14416, type: 3}
+      propertyPath: _tags.Array.data[1]
+      value: PlayerRespawn
+      objectReference: {fileID: 0}
     - target: {fileID: 3868086919266139140, guid: d5e276ae9fb6fd167a32690919d14416, type: 3}
       propertyPath: m_Name
       value: PlayerSpawn
@@ -3239,6 +3247,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 306078426}
     m_Modifications:
+    - target: {fileID: 3868086919266139138, guid: d5e276ae9fb6fd167a32690919d14416, type: 3}
+      propertyPath: _tags.Array.data[0]
+      value: PlayerRespawn
+      objectReference: {fileID: 0}
     - target: {fileID: 3868086919266139140, guid: d5e276ae9fb6fd167a32690919d14416, type: 3}
       propertyPath: m_Name
       value: PlayerSpawn

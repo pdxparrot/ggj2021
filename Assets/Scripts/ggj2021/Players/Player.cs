@@ -121,7 +121,7 @@ namespace pdxpartyparrot.ggj2021.Players
 
         public void OnWorldBoundaryCollisionExit(WorldBoundary boundary)
         {
-            PlayerManager.Instance.RespawnPlayerNearest(this);
+            PlayerManager.Instance.RespawnPlayerNearest(this, PlayerManager.Instance.GamePlayerData.RespawnTag);
         }
 
         #endregion

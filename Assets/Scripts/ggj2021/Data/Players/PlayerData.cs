@@ -8,5 +8,9 @@ namespace pdxpartyparrot.ggj2021.Data.Players
     [Serializable]
     public sealed class PlayerData : Game.Data.Players.PlayerData
     {
+        [SerializeField]
+        private string _respawnTag => "PlayerRespawn";
+
+        public string RespawnTag => _respawnTag;
     }
 }

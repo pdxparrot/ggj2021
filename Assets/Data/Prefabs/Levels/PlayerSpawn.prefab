@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3868086919266139141}
   - component: {fileID: 3868086919266139138}
   m_Layer: 0
-  m_Name: Spawnpoint
+  m_Name: PlayerSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d354fea9158af07a39434ebc427efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tag: Player
+  _tags:
+  - Player
   _spawnRange:
     _min: 0
     _max: 0

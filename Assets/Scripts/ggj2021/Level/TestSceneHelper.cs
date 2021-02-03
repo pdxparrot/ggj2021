@@ -3,6 +3,7 @@ using System;
 using JetBrains.Annotations;
 
 using pdxpartyparrot.Core.World;
+using pdxpartyparrot.ggj2021.Players;
 
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -51,6 +52,8 @@ namespace pdxpartyparrot.ggj2021.Level
         protected override void GameReadyEventHandler(object sender, EventArgs args)
         {
             base.GameReadyEventHandler(sender, args);
+
+            PlayerManager.Instance.RespawnPlayers();
 
             Assert.IsNull(_sheepPen);
             _sheepPen = new GameObject("Sheep");

@@ -13,9 +13,9 @@ namespace pdxpartyparrot.Core.World
     public class SpawnPoint : MonoBehaviour
     {
         [SerializeField]
-        private string _tag;
+        private string[] _tags;
 
-        public string Tag => _tag;
+        public string[] Tags => _tags;
 
         [SerializeField]
         private FloatRangeConfig _spawnRange;

@@ -109,7 +109,6 @@ namespace pdxpartyparrot.Game.Players
 
         #endregion
 
-
         private void SpawnPlayer(NetworkConnection conn, short controllerId)
         {
             Assert.IsTrue(NetworkManager.Instance.IsServerActive());
@@ -152,6 +151,21 @@ namespace pdxpartyparrot.Game.Players
             return RespawnPlayer(player, SpawnManager.Instance.GetNearestPlayerSpawnPoint(player.NetworkPlayer.playerControllerId, player.Movement.Position));
         }
 
+        public bool RespawnPlayer(IPlayer player, string tag)
+        {
+            return RespawnPlayer(player, SpawnManager.Instance.GetPlayerSpawnPoint(tag));
+        }
+
+        public bool RespawnPlayerRandom(IPlayer player, string tag)
+        {
+            return RespawnPlayer(player, SpawnManager.Instance.GetRandomPlayerSpawnPoint(tag));
+        }
+
+        public bool RespawnPlayerNearest(IPlayer player, string tag)
+        {
+            return RespawnPlayer(player, SpawnManager.Instance.GetNearestPlayerSpawnPoint(tag, player.Movement.Position));
+        }
+
         private bool RespawnPlayer(IPlayer player, SpawnPoint spawnPoint)
         {
             Assert.IsTrue(NetworkManager.Instance.IsServerActive());
@@ -163,6 +177,20 @@ namespace pdxpartyparrot.Game.Players
                 return false;
             }
             return spawnPoint.ReSpawn((Actor)player);
+        }
+
+        public void RespawnPlayers()
+        {
+            foreach(IPlayer player in _players) {
+                RespawnPlayer(player);
+            }
+        }
+
+        public void RespawnPlayers(string tag)
+        {
+            foreach(IPlayer player in _players) {
+                RespawnPlayer(player, tag);
+            }
         }
 
         // TODO: despawning is never touching the NetworkManager, which is probably wrong

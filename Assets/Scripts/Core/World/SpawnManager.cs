@@ -93,17 +93,21 @@ namespace pdxpartyparrot.Core.World
 
         public virtual void RegisterSpawnPoint(SpawnPoint spawnPoint)
         {
-            //Debug.Log($"Registering spawnpoint {spawnPoint.name} of type '{spawnPoint.Tag}'");
+            //Debug.Log($"Registering spawnpoint {spawnPoint.name} of type '{spawnPoint.Tags}'");
 
-            _spawnPoints.GetOrAdd(spawnPoint.Tag).SpawnPoints.Add(spawnPoint);
+            foreach(string tag in spawnPoint.Tags) {
+                _spawnPoints.GetOrAdd(tag).SpawnPoints.Add(spawnPoint);
+            }
         }
 
         public virtual void UnregisterSpawnPoint(SpawnPoint spawnPoint)
         {
             //Debug.Log($"Unregistering spawnpoint '{spawnPoint.name}'");
 
-            if(_spawnPoints.TryGetValue(spawnPoint.Tag, out var spawnPoints)) {
-                spawnPoints.SpawnPoints.Remove(spawnPoint);
+            foreach(string tag in spawnPoint.Tags) {
+                if(_spawnPoints.TryGetValue(tag, out var spawnPoints)) {
+                    spawnPoints.SpawnPoints.Remove(spawnPoint);
+                }
             }
         }
 
@@ -184,6 +188,26 @@ namespace pdxpartyparrot.Core.World
         {
             int spawnPointIdx = Mathf.Clamp(controllerId, 0, _spawnData.PlayerSpawnPointTags.Count - 1);
             return GetNearestSpawnPoint(_spawnData.PlayerSpawnPointTags.ElementAt(spawnPointIdx), position);
+        }
+
+        [CanBeNull]
+        public SpawnPoint GetPlayerSpawnPoint(string tag)
+        {
+            return GetSpawnPoint(tag);
+        }
+
+        // gets a random player spawnpoint regardless of how the spawnpoints are configured
+        [CanBeNull]
+        public SpawnPoint GetRandomPlayerSpawnPoint(string tag)
+        {
+            return GetRandomSpawnPoint(tag);
+        }
+
+        // gets the player spawnpoint nearest the given position
+        [CanBeNull]
+        public SpawnPoint GetNearestPlayerSpawnPoint(string tag, Vector3 position)
+        {
+            return GetNearestSpawnPoint(tag, position);
         }
 
         #endregion
