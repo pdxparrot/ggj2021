@@ -76,6 +76,9 @@ namespace pdxpartyparrot.ggj2021.Players
         private EffectTrigger _launchEffect;
 
         [SerializeField]
+        private EffectTrigger _teleportEffect;
+
+        [SerializeField]
         private RumbleEffectTriggerComponent[] _rumbleEffects;
 
         #endregion
@@ -366,6 +369,8 @@ namespace pdxpartyparrot.ggj2021.Players
             } else {
                 FreeSheep();
             }
+
+            _teleportEffect.Trigger();
 
             _teleportTimer.Start(Owner.GamePlayerBehavior.GamePlayerBehaviorData.TeleportCooldown);
         }
