@@ -39,6 +39,9 @@ namespace pdxpartyparrot.Game
 
         bool TransitionToHighScores { get; }
 
+        [CanBeNull]
+        LevelHelper LevelHelper { get; }
+
         void Initialize();
 
         void Shutdown();

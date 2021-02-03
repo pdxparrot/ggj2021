@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 using pdxpartyparrot.Core.Effects;
 using pdxpartyparrot.Core.World;
@@ -91,17 +92,32 @@ namespace pdxpartyparrot.Game.Level
             GameStateManager.Instance.GameManager.TransitionScene(_nextLevel, null);
         }
 
+#if USE_NAVMESH
+        public IEnumerator BuildNavMesh()
+        {
+            Debug.Log("[Level] Building nav mesh...");
+
+            // https://github.com/Unity-Technologies/NavMeshComponents/issues/97
+            _navMeshSurface.RemoveData();
+            _navMeshSurface.navMeshData = new NavMeshData(_navMeshSurface.agentTypeID) {
+                name = _navMeshSurface.gameObject.name,
+                position = _navMeshSurface.transform.position,
+                rotation = _navMeshSurface.transform.rotation
+            };
+            _navMeshSurface.AddData();
+
+            AsyncOperation asyncOp = _navMeshSurface.UpdateNavMesh(_navMeshSurface.navMeshData);
+            while(!asyncOp.isDone) {
+                yield return null;
+            }
+        }
+#endif
+
         #region Event Handlers
 
         protected virtual void GameStartServerEventHandler(object sender, EventArgs args)
         {
             Debug.Log("[Level] Server start...");
-
-            // TODO: better to do this before we drop the loading screen and spawn stuff
-#if USE_NAVMESH
-            Debug.Log("[Level] Building nav mesh...");
-            _navMeshSurface.BuildNavMesh();
-#endif
 
             SpawnManager.Instance.Initialize();
         }
