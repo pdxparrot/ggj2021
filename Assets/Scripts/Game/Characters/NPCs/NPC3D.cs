@@ -212,7 +212,9 @@ namespace pdxpartyparrot.Game.Characters.NPCs
 
         public void ResetPath(bool idle)
         {
-            _agent.ResetPath();
+            if(_agent.isActiveAndEnabled) {
+                _agent.ResetPath();
+            }
 
             if(idle) {
                 NPCBehavior.OnIdle();

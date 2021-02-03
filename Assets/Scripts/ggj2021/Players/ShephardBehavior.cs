@@ -4,6 +4,7 @@ using System.Linq;
 
 using JetBrains.Annotations;
 
+using pdxpartyparrot.Core.DebugMenu;
 using pdxpartyparrot.Core.Effects;
 using pdxpartyparrot.Core.Effects.EffectTriggerComponents;
 using pdxpartyparrot.Core.Time;
@@ -26,7 +27,7 @@ namespace pdxpartyparrot.ggj2021.Players
         private enum State
         {
             Idle,
-            Chambering,
+            Grabbing,
             Launching,
         }
 
@@ -44,17 +45,16 @@ namespace pdxpartyparrot.ggj2021.Players
         #region Sheep
 
         [SerializeField]
-        private Transform _chamberParent;
+        private Transform _sheepParent;
 
         [SerializeField]
         [ReadOnly]
         [CanBeNull]
-        private Sheep _chamber;
+        private Sheep _carrying;
 
-        // TODO: should be a HashSet
         [SerializeField]
         [ReadOnly]
-        private List<Sheep> _magazine = new List<Sheep>();
+        private List<Sheep> _queue = new List<Sheep>();
 
         #endregion
 
@@ -83,13 +83,13 @@ namespace pdxpartyparrot.ggj2021.Players
         [SerializeField]
         private GameObject _aimer;
 
-        public bool CarryingSheep => null != _chamber;
+        public bool CarryingSheep => null != _carrying;
 
-        private bool HasCapacity => null == _chamber || (GameManager.HasInstance && _magazine.Count < GameManager.Instance.GameGameData.MaxQueuedSheep);
+        private bool HasCapacity => null == _carrying || (GameManager.HasInstance && _queue.Count < GameManager.Instance.GameGameData.MaxQueuedSheep);
 
-        private bool CanChamber => null == _chamber && _state == State.Idle;
+        private bool CanGrab => null == _carrying && _state == State.Idle;
 
-        private bool CanLaunch => null != _chamber && _state == State.Idle;
+        private bool CanLaunch => null != _carrying && _state == State.Idle;
 
         [SerializeReference]
         [ReadOnly]
@@ -98,6 +98,8 @@ namespace pdxpartyparrot.ggj2021.Players
         public bool CanTeleport => !_teleportTimer.IsRunning;
 
         private Interactables _interactables;
+
+        private DebugMenuNode _debugMenuNode;
 
         #region Unity Lifecycle
 
@@ -111,6 +113,8 @@ namespace pdxpartyparrot.ggj2021.Players
             GameManager.Instance.RoundWonEvent += RoundWonEventHandler;
 
             _teleportTimer = TimeManager.Instance.AddTimer();
+
+            InitDebugMenu();
         }
 
         private void Update()
@@ -138,6 +142,8 @@ namespace pdxpartyparrot.ggj2021.Players
 
         private void OnDestroy()
         {
+            DestroyDebugMenu();
+
             if(GameManager.HasInstance) {
                 GameManager.Instance.RoundWonEvent -= RoundWonEventHandler;
                 GameManager.Instance.GoalScoredEvent -= GoalScoredEventHandler;
@@ -169,16 +175,18 @@ namespace pdxpartyparrot.ggj2021.Players
             }
 
             Sheep sheep = _interactables.GetRandomInteractable<Sheep>();
-            if(null == sheep || sheep.CanScore) {
+            if(null == sheep || !sheep.CanInteract) {
                 return false;
             }
 
-            if(null == _chamber) {
-                if(!ChamberSheep(sheep)) {
+            if(null == _carrying) {
+                if(!GrabSheep(sheep)) {
                     return false;
                 }
-            } else {
+            } else if(!sheep.IsInQueue) {
                 EnqueueSheep(sheep);
+            } else {
+                return false;
             }
 
             Debug.Log($"Caught sheep {sheep.Id}");
@@ -190,21 +198,22 @@ namespace pdxpartyparrot.ggj2021.Players
             return true;
         }
 
-        // TODO: GrabSheep(), make sure to remove from the queue if it's in there
-        private bool ChamberSheep(Sheep sheep)
+        private bool GrabSheep(Sheep sheep)
         {
-            if(!CanChamber) {
+            if(!CanGrab) {
                 return false;
             }
 
-            _chamber = sheep;
-            sheep.OnChambered(_chamberParent);
+            DequeueSheep(sheep);
+            _carrying = sheep;
 
-            _state = State.Chambering;
+            sheep.OnCarried(_sheepParent);
+
+            _state = State.Grabbing;
             _grabEffect.Trigger(() => {
                 _state = State.Idle;
 
-                Debug.Log($"Chambered sheep {sheep.Id}");
+                Debug.Log($"Grabbing sheep {sheep.Id}");
 
                 Owner.GamePlayerBehavior.OnCarryingSheepChanged();
             });
@@ -214,16 +223,35 @@ namespace pdxpartyparrot.ggj2021.Players
 
         private void EnqueueSheep(Sheep sheep)
         {
-            Assert.IsTrue(HasCapacity);
+            Assert.IsTrue(_queue.Count < GameManager.Instance.GameGameData.MaxQueuedSheep);
+            Assert.IsFalse(_queue.Contains(sheep));
 
-            _magazine.Add(sheep);
+            _queue.Add(sheep);
 
-            if(_magazine.Count == 1) {
+            if(_queue.Count == 1) {
                 sheep.OnEnqueued(Owner.transform);
             } else {
                 sheep.OnEnqueued(GameManager.Instance.GameGameData.SheepTargetPlayer
                     ? Owner.transform
-                    : _magazine.ElementAt(_magazine.Count - 2).transform);
+                    : _queue.ElementAt(_queue.Count - 2).transform);
+            }
+        }
+
+        private void DequeueSheep(Sheep sheep)
+        {
+            if(!_queue.Remove(sheep)) {
+                return;
+            }
+
+            if(_queue.Count < 1) {
+                return;
+            }
+
+            _queue.ElementAt(0).OnEnqueued(Owner.transform);
+            for(int i = 1; i < _queue.Count; ++i) {
+                _queue.ElementAt(i).OnEnqueued(GameManager.Instance.GameGameData.SheepTargetPlayer
+                    ? Owner.transform
+                    : _queue.ElementAt(i - 1).transform);
             }
         }
 
@@ -233,8 +261,8 @@ namespace pdxpartyparrot.ggj2021.Players
                 return false;
             }
 
-            Sheep sheep = _chamber;
-            _chamber = null;
+            Sheep sheep = _carrying;
+            _carrying = null;
 
             // TODO: this doesn't line up with the animation *at all*
 
@@ -249,59 +277,22 @@ namespace pdxpartyparrot.ggj2021.Players
             _launchEffect.Trigger(() => {
                 _state = State.Idle;
 
-                // TODO: if this fails, nothing will try and cycle later
-                CycleRound();
-
                 Owner.GamePlayerBehavior.OnCarryingSheepChanged();
             });
 
             return true;
         }
 
-        // TODO: rather than even doing this, we should just have a "follow" list
-        // and let the player naturally pick them up. that'd feel a lot less weird
-        private bool CycleRound()
-        {
-            if(_magazine.Count < 1) {
-                return true;
-            }
-
-            Sheep sheep = _magazine.ElementAt(0);
-            if(!ChamberSheep(sheep)) {
-                return false;
-            }
-            _magazine.RemoveAt(0);
-
-            RackSheep();
-
-            return true;
-        }
-
-        // TODO: this goes away when cycling goes away
-        private void RackSheep()
-        {
-            if(_magazine.Count < 1) {
-                return;
-            }
-
-            _magazine.ElementAt(0).OnEnqueued(Owner.transform);
-            for(int i = 1; i < _magazine.Count; ++i) {
-                _magazine.ElementAt(i).OnEnqueued(GameManager.Instance.GameGameData.SheepTargetPlayer
-                    ? Owner.transform
-                    : _magazine.ElementAt(i - 1).transform);
-            }
-        }
-
         private void FreeSheep()
         {
-            // we get to keep the chambered sheep
+            // we get to keep the sheep we're carrying
 
-            foreach(Sheep sheep in _magazine) {
+            foreach(Sheep sheep in _queue) {
                 sheep.OnFree();
 
                 GameManager.Instance.OnSheepLost();
             }
-            _magazine.Clear();
+            _queue.Clear();
         }
 
         #endregion
@@ -334,9 +325,9 @@ namespace pdxpartyparrot.ggj2021.Players
             // TODO: if there's ever some other "level cleanup" event
             // that's where we should be doing this instead of on unready
 
-            if(null != _chamber) {
-                Destroy(_chamber.gameObject);
-                _chamber = null;
+            if(null != _carrying) {
+                Destroy(_carrying.gameObject);
+                _carrying = null;
             }
         }
 
@@ -360,6 +351,29 @@ namespace pdxpartyparrot.ggj2021.Players
             FreeSheep();
 
             _teleportTimer.Start(Owner.GamePlayerBehavior.GamePlayerBehaviorData.TeleportCooldown);
+        }
+
+        #endregion
+
+        #region Debug Menu
+
+        private void InitDebugMenu()
+        {
+            _debugMenuNode = DebugMenuManager.Instance.AddNode(() => $"ggj2021.ShephardBehavior {Owner.Id}");
+            _debugMenuNode.RenderContentsAction = () => {
+                GUILayout.Label($"Carrying sheep: {CarryingSheep}");
+                GUILayout.Label($"Has capacity: {HasCapacity}");
+                GUILayout.Label($"Can grab sheep: {CanGrab}");
+                GUILayout.Label($"Can launch sheep: {CanLaunch}");
+            };
+        }
+
+        private void DestroyDebugMenu()
+        {
+            if(DebugMenuManager.HasInstance) {
+                DebugMenuManager.Instance.RemoveNode(_debugMenuNode);
+            }
+            _debugMenuNode = null;
         }
 
         #endregion

@@ -513,7 +513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3436142926806816642}
   m_Layer: 10
-  m_Name: Chamber
+  m_Name: Sheep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1314,9 +1314,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _owner: {fileID: 8281382272004184653}
   _state: 0
-  _chamberParent: {fileID: 3436142926806816642}
-  _chamber: {fileID: 0}
-  _magazine: []
+  _sheepParent: {fileID: 3436142926806816642}
+  _carrying: {fileID: 0}
   _levelEnteredEffect: {fileID: 2397669589578171575}
   _goalScoredEffect: {fileID: 8706171717092286653}
   _roundWonEffect: {fileID: 3148126114990071779}
@@ -1328,6 +1327,12 @@ MonoBehaviour:
   - {fileID: 2452048554987602395}
   - {fileID: 3030018044868368614}
   _aimer: {fileID: 8168605767177174224}
+  _teleportTimer:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!114 &4223570603007877474
 MonoBehaviour:
   m_ObjectHideFlags: 0

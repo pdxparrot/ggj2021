@@ -1,6 +1,7 @@
 using System;
 
 using pdxpartyparrot.Core.Data.Actors.Components;
+using pdxpartyparrot.Core.DebugMenu;
 using pdxpartyparrot.Core.Effects;
 using pdxpartyparrot.Core.Time;
 using pdxpartyparrot.Core.Util;
@@ -18,7 +19,7 @@ namespace pdxpartyparrot.ggj2021.NPCs
         private enum State
         {
             Idle,
-            Chambered,
+            Carried,
             Enqueued,
             Launched,
         }
@@ -44,9 +45,11 @@ namespace pdxpartyparrot.ggj2021.NPCs
         [ReadOnly]
         private State _state = State.Idle;
 
-        public bool IsCaught => _state == State.Chambered || _state == State.Enqueued;
+        public bool IsCarried => _state == State.Carried;
 
-        public bool IsChambered => _state == State.Chambered;
+        public bool IsEnqueued => _state == State.Enqueued;
+
+        public bool IsCaught => IsCarried || IsEnqueued;
 
         public bool IsLaunched => _state == State.Launched;
 
@@ -65,16 +68,22 @@ namespace pdxpartyparrot.ggj2021.NPCs
         [ReadOnly]
         private ITimer _noiseTimer;
 
+        private DebugMenuNode _debugMenuNode;
+
         #region Unity Lifecycle
 
         protected override void Awake()
         {
             _noiseTimer = TimeManager.Instance.AddTimer();
             _noiseTimer.TimesUpEvent += NoiseTimesUpEventHandler;
+
+            InitDebugMenu();
         }
 
         protected override void OnDestroy()
         {
+            DestroyDebugMenu();
+
             if(TimeManager.HasInstance) {
                 TimeManager.Instance.RemoveTimer(_noiseTimer);
             }
@@ -98,8 +107,8 @@ namespace pdxpartyparrot.ggj2021.NPCs
             case State.Idle:
                 HandleIdle();
                 break;
-            case State.Chambered:
-                HandleChambered();
+            case State.Carried:
+                HandleCarried();
                 break;
             case State.Enqueued:
                 HandleEnqueued();
@@ -123,9 +132,10 @@ namespace pdxpartyparrot.ggj2021.NPCs
             _state = state;
             switch(_state) {
             case State.Idle:
+                NPCOwner.Stop(true, true);
                 Sheep.SetObstacle();
                 break;
-            case State.Chambered:
+            case State.Carried:
                 Sheep.SetPassive();
                 break;
             case State.Enqueued:
@@ -142,7 +152,7 @@ namespace pdxpartyparrot.ggj2021.NPCs
         {
         }
 
-        private void HandleChambered()
+        private void HandleCarried()
         {
         }
 
@@ -197,10 +207,10 @@ namespace pdxpartyparrot.ggj2021.NPCs
             _noiseTimer.Start(SheepBehaviorData.NoiseFrequency);
         }
 
-        public void OnChambered()
+        public void OnCarried()
         {
             _target = null;
-            SetState(State.Chambered);
+            SetState(State.Carried);
         }
 
         public void OnEnqueued(Transform target)
@@ -224,6 +234,25 @@ namespace pdxpartyparrot.ggj2021.NPCs
             Owner.Movement.Velocity = velocity;
 
             SetState(State.Launched);
+        }
+
+        #endregion
+
+        #region Debug Menu
+
+        private void InitDebugMenu()
+        {
+            _debugMenuNode = DebugMenuManager.Instance.AddNode(() => $"ggj2021.SheepBehavior {Owner.Id}");
+            _debugMenuNode.RenderContentsAction = () => {
+            };
+        }
+
+        private void DestroyDebugMenu()
+        {
+            if(DebugMenuManager.HasInstance) {
+                DebugMenuManager.Instance.RemoveNode(_debugMenuNode);
+            }
+            _debugMenuNode = null;
         }
 
         #endregion

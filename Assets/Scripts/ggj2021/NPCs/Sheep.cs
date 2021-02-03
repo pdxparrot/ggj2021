@@ -14,9 +14,11 @@ namespace pdxpartyparrot.ggj2021.NPCs
     {
         private SheepBehavior SheepBehavior => (SheepBehavior)NPCBehavior;
 
-        public bool CanInteract => !SheepBehavior.IsCaught;
+        public bool CanInteract => !SheepBehavior.IsCarried && !SheepBehavior.IsLaunched;
 
         public Type InteractableType => typeof(Sheep);
+
+        public bool IsInQueue => SheepBehavior.IsEnqueued;
 
         public bool CanScore => SheepBehavior.IsLaunched;
 
@@ -46,7 +48,7 @@ namespace pdxpartyparrot.ggj2021.NPCs
         private void FixedUpdate()
         {
             // hacky fix for the sheep not wanting to stay centered
-            if(SheepBehavior.IsChambered) {
+            if(SheepBehavior.IsCarried) {
                 transform.localPosition = Vector3.zero;
             }
         }
@@ -60,15 +62,15 @@ namespace pdxpartyparrot.ggj2021.NPCs
             Assert.IsTrue(Behavior is SheepBehavior);
         }
 
-        private void SetChambered(Transform parent, bool chambered)
+        private void SetCarried(Transform parent, bool carried)
         {
             transform.SetParent(parent);
 
-            Model.gameObject.SetActive(!chambered);
+            Model.gameObject.SetActive(!carried);
 
-            Rigidbody.isKinematic = chambered;
+            Rigidbody.isKinematic = carried;
 
-            if(chambered) {
+            if(carried) {
                 Movement.Position = parent.position;
             }
         }
@@ -108,11 +110,11 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         #region Event Handlers
 
-        public void OnChambered(Transform parent)
+        public void OnCarried(Transform parent)
         {
-            SetChambered(parent, true);
+            SetCarried(parent, true);
 
-            SheepBehavior.OnChambered();
+            SheepBehavior.OnCarried();
         }
 
         public void OnEnqueued(Transform target)
@@ -127,7 +129,7 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         public void OnLaunch(Vector3 start, Vector3 direction)
         {
-            SetChambered(GameManager.Instance.BaseLevel.SheepPen, false);
+            SetCarried(GameManager.Instance.BaseLevel.SheepPen, false);
 
             SheepBehavior.OnLaunch(start, direction);
         }
