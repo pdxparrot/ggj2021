@@ -61,7 +61,7 @@ namespace pdxpartyparrot.Core.World
             }
         }
 
-        private void InitActor(Actor actor)
+        protected virtual void InitActor(Actor actor)
         {
             Transform actorTransform = actor.transform;
             Transform thisTransform = transform;
@@ -88,13 +88,13 @@ namespace pdxpartyparrot.Core.World
         }
 
         [CanBeNull]
-        public virtual Actor SpawnFromPrefab(Actor prefab, ActorBehaviorComponentData behaviorData, Transform parent = null, bool activate = true)
+        public Actor SpawnFromPrefab(Actor prefab, ActorBehaviorComponentData behaviorData, Transform parent = null, bool activate = true)
         {
             return SpawnFromPrefab(prefab, Guid.NewGuid(), behaviorData, parent, activate);
         }
 
         [CanBeNull]
-        public virtual Actor SpawnFromPrefab(Actor prefab, Guid id, ActorBehaviorComponentData behaviorData, Transform parent = null, bool activate = true)
+        public Actor SpawnFromPrefab(Actor prefab, Guid id, ActorBehaviorComponentData behaviorData, Transform parent = null, bool activate = true)
         {
 #if USE_NETWORKING
             Debug.LogWarning("You probably meant to use NetworkManager.SpawnNetworkPrefab");
@@ -116,14 +116,14 @@ namespace pdxpartyparrot.Core.World
             return SpawnFromPrefab(prefab, behaviorData, parent, active);
         }
 
-        public virtual bool Spawn(Actor actor, Guid id, ActorBehaviorComponentData behaviorData)
+        public bool Spawn(Actor actor, Guid id, ActorBehaviorComponentData behaviorData)
         {
             InitActor(actor, id, behaviorData);
 
             return actor.OnSpawn(this);
         }
 
-        public virtual bool SpawnPlayer(Actor actor)
+        public bool SpawnPlayer(Actor actor)
         {
             InitActor(actor);
 
@@ -135,7 +135,7 @@ namespace pdxpartyparrot.Core.World
             return ret;
         }
 
-        public virtual bool ReSpawn(Actor actor)
+        public bool ReSpawn(Actor actor)
         {
             InitActor(actor);
 

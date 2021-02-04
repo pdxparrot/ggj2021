@@ -21,6 +21,9 @@ namespace pdxpartyparrot.ggj2021.World
         private float _speed = 5.0f;
 
         [SerializeField]
+        private string[] _tags;
+
+        [SerializeField]
         [ReadOnly]
         private GoalWaypoint _nextWaypoint;
 
@@ -101,6 +104,33 @@ namespace pdxpartyparrot.ggj2021.World
 
         #endregion
 
+        private bool CanScore(Sheep sheep)
+        {
+            if(null == sheep || !sheep.CanScore) {
+                return false;
+            }
+
+            // if we have no tags, the sheep must have no tags
+            // TODO: make this behavior configurable
+            if(_tags.Length == 0) {
+                return sheep.Tags.Length == 0;
+            }
+
+            // we have tags, so the sheep must also have tags
+            // TODO: make this behavior configurable
+            if(sheep.Tags.Length == 0) {
+                return false;
+            }
+
+            // the sheep must have at least one of our tags
+            foreach(string tag in _tags) {
+                if(Array.Exists(sheep.Tags, sheepTag => sheepTag == tag)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void SetWaypoint(GoalWaypoint waypoint)
         {
             _nextWaypoint = waypoint;
@@ -119,7 +149,7 @@ namespace pdxpartyparrot.ggj2021.World
 
         private void OnSheepTrigger(Sheep sheep)
         {
-            if(!sheep.CanScore) {
+            if(!CanScore(sheep)) {
                 return;
             }
 

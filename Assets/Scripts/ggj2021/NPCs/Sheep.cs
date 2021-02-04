@@ -22,6 +22,8 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         public bool CanScore => SheepBehavior.IsLaunched;
 
+        public string[] Tags { get; set; }
+
         #region Unity Lifecycle
 
         protected override void Awake()
