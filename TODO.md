@@ -6,5 +6,4 @@
   * Enable / disable on level object
 * Sheep idle AI ??
 * Animation hitching
-* Have a setup where sheep spawns spawn sheep attached to a specific goal (with different sheep and goal skins)
 * Good testbed for multiplayer

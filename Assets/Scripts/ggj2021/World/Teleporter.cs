@@ -38,6 +38,12 @@ namespace pdxpartyparrot.ggj2021.World
             rot.y = 0.0f;
             rot.z = 0.0f;
             _exitPoint.eulerAngles = rot;
+
+            // TODO: disable for now, following doesn't work
+            if(_sheepFollow) {
+                Debug.LogWarning("Disabling sheep follow");
+                _sheepFollow = false;
+            }
         }
 
         private void OnTriggerEnter(Collider other)
