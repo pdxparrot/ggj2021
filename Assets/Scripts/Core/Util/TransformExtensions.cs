@@ -53,6 +53,12 @@ namespace pdxpartyparrot.Core.Util
             transform.LookAt2D(target.position);
         }
 
+        public static void MoveTowards(this Transform transform, Vector3 target, float maxDistanceDelta)
+        {
+            Vector3 newPosition = Vector3.MoveTowards(transform.position, target, maxDistanceDelta);
+            transform.position = newPosition;
+        }
+
         public static void Clear(this Transform transform)
         {
             foreach(Transform child in transform) {

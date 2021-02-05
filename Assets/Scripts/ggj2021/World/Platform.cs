@@ -1,23 +1,24 @@
-using System;
-
 using pdxpartyparrot.Core;
-using pdxpartyparrot.Core.Actors;
 using pdxpartyparrot.Core.Time;
 using pdxpartyparrot.Core.Util;
+using pdxpartyparrot.ggj2021.NPCs;
+using pdxpartyparrot.ggj2021.Players;
 
 using UnityEngine;
 
 namespace pdxpartyparrot.ggj2021.World
 {
-    public sealed class Platform : Actor3D
+    [RequireComponent(typeof(Collider))]
+    public sealed class Platform : MonoBehaviour
     {
-        public override bool IsLocalActor => false;
-
         [SerializeField]
         private PlatformWaypoint _initialWaypoint;
 
         [SerializeField]
         private float _speed = 5.0f;
+
+        [SerializeField]
+        private Transform _actorContainer;
 
         [SerializeField]
         [ReadOnly]
@@ -29,27 +30,37 @@ namespace pdxpartyparrot.ggj2021.World
 
         #region Unity Lifecycle
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
-
-            Initialize(Guid.NewGuid());
-
-            Rigidbody.isKinematic = true;
+            GetComponent<Collider>().isTrigger = true;
 
             _cooldown = TimeManager.Instance.AddTimer();
 
             SetWaypoint(_initialWaypoint);
         }
 
-        protected override void OnDestroy()
+        private void OnDestroy()
         {
             if(TimeManager.HasInstance) {
                 TimeManager.Instance.RemoveTimer(_cooldown);
                 _cooldown = null;
             }
 
-            base.OnDestroy();
+            for(int i = 0; i < _actorContainer.childCount; ++i) {
+                Transform child = _actorContainer.GetChild(i);
+
+                Player player = child.GetComponentInParent<Player>();
+                if(null != player) {
+                    OnPlayerTriggerExit(player);
+                    continue;
+                }
+
+                Sheep sheep = child.GetComponentInParent<Sheep>();
+                if(null != sheep) {
+                    OnSheepTriggerExit(sheep);
+                    continue;
+                }
+            }
         }
 
         private void FixedUpdate()
@@ -64,13 +75,43 @@ namespace pdxpartyparrot.ggj2021.World
                 return;
             }
 
-            Movement.MoveTowards(_nextWaypoint.transform.position, _speed, dt);
+            transform.MoveTowards(_nextWaypoint.transform.position, _speed * dt);
 
-            if(Vector3.Distance(Movement.Position, _nextWaypoint.transform.position) < float.Epsilon) {
+            if(Vector3.Distance(transform.position, _nextWaypoint.transform.position) < float.Epsilon) {
                 _cooldown.Start(_nextWaypoint.Cooldown);
 
-                Movement.Position = _nextWaypoint.transform.position;
+                transform.position = _nextWaypoint.transform.position;
                 SetWaypoint(_nextWaypoint.NextWaypoint);
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            Player player = other.gameObject.GetComponentInParent<Player>();
+            if(null != player) {
+                OnPlayerTriggerEnter(player);
+                return;
+            }
+
+            Sheep sheep = other.gameObject.GetComponentInParent<Sheep>();
+            if(null != sheep) {
+                OnSheepTriggerEnter(sheep);
+                return;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            Player player = other.gameObject.GetComponentInParent<Player>();
+            if(null != player) {
+                OnPlayerTriggerExit(player);
+                return;
+            }
+
+            Sheep sheep = other.gameObject.GetComponentInParent<Sheep>();
+            if(null != sheep) {
+                OnSheepTriggerExit(sheep);
+                return;
             }
         }
 
@@ -82,9 +123,28 @@ namespace pdxpartyparrot.ggj2021.World
 
             if(null == _nextWaypoint) {
                 Debug.Log("No next waypoint, stopping");
-                Movement.Velocity = Vector3.zero;
                 return;
             }
+        }
+
+        private void OnPlayerTriggerEnter(Player player)
+        {
+            player.transform.SetParent(_actorContainer);
+        }
+
+        private void OnPlayerTriggerExit(Player player)
+        {
+            PlayerManager.Instance.ReclaimPlayer(player);
+        }
+
+        private void OnSheepTriggerEnter(Sheep sheep)
+        {
+            sheep.transform.SetParent(_actorContainer);
+        }
+
+        private void OnSheepTriggerExit(Sheep sheep)
+        {
+            sheep.transform.SetParent(GameManager.Instance.BaseLevel.SheepPen);
         }
     }
 }

@@ -254,6 +254,11 @@ namespace pdxpartyparrot.Game.Players
             _players.Clear();
         }
 
+        public void ReclaimPlayer(IPlayer player)
+        {
+            player.GameObject.transform.SetParent(_playerContainer.transform);
+        }
+
         #region Event Handlers
 
         private void ServerAddPlayerEventHandler(object sender, ServerAddPlayerEventArgs args)
