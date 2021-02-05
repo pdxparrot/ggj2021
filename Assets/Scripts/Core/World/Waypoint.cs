@@ -6,7 +6,7 @@ namespace pdxpartyparrot.Core.World
     {
         #region Unity Lifecycle
 
-        private void OnDrawGizmos()
+        protected virtual void OnDrawGizmos()
         {
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(transform.position, 1);

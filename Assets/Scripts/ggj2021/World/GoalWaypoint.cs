@@ -19,8 +19,10 @@ namespace pdxpartyparrot.ggj2021.World
 
         #region Unity Lifecycle
 
-        private void OnDrawGizmos()
+        protected override void OnDrawGizmos()
         {
+            base.OnDrawGizmos();
+
             Transform t = transform;
             Vector3 pos = t.position;
 
