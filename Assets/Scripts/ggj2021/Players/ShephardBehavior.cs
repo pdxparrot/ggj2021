@@ -277,7 +277,7 @@ namespace pdxpartyparrot.ggj2021.Players
 
             // TODO: this doesn't line up with the animation *at all*
 
-            Debug.Log($"Launching sheep {sheep.Id}");
+            Debug.Log($"Shepherd launching sheep {sheep.Id}");
 
             Vector3 direction = (Owner.FacingDirection + new Vector3(0.0f, 1.0f, 0.0f)).normalized;
             sheep.OnLaunch(Owner.Movement.Position, direction);

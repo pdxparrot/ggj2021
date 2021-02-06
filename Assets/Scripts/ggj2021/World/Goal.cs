@@ -142,7 +142,19 @@ namespace pdxpartyparrot.ggj2021.World
             }
 
             transform.forward = _nextWaypoint.GoalFacing;
+            SetFacing(transform.forward);
+
             _goalModel.RotateGoalScored();
+        }
+
+        private void LaunchSheep(Sheep sheep)
+        {
+            // TODO: this doesn't line up with the animation *at all*
+
+            Debug.Log($"Goal launching sheep {sheep.Id}");
+
+            Vector3 direction = (FacingDirection + new Vector3(0.0f, 1.0f, 0.0f)).normalized;
+            sheep.OnLaunch(sheep.Movement.Position, direction);
         }
 
         #region Event Handlers
@@ -150,6 +162,7 @@ namespace pdxpartyparrot.ggj2021.World
         private void OnSheepTrigger(Sheep sheep)
         {
             if(!CanScore(sheep)) {
+                LaunchSheep(sheep);
                 return;
             }
 
