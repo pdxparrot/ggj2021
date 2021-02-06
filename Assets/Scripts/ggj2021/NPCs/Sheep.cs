@@ -148,6 +148,16 @@ namespace pdxpartyparrot.ggj2021.NPCs
             DeSpawn(true);
         }
 
+        public void OnPlatformEnter(Transform parent)
+        {
+            transform.SetParent(parent);
+        }
+
+        public void OnPlatformExit()
+        {
+            transform.SetParent(GameManager.Instance.BaseLevel.SheepPen);
+        }
+
         #endregion
     }
 }

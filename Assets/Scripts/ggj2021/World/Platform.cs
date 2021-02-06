@@ -46,6 +46,7 @@ namespace pdxpartyparrot.ggj2021.World
                 _cooldown = null;
             }
 
+            // this may not actually be safe to do here
             for(int i = 0; i < _actorContainer.childCount; ++i) {
                 Transform child = _actorContainer.GetChild(i);
 
@@ -129,22 +130,22 @@ namespace pdxpartyparrot.ggj2021.World
 
         private void OnPlayerTriggerEnter(Player player)
         {
-            player.transform.SetParent(_actorContainer);
+            player.OnPlatformEnter(_actorContainer);
         }
 
         private void OnPlayerTriggerExit(Player player)
         {
-            PlayerManager.Instance.ReclaimPlayer(player);
+            player.OnPlatformExit();
         }
 
         private void OnSheepTriggerEnter(Sheep sheep)
         {
-            sheep.transform.SetParent(_actorContainer);
+            sheep.OnPlatformEnter(_actorContainer);
         }
 
         private void OnSheepTriggerExit(Sheep sheep)
         {
-            sheep.transform.SetParent(GameManager.Instance.BaseLevel.SheepPen);
+            sheep.OnPlatformExit();
         }
     }
 }

@@ -112,6 +112,24 @@ namespace pdxpartyparrot.ggj2021.Players
 
         #endregion
 
+        #region Event Handlers
+
+        public void OnPlatformEnter(Transform parent)
+        {
+            transform.SetParent(parent);
+
+            GamePlayerBehavior.ShepherdBehavior.OnPlatformEnter();
+        }
+
+        public void OnPlatformExit()
+        {
+            PlayerManager.Instance.ReclaimPlayer(this);
+
+            GamePlayerBehavior.ShepherdBehavior.OnPlatformExit();
+        }
+
+        #endregion
+
         #region IWorldBoundaryCollisionListener
 
         public void OnWorldBoundaryCollisionEnter(WorldBoundary boundary)

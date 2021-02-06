@@ -56,6 +56,10 @@ namespace pdxpartyparrot.ggj2021.Players
         [ReadOnly]
         private List<Sheep> _queue = new List<Sheep>();
 
+        [SerializeField]
+        [ReadOnly]
+        private bool _onPlatform;
+
         #endregion
 
         #region Effects
@@ -188,7 +192,7 @@ namespace pdxpartyparrot.ggj2021.Players
                 if(!GrabSheep(sheep)) {
                     return false;
                 }
-            } else if(!sheep.IsInQueue) {
+            } else if(!sheep.IsInQueue && !_onPlatform) {
                 EnqueueSheep(sheep);
             } else {
                 return false;
@@ -373,6 +377,18 @@ namespace pdxpartyparrot.ggj2021.Players
             _teleportEffect.Trigger();
 
             _teleportTimer.Start(Owner.GamePlayerBehavior.GamePlayerBehaviorData.TeleportCooldown);
+        }
+
+        public void OnPlatformEnter()
+        {
+            FreeSheep();
+
+            _onPlatform = true;
+        }
+
+        public void OnPlatformExit()
+        {
+            _onPlatform = false;
         }
 
         #endregion
