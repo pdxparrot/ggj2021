@@ -1,4 +1,3 @@
-* Moving platform
 * Throw sheep through teleporter?
 
 * Hook up sheep audio - this is really annoying as implemented

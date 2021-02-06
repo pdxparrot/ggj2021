@@ -6,10 +6,7 @@ namespace pdxpartyparrot.ggj2021.World
 {
     public sealed class GoalWaypoint : Waypoint
     {
-        [SerializeField]
-        private GoalWaypoint _nextWaypoint;
-
-        public GoalWaypoint NextWaypoint => _nextWaypoint;
+        public GoalWaypoint NextGoalWaypoint => (GoalWaypoint)NextWaypoint;
 
         [SerializeField]
         [Tooltip("The direction the goal should face while approaching this waypoint")]

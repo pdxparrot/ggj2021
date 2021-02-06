@@ -87,7 +87,7 @@ namespace pdxpartyparrot.ggj2021.World
 
             if(Vector3.Distance(Movement.Position, _nextWaypoint.transform.position) < float.Epsilon) {
                 Movement.Position = _nextWaypoint.transform.position;
-                SetWaypoint(_nextWaypoint.NextWaypoint);
+                SetWaypoint(_nextWaypoint.NextGoalWaypoint);
             }
         }
 
