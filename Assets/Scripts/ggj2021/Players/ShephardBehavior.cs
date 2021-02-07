@@ -136,6 +136,7 @@ namespace pdxpartyparrot.ggj2021.Players
 
             CatchSheep();
 
+            // update the goal compass
             if(null != GameUIManager.Instance.GameGameUI) {
                 Goal goal = GoalManager.Instance.GetNearestGoal(transform);
                 if(null != goal) {

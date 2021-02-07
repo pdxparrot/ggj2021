@@ -29,11 +29,11 @@ namespace pdxpartyparrot.ggj2021.World
         private void Update()
         {
             IBaseLevel level = GameManager.Instance.LevelHelper as IBaseLevel;
+            _lastPercent = level.TimePercent;
 
             foreach(Material material in _renderer.materials) {
-                material.SetFloat(_parameter, level.TimePercent);
+                material.SetFloat(_parameter, _lastPercent);
             }
-            _lastPercent = level.TimePercent;
         }
 
         #endregion
