@@ -27,11 +27,15 @@ namespace pdxpartyparrot.ggj2021.Level
         [Tooltip("Maximum number of sheep to spawn. 0 means spawn 1 per-spawnpoint. Will never spawn more than there are spawnpoints.")]
         private int _maxSheep;
 
+        [SerializeField]
+        [ReadOnly]
+        private bool _started;
+
         [SerializeReference]
         [ReadOnly]
         private ITimer _timer;
 
-        public float TimePercent => 1.0f - (_timer.SecondsRemaining / _roundSeconds);
+        public float TimePercent => GameManager.Instance.IsGameReady && !GameManager.Instance.IsGameOver ? 1.0f - (_timer.SecondsRemaining / _roundSeconds) : 0.0f;
 
         // TODO: NPCManager should handle this
         [CanBeNull]
