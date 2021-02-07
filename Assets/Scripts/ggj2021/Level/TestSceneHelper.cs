@@ -19,6 +19,12 @@ namespace pdxpartyparrot.ggj2021.Level
         [SerializeField]
         private Key _scoreKey = Key.G;
 
+        [SerializeField]
+        [Range(0.0f, 1.0f)]
+        private float _timePercent;
+
+        public float TimePercent => _timePercent;
+
         // TODO: NPCManager should handle this
         [CanBeNull]
         private GameObject _sheepPen;
