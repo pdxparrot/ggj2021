@@ -183,26 +183,33 @@ namespace pdxpartyparrot.ggj2021.Players
                 return false;
             }
 
-            Sheep sheep = _interactables.GetRandomInteractable<Sheep>();
-            if(null == sheep || !sheep.CanInteract) {
+            Sheep caught = null;
+            foreach(Sheep sheep in _interactables) {
+                if(null != sheep && sheep.CanCatch) {
+                    caught = sheep;
+                    break;
+                }
+            }
+
+            if(null == caught) {
                 return false;
             }
 
             if(null == _carrying) {
-                if(!GrabSheep(sheep)) {
+                if(!GrabSheep(caught)) {
                     return false;
                 }
-            } else if(!sheep.IsInQueue && !_onPlatform) {
-                EnqueueSheep(sheep);
+            } else if(!caught.IsInQueue && !_onPlatform) {
+                EnqueueSheep(caught);
             } else {
                 return false;
             }
 
-            Debug.Log($"Caught sheep {sheep.Id}");
+            Debug.Log($"Caught sheep {caught.Id}");
 
             GameManager.Instance.OnSheepCollected();
 
-            _interactables.RemoveInteractable(sheep);
+            _interactables.RemoveInteractable(caught);
 
             return true;
         }

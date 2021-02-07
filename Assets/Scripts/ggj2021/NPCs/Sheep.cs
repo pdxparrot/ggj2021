@@ -14,7 +14,9 @@ namespace pdxpartyparrot.ggj2021.NPCs
     {
         public SheepBehavior SheepBehavior => (SheepBehavior)NPCBehavior;
 
-        public bool CanInteract => !SheepBehavior.IsCarried && !SheepBehavior.IsLaunched;
+        public bool CanInteract => !SheepBehavior.IsCarried;
+
+        public bool CanCatch => CanInteract && !SheepBehavior.IsLaunched;
 
         public Type InteractableType => typeof(Sheep);
 
