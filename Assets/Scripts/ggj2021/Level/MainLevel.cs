@@ -31,7 +31,7 @@ namespace pdxpartyparrot.ggj2021.Level
         [ReadOnly]
         private ITimer _timer;
 
-        public float TimePercent => _timer.SecondsRemaining / _roundSeconds;
+        public float TimePercent => 1.0f - (_timer.SecondsRemaining / _roundSeconds);
 
         // TODO: NPCManager should handle this
         [CanBeNull]
@@ -63,7 +63,7 @@ namespace pdxpartyparrot.ggj2021.Level
         private void Update()
         {
             if(GameManager.Instance.IsGameReady && null != GameUIManager.Instance.GameGameUI) {
-                GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateTimer(TimePercent);
+                GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateTimer(1.0f - TimePercent);
             }
         }
 
