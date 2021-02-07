@@ -1660,7 +1660,7 @@
     },
     "m_Name": "Blend%",
     "m_DefaultReferenceName": "Vector1_ff210518fd4e422f925874ee8f59d556",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "BlendPct",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
