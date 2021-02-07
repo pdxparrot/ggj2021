@@ -218,9 +218,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _exit: {fileID: 0}
   _exitPoint: {fileID: 5341846056999894568}
-  _sheepFollow: 0
   _enterEffect: {fileID: 4295666454704020492}
   _exitEffect: {fileID: 3969952066514878845}
+  _sheepFollow: 0
 --- !u!1 &8324580809989188241
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +280,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6289a4b79a5c1894f8fb48c6c4e4e01a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

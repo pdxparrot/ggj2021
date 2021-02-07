@@ -164,7 +164,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6289a4b79a5c1894f8fb48c6c4e4e01a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -248,10 +248,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initialWaypoint: {fileID: 0}
   _speed: 5
-  _actorContainer: {fileID: 8738111197460619746}
   _nextWaypoint: {fileID: 0}
   _cooldown:
     id: 0
+  _actorContainer: {fileID: 8738111197460619746}
   references:
     version: 1
     00000000:
