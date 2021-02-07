@@ -35,7 +35,11 @@ namespace pdxpartyparrot.ggj2021.Level
         [ReadOnly]
         private ITimer _timer;
 
-        public float TimePercent => GameManager.Instance.IsGameReady && !GameManager.Instance.IsGameOver ? 1.0f - (_timer.SecondsRemaining / _roundSeconds) : 0.0f;
+        [SerializeField]
+        [ReadOnly]
+        private float _lastTimePercent;
+
+        public float TimePercent => GameManager.Instance.IsGameReady && !GameManager.Instance.IsGameOver ? _lastTimePercent : 0.0f;
 
         // TODO: NPCManager should handle this
         [CanBeNull]
@@ -66,8 +70,9 @@ namespace pdxpartyparrot.ggj2021.Level
 
         private void Update()
         {
+            _lastTimePercent = 1.0f - (_timer.SecondsRemaining / _roundSeconds);
             if(GameManager.Instance.IsGameReady && null != GameUIManager.Instance.GameGameUI) {
-                GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateTimer(1.0f - TimePercent);
+                GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateTimer(1.0f - _lastTimePercent);
             }
         }
 
