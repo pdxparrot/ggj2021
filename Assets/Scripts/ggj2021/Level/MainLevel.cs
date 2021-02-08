@@ -31,6 +31,10 @@ namespace pdxpartyparrot.ggj2021.Level
         [ReadOnly]
         private bool _started;
 
+        [SerializeField]
+        [ReadOnly]
+        private bool _levelStarted;
+
         [SerializeReference]
         [ReadOnly]
         private ITimer _timer;
@@ -70,7 +74,7 @@ namespace pdxpartyparrot.ggj2021.Level
 
         private void Update()
         {
-            _lastTimePercent = GameManager.Instance.IsGameReady && !GameManager.Instance.IsGameOver ? 1.0f - (_timer.SecondsRemaining / _roundSeconds) : 0;
+            _lastTimePercent = _levelStarted ? 1.0f - (_timer.SecondsRemaining / _roundSeconds) : 0;
             if(GameManager.Instance.IsGameReady && null != GameUIManager.Instance.GameGameUI) {
                 GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateTimer(1.0f - _lastTimePercent);
             }
@@ -127,6 +131,7 @@ namespace pdxpartyparrot.ggj2021.Level
             GameManager.Instance.Reset(NPCManager.Instance.NPCs.Count);
 
             _timer.Start(_roundSeconds);
+            _levelStarted = true;
 
             GameManager.Instance.OnLevelEntered();
         }
