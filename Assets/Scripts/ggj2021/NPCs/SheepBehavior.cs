@@ -189,6 +189,15 @@ namespace pdxpartyparrot.ggj2021.NPCs
             return false;
         }
 
+        public override bool OnReSpawn(SpawnPoint spawnpoint)
+        {
+            base.OnReSpawn(spawnpoint);
+
+            Owner.Movement.Velocity = Vector3.zero;
+
+            return false;
+        }
+
         public override bool OnDeSpawn()
         {
             _noiseTimer.Stop();
