@@ -5,6 +5,7 @@ using pdxpartyparrot.Core.Actors;
 using pdxpartyparrot.Core.Effects;
 using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.ggj2021.NPCs;
+using pdxpartyparrot.ggj2021.UI;
 
 using UnityEngine;
 
@@ -22,6 +23,9 @@ namespace pdxpartyparrot.ggj2021.World
 
         [SerializeField]
         private string[] _tags;
+
+        [SerializeField]
+        private CompassNeedle _compassNeedlePrefab;
 
         [SerializeField]
         [ReadOnly]
@@ -53,6 +57,7 @@ namespace pdxpartyparrot.ggj2021.World
             Rigidbody.isKinematic = true;
             Collider.isTrigger = true;
 
+            GameManager.Instance.GameReadyEvent += GameReadyEventHandler;
             GameManager.Instance.GoalScoredEvent += GoalScoredEventHandler;
 
             SetWaypoint(_initialWaypoint);
@@ -62,6 +67,7 @@ namespace pdxpartyparrot.ggj2021.World
         {
             if(GameManager.HasInstance) {
                 GameManager.Instance.GoalScoredEvent -= GoalScoredEventHandler;
+                GameManager.Instance.GameReadyEvent -= GameReadyEventHandler;
             }
 
             if(GoalManager.HasInstance) {
@@ -153,6 +159,11 @@ namespace pdxpartyparrot.ggj2021.World
         }
 
         #region Event Handlers
+
+        private void GameReadyEventHandler(object sender, EventArgs args)
+        {
+            GameUIManager.Instance.GameGameUI.PlayerHUD.AddCompassNeedle(_compassNeedlePrefab, this);
+        }
 
         private void OnSheepTrigger(Sheep sheep)
         {

@@ -1,4 +1,8 @@
+using System.Collections.Generic;
+
+using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Game.UI;
+using pdxpartyparrot.ggj2021.World;
 
 using TMPro;
 
@@ -21,10 +25,17 @@ namespace pdxpartyparrot.ggj2021.UI
         private GameObject[] _slots;
 
         [SerializeField]
-        private GameObject _compassNeedle;
+        private GameObject _compassNeedleContainer;
+
+        private readonly List<CompassNeedle> _compassNeedles = new List<CompassNeedle>(); 
 
         public void Reset(int goal)
         {
+            if(goal == 0) {
+                _compassNeedles.Clear();
+                _compassNeedleContainer.transform.Clear();
+            }
+
             _score.text = "0";
             _goal.text = goal.ToString();
 
@@ -36,6 +47,14 @@ namespace pdxpartyparrot.ggj2021.UI
             UpdateGoalCompass(0.0f);
         }
 
+        public void AddCompassNeedle(CompassNeedle needlePrefab, Goal goal)
+        {
+            CompassNeedle compassNeedle = Instantiate(needlePrefab, _compassNeedleContainer.transform);
+            compassNeedle.Initialize(goal);
+
+            _compassNeedles.Add(compassNeedle);
+        }
+
         public void UpdateTimer(float pctRemaining)
         {
             Vector3 rot = _timer.eulerAngles;
@@ -45,9 +64,11 @@ namespace pdxpartyparrot.ggj2021.UI
 
         public void UpdateGoalCompass(float angle)
         {
-            Vector3 rot = _compassNeedle.transform.eulerAngles;
-            rot.z = -angle;
-            _compassNeedle.transform.eulerAngles = rot;
+            foreach(CompassNeedle needle in _compassNeedles) {
+                Vector3 rot = needle.transform.eulerAngles;
+                rot.z = -angle;
+                needle.transform.eulerAngles = rot;
+            }
         }
 
         public void UpdateScore(int score)

@@ -55,14 +55,19 @@ namespace pdxpartyparrot.ggj2021.Level
 
         #region Event Handlers
 
+        protected override void GameStartClientEventHandler(object sender, EventArgs args)
+        {
+            GameManager.Instance.Reset(0);
+
+            base.GameStartClientEventHandler(sender, args);
+        }
+
         protected override void GameReadyEventHandler(object sender, EventArgs args)
         {
             base.GameReadyEventHandler(sender, args);
 
             Assert.IsNull(_sheepPen);
             _sheepPen = new GameObject("Sheep");
-
-            GameManager.Instance.Reset(0);
 
             GameUIManager.Instance.GameGameUI.Hide();
             GameUIManager.Instance.GameGameUI.ShowHUD(true);
