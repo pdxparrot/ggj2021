@@ -146,14 +146,7 @@ namespace pdxpartyparrot.ggj2021.Players
 
             // update the goal compass
             if(null != GameUIManager.Instance.GameGameUI) {
-                Goal goal = GoalManager.Instance.GetNearestGoal(transform);
-                if(null != goal) {
-                    Vector3 d = goal.transform.position - transform.position;
-                    float angle = Vector3.SignedAngle(Vector3.forward, d, Vector3.up);
-                    GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateGoalCompass(angle);
-                } else {
-                    GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateGoalCompass(0.0f);
-                }
+                GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateGoalCompass(Owner.Movement.Position);
             }
         }
 

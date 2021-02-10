@@ -27,7 +27,7 @@ namespace pdxpartyparrot.ggj2021.UI
         [SerializeField]
         private GameObject _compassNeedleContainer;
 
-        private readonly List<CompassNeedle> _compassNeedles = new List<CompassNeedle>(); 
+        private readonly List<CompassNeedle> _compassNeedles = new List<CompassNeedle>();
 
         public void Reset(int goal)
         {
@@ -44,7 +44,6 @@ namespace pdxpartyparrot.ggj2021.UI
             }
 
             UpdateTimer(1.0f);
-            UpdateGoalCompass(0.0f);
         }
 
         public void AddCompassNeedle(CompassNeedle needlePrefab, Goal goal)
@@ -62,12 +61,10 @@ namespace pdxpartyparrot.ggj2021.UI
             _timer.eulerAngles = rot;
         }
 
-        public void UpdateGoalCompass(float angle)
+        public void UpdateGoalCompass(Vector3 playerPosition)
         {
             foreach(CompassNeedle needle in _compassNeedles) {
-                Vector3 rot = needle.transform.eulerAngles;
-                rot.z = -angle;
-                needle.transform.eulerAngles = rot;
+                needle.UpdateAngle(playerPosition);
             }
         }
 
