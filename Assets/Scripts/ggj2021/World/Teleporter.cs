@@ -7,22 +7,7 @@ namespace pdxpartyparrot.ggj2021.World
     public sealed class Teleporter : Game.World.Teleporter
     {
         [SerializeField]
-        private bool _sheepFollow;
-
-        #region Unity Lifecycle
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            // TODO: disable for now, following doesn't work
-            if(_sheepFollow) {
-                Debug.LogWarning("Disabling sheep follow");
-                _sheepFollow = false;
-            }
-        }
-
-        #endregion
+        private bool _sheepFollow = true;
 
         protected override bool CanTeleport(GameObject gameObject)
         {

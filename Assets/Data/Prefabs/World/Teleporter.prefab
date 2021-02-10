@@ -220,7 +220,7 @@ MonoBehaviour:
   _exitPoint: {fileID: 5341846056999894568}
   _enterEffect: {fileID: 4295666454704020492}
   _exitEffect: {fileID: 3969952066514878845}
-  _sheepFollow: 0
+  _sheepFollow: 1
 --- !u!1 &8324580809989188241
 GameObject:
   m_ObjectHideFlags: 0

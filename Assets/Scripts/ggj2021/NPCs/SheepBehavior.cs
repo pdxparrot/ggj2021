@@ -252,7 +252,6 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         public void OnTeleport(Transform exitPoint)
         {
-            // TODO: this isn't working right
             Owner.Movement.Teleport(exitPoint);
         }
 

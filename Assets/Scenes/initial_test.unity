@@ -618,6 +618,10 @@ PrefabInstance:
       propertyPath: _exit
       value: 
       objectReference: {fileID: 213745404983117886}
+    - target: {fileID: 8396111267177723434, guid: c4f560efaf2c6f5f29397853d60be91e, type: 3}
+      propertyPath: _sheepFollow
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4f560efaf2c6f5f29397853d60be91e, type: 3}
 --- !u!4 &244269322 stripped
@@ -1284,6 +1288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nextLevel: 
   _levelEnterEffect: {fileID: 0}
+  _levelEnterIsBlocking: 1
   _levelExitEffect: {fileID: 0}
   _spawnSheepKey: 26
   _scoreKey: 21
