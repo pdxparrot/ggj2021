@@ -78,6 +78,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8136978070064989695}
   - component: {fileID: 5368440378911663993}
+  - component: {fileID: 1956702299754513136}
   - component: {fileID: 8659946713465597842}
   m_Layer: 10
   m_Name: Model
@@ -114,6 +115,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skeletonAnimation: {fileID: 2171481278708173032}
+--- !u!114 &1956702299754513136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744759722683349762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1f4c23683e8b51ab16df31d6c3ccb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skeletonAnimation: {fileID: 2171481278708173032}
+  _skinNames: []
 --- !u!114 &8659946713465597842
 MonoBehaviour:
   m_ObjectHideFlags: 0

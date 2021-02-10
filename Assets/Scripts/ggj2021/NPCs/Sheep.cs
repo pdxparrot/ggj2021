@@ -1,5 +1,6 @@
 using System;
 
+using pdxpartyparrot.Core.Util;
 using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.Characters.NPCs;
 using pdxpartyparrot.Game.Interactables;
@@ -24,7 +25,23 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         public bool CanScore => SheepBehavior.IsLaunched;
 
-        public string[] Tags { get; set; }
+        [SerializeField]
+        [ReadOnly]
+        private string _tag;
+
+        public string Tag
+        {
+            get => _tag;
+            set
+            {
+                _tag = value;
+                _sheepModel.SkinHelper.Skin = _tag;
+            }
+        }
+
+        public bool HasTag => !string.IsNullOrWhiteSpace(Tag);
+
+        private SheepModel _sheepModel;
 
         #region Unity Lifecycle
 
@@ -36,6 +53,8 @@ namespace pdxpartyparrot.ggj2021.NPCs
             Collider.isTrigger = true;
 
             GetComponent<AudioSource>().spatialBlend = 0.0f;
+
+            _sheepModel = Model.GetComponent<SheepModel>();
 
             SetObstacle();
         }

@@ -237,6 +237,8 @@ namespace pdxpartyparrot.ggj2021.Players
 
             sheep.OnCarried(_sheepParent);
 
+            Owner.ShephardModel.SkinHelper.Skin = sheep.Tag;
+
             _state = State.Grabbing;
             _grabEffect.Trigger(() => {
                 _state = State.Idle;

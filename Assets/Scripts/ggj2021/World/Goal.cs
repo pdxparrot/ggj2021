@@ -113,22 +113,17 @@ namespace pdxpartyparrot.ggj2021.World
             // if we have no tags, the sheep must have no tags
             // TODO: make this behavior configurable
             if(_tags.Length == 0) {
-                return sheep.Tags.Length == 0;
+                return !sheep.HasTag;
             }
 
             // we have tags, so the sheep must also have tags
             // TODO: make this behavior configurable
-            if(sheep.Tags.Length == 0) {
+            if(!sheep.HasTag) {
                 return false;
             }
 
             // the sheep must have at least one of our tags
-            foreach(string tag in _tags) {
-                if(Array.Exists(sheep.Tags, sheepTag => sheepTag == tag)) {
-                    return true;
-                }
-            }
-            return false;
+            return Array.Exists(_tags, x => x == sheep.Tag);
         }
 
         private void SetWaypoint(GoalWaypoint waypoint)

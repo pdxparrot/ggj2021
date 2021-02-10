@@ -508,7 +508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7065093185959490570, guid: 1556a80286400df35bbc420050682226, type: 3}
       propertyPath: _tags.Array.data[0]
-      value: a
+      value: Blue
       objectReference: {fileID: 0}
     - target: {fileID: 7409777507836189458, guid: 1556a80286400df35bbc420050682226, type: 3}
       propertyPath: m_Name
@@ -1411,7 +1411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8777634509071345410, guid: 95e40d685071c26418e1627320dc6081, type: 3}
       propertyPath: _sheepTags.Array.data[0]
-      value: a
+      value: Blue
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95e40d685071c26418e1627320dc6081, type: 3}
@@ -2752,7 +2752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7065093185959490570, guid: 1556a80286400df35bbc420050682226, type: 3}
       propertyPath: _tags.Array.data[0]
-      value: b
+      value: Red
       objectReference: {fileID: 0}
     - target: {fileID: 7409777507836189458, guid: 1556a80286400df35bbc420050682226, type: 3}
       propertyPath: m_Name
@@ -2996,7 +2996,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8777634509071345410, guid: 95e40d685071c26418e1627320dc6081, type: 3}
       propertyPath: _sheepTags.Array.data[0]
-      value: b
+      value: Red
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95e40d685071c26418e1627320dc6081, type: 3}

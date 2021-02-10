@@ -1,4 +1,5 @@
 using pdxpartyparrot.Core.Actors;
+using pdxpartyparrot.Core.Collections;
 using pdxpartyparrot.Core.World;
 using pdxpartyparrot.ggj2021.NPCs;
 
@@ -19,7 +20,7 @@ namespace pdxpartyparrot.ggj2021.World
             base.InitActor(actor);
 
             Sheep sheep = (Sheep)actor;
-            sheep.Tags = _sheepTags;
+            sheep.Tag = _sheepTags.GetRandomEntry();
         }
     }
 }

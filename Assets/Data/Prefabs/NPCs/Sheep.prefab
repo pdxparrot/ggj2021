@@ -354,6 +354,7 @@ MonoBehaviour:
   _stuckCheckCount: 0
   _debugTextTarget: {fileID: 0}
   _debugTextQueue: {fileID: 0}
+  _tag: 
 --- !u!1 &4303609339302781703
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7377879375969351738}
   - component: {fileID: 8387168736222356194}
+  - component: {fileID: 5910613161833230735}
   - component: {fileID: 5170206449859517644}
   m_Layer: 11
   m_Name: Model
@@ -471,6 +473,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skeletonAnimation: {fileID: 2730500595185134254}
+--- !u!114 &5910613161833230735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5545329517689198978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1f4c23683e8b51ab16df31d6c3ccb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skeletonAnimation: {fileID: 2730500595185134254}
+  _defaultSkinName: Normal
+  _skinNames: []
 --- !u!114 &5170206449859517644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,6 +700,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7377879375969351738}
     m_Modifications:
+    - target: {fileID: 2021108806705191745, guid: 93126c023818b8d44bbb15d047b5e7c8, type: 3}
+      propertyPath: initialSkinName
+      value: Normal
+      objectReference: {fileID: 0}
     - target: {fileID: 2773328760834136308, guid: 93126c023818b8d44bbb15d047b5e7c8, type: 3}
       propertyPath: m_RootOrder
       value: 0
