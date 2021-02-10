@@ -239,7 +239,7 @@ namespace pdxpartyparrot.ggj2021.NPCs
             Owner.Movement.Teleport(start);
 
             Vector3 velocity = direction * GameManager.Instance.GameGameData.SheepLaunchSpeed;
-            Debug.Log($"Launching {velocity}");
+            Debug.Log($"Launching from {start} at {velocity}m/s");
             Owner.Movement.Velocity = velocity;
 
             SetState(State.Launched);
