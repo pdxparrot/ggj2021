@@ -252,7 +252,10 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         public void OnTeleport(Transform exitPoint)
         {
+            // TODO: going passive / active here really should be in the base NPC
+            Sheep.SetPassive();
             Owner.Movement.Teleport(exitPoint);
+            Sheep.SetAgent();
         }
 
         #endregion

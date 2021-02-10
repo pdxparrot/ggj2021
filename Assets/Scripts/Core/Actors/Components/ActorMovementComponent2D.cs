@@ -184,20 +184,23 @@ namespace pdxpartyparrot.Core.Actors.Components
 
             // https://forum.unity.com/threads/teleport-a-rigidbody.61196/
 
+            // TODO: need to tell the owner that we're teleporting
+            // (so NPCs can go passive, etc)
+
             Vector3 velocity = _rigidbody.velocity;
             float angularVelocity = _rigidbody.angularVelocity;
-            bool wasActive = _rigidbody.gameObject.activeInHierarchy;
 
             _rigidbody.Sleep();
 
-            _rigidbody.gameObject.SetActive(false);
             Transform.position = position;
-            _rigidbody.gameObject.SetActive(wasActive);
 
             _rigidbody.velocity = velocity;
             _rigidbody.angularVelocity = angularVelocity;
 
             _rigidbody.WakeUp();
+
+            // TODO: need to tell the owner that we're done teleporting
+            // (so NPCs can go active, etc)
         }
 
         public override void Move(Vector3 amount)
