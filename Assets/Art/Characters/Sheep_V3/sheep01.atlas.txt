@@ -1,0 +1,174 @@
+
+sheep01.png
+size: 975,975
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bell
+  rotate: false
+  xy: 217, 100
+  size: 82, 115
+  orig: 83, 116
+  offset: 0, 1
+  index: -1
+bell_back
+  rotate: false
+  xy: 110, 17
+  size: 80, 112
+  orig: 80, 112
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 2, 217
+  size: 492, 417
+  orig: 492, 419
+  offset: 0, 1
+  index: -1
+body Glow
+  rotate: false
+  xy: 421, 227
+  size: 508, 253
+  orig: 522, 284
+  offset: 9, 22
+  index: -1
+body_back
+  rotate: true
+  xy: 525, 482
+  size: 491, 418
+  orig: 491, 420
+  offset: 0, 1
+  index: -1
+body_back_glow
+  rotate: false
+  xy: 421, 2
+  size: 226, 223
+  orig: 380, 284
+  offset: 142, 18
+  index: -1
+collar
+  rotate: false
+  xy: 421, 582
+  size: 95, 127
+  orig: 95, 127
+  offset: 0, 0
+  index: -1
+ear_L
+  rotate: false
+  xy: 649, 28
+  size: 105, 41
+  orig: 105, 41
+  offset: 0, 0
+  index: -1
+ear_back
+  rotate: false
+  xy: 649, 28
+  size: 105, 41
+  orig: 105, 41
+  offset: 0, 0
+  index: -1
+ear_R
+  rotate: false
+  xy: 301, 36
+  size: 78, 83
+  orig: 80, 83
+  offset: 1, 0
+  index: -1
+eye_L
+  rotate: true
+  xy: 756, 13
+  size: 56, 20
+  orig: 56, 20
+  offset: 0, 0
+  index: -1
+eye_L_cry
+  rotate: true
+  xy: 778, 22
+  size: 47, 40
+  orig: 47, 42
+  offset: 0, 1
+  index: -1
+eye_R
+  rotate: true
+  xy: 858, 36
+  size: 28, 31
+  orig: 29, 32
+  offset: 1, 1
+  index: -1
+eye_R_cry
+  rotate: false
+  xy: 649, 3
+  size: 30, 23
+  orig: 32, 25
+  offset: 1, 1
+  index: -1
+hair
+  rotate: true
+  xy: 301, 121
+  size: 94, 79
+  orig: 94, 80
+  offset: 0, 0
+  index: -1
+hair glow
+  rotate: true
+  xy: 2, 38
+  size: 83, 80
+  orig: 101, 89
+  offset: 7, 5
+  index: -1
+hair_back
+  rotate: false
+  xy: 421, 486
+  size: 101, 94
+  orig: 101, 94
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 649, 71
+  size: 172, 154
+  orig: 172, 155
+  offset: 0, 0
+  index: -1
+headback
+  rotate: true
+  xy: 823, 66
+  size: 159, 136
+  orig: 159, 137
+  offset: 0, 1
+  index: -1
+shadow
+  rotate: false
+  xy: 2, 711
+  size: 521, 262
+  orig: 587, 287
+  offset: 37, 5
+  index: -1
+tail
+  rotate: false
+  xy: 2, 123
+  size: 106, 92
+  orig: 106, 92
+  offset: 0, 0
+  index: -1
+tail glow
+  rotate: false
+  xy: 110, 131
+  size: 105, 84
+  orig: 123, 98
+  offset: 7, 8
+  index: -1
+tear_1
+  rotate: false
+  xy: 681, 7
+  size: 39, 19
+  orig: 39, 20
+  offset: 0, 1
+  index: -1
+tear_2
+  rotate: false
+  xy: 820, 36
+  size: 36, 28
+  orig: 36, 29
+  offset: 0, 0
+  index: -1
