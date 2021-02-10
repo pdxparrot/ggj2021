@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 6892690664497256669}
   - component: {fileID: 4295666454704020492}
   - component: {fileID: 8435278327050413477}
+  - component: {fileID: 6746496698679687855}
   m_Layer: 12
   m_Name: Enter Effect
   m_TagString: Untagged
@@ -79,6 +80,7 @@ MonoBehaviour:
   _triggerOnComplete: []
   _components:
   - {fileID: 8435278327050413477}
+  - {fileID: 6746496698679687855}
   _isRunning: 0
   _complete: 0
 --- !u!114 &8435278327050413477
@@ -97,6 +99,28 @@ MonoBehaviour:
   _loop: 0
   _waitForComplete: 0
   _clearOnStop: 1
+--- !u!114 &6746496698679687855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421531574966028903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 335ad97a393c4ea01af726ea24f0a3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClip: {fileID: 8300000, guid: 6657b530b77176b4591b7c7c65b137ec, type: 3}
+  _audioSource: {fileID: 0}
+  _loop: 0
+  _waitForComplete: 0
+  _audioTimer:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!1 &612528507523522443
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +161,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612528507523522443}
   serializedVersion: 7
-  lengthInSec: 0.5
+  lengthInSec: 0.35
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -381,8 +405,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.4
-      minScalar: 0.1
+      scalar: 0.3
+      minScalar: 0.05
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -697,7 +721,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 50
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -710,7 +734,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.40908813
+          value: -0.5000038
           inSlope: -0.3625376
           outSlope: -0.3625376
           tangentMode: 0
@@ -718,22 +742,22 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.28140512
         - serializedVersion: 3
-          time: 0.6268697
-          value: -0.08051245
-          inSlope: -1.4909102
-          outSlope: -1.4909102
+          time: 0.49714875
+          value: -0.18657029
+          inSlope: 1.2906215
+          outSlope: 1.2906215
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.25126135
+          inWeight: 0.20266093
           outWeight: 0.36764067
         - serializedVersion: 3
           time: 1
-          value: -1
-          inSlope: -3.9155812
-          outSlope: -3.9155812
+          value: 0.5606079
+          inSlope: 1.409909
+          outSlope: 1.409909
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.2573557
+          inWeight: 0.23040986
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -971,7 +995,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1081,7 +1105,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 50
+        scalar: 25
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -10411,7 +10435,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 100
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -14644,6 +14668,7 @@ GameObject:
   - component: {fileID: 8769239344723107679}
   - component: {fileID: 3969952066514878845}
   - component: {fileID: 8404244111327219759}
+  - component: {fileID: 7223037800825493867}
   m_Layer: 12
   m_Name: Exit Effect
   m_TagString: Untagged
@@ -14681,6 +14706,7 @@ MonoBehaviour:
   _triggerOnComplete: []
   _components:
   - {fileID: 8404244111327219759}
+  - {fileID: 7223037800825493867}
   _isRunning: 0
   _complete: 0
 --- !u!114 &8404244111327219759
@@ -14699,6 +14725,28 @@ MonoBehaviour:
   _loop: 0
   _waitForComplete: 0
   _clearOnStop: 1
+--- !u!114 &7223037800825493867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3011853453101753339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 335ad97a393c4ea01af726ea24f0a3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClip: {fileID: 8300000, guid: a9862119920681f428f353e46137a02b, type: 3}
+  _audioSource: {fileID: 0}
+  _loop: 0
+  _waitForComplete: 0
+  _audioTimer:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!1 &3259221804139790399
 GameObject:
   m_ObjectHideFlags: 0
@@ -14805,7 +14853,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4525932951176823479}
   serializedVersion: 7
-  lengthInSec: 0.75
+  lengthInSec: 0.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -15049,8 +15097,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.4
-      minScalar: 0.1
+      scalar: 0.3
+      minScalar: 0.05
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15365,43 +15413,43 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 50
     size3D: 0
     rotation3D: 0
     gravityModifier:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 1
+      scalar: 0.5
       minScalar: -0.05
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: -0.30059052
-          inSlope: -0.3625376
-          outSlope: -0.3625376
+          value: 0.017593384
+          inSlope: 0.14528443
+          outSlope: 0.14528443
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.28140512
+          outWeight: 0.16102344
         - serializedVersion: 3
-          time: 0.54328203
-          value: -0.0030893534
-          inSlope: 1.0080153
-          outSlope: 1.0080153
+          time: 0.5342442
+          value: -0.23036486
+          inSlope: -0.7626409
+          outSlope: -0.7626409
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.24175617
+          inWeight: 0.11982812
           outWeight: 0.36764067
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 3.3902571
-          outSlope: 3.3902571
+          value: -1
+          inSlope: -3.0325859
+          outSlope: -3.0325859
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.42500502
+          inWeight: 0.17503096
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -15639,7 +15687,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -15745,11 +15793,11 @@ ParticleSystem:
     m_BurstCount: 1
     m_Bursts:
     - serializedVersion: 2
-      time: 0.25
+      time: 0.05
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 50
+        scalar: 25
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -16594,7 +16642,7 @@ ParticleSystem:
     orbitalZ:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -5
+      scalar: -10
       minScalar: 0
       maxCurve:
         serializedVersion: 2
