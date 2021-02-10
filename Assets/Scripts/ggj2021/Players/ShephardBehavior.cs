@@ -310,7 +310,7 @@ namespace pdxpartyparrot.ggj2021.Players
             Sheep sheep = _carrying;
             _carrying = null;
 
-            Vector3 direction = (Owner.FacingDirection + new Vector3(0.0f, 1.0f, 0.0f)).normalized;
+            Vector3 direction = (Owner.FacingDirection + Owner.GamePlayerBehavior.GamePlayerBehaviorData.LaunchDirection).normalized;
 
             Vector3 localStart = _sheepParent.localPosition;
             localStart.x *= Mathf.Sign(Owner.FacingDirection.x);
