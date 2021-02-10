@@ -1386,11 +1386,13 @@ MonoBehaviour:
   _sheepParent: {fileID: 3436142926806816642}
   _carrying: {fileID: 0}
   _queue: []
+  _onPlatform: 0
   _levelEnteredEffect: {fileID: 2397669589578171575}
   _goalScoredEffect: {fileID: 8706171717092286653}
   _roundWonEffect: {fileID: 3148126114990071779}
   _grabEffect: {fileID: 3077957630161247360}
   _launchEffect: {fileID: 5708668014852099471}
+  _launchAnimationEffectTriggerComponent: {fileID: 7721623740637534888}
   _teleportEffect: {fileID: 5761180625517671292}
   _rumbleEffects:
   - {fileID: 6503390463402030277}

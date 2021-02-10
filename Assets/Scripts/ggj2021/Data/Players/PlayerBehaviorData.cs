@@ -9,6 +9,11 @@ namespace pdxpartyparrot.ggj2021.Data.Players
     public sealed class PlayerBehaviorData : Game.Data.Characters.PlayerBehaviorData
     {
         [SerializeField]
+        private string _launchSheepAnimationEvent = "sheep_launch";
+
+        public string LaunchSheepAnimationEvent => _launchSheepAnimationEvent;
+
+        [SerializeField]
         private float _teleportCooldown = 2.0f;
 
         public float TeleportCooldown => _teleportCooldown;

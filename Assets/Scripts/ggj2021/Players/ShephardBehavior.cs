@@ -15,6 +15,8 @@ using pdxpartyparrot.ggj2021.NPCs;
 using pdxpartyparrot.ggj2021.UI;
 using pdxpartyparrot.ggj2021.World;
 
+using Spine;
+
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -80,6 +82,9 @@ namespace pdxpartyparrot.ggj2021.Players
         private EffectTrigger _launchEffect;
 
         [SerializeField]
+        private SpineAnimationEffectTriggerComponent _launchAnimationEffectTriggerComponent;
+
+        [SerializeField]
         private EffectTrigger _teleportEffect;
 
         [SerializeField]
@@ -122,6 +127,9 @@ namespace pdxpartyparrot.ggj2021.Players
 
             _teleportTimer = TimeManager.Instance.AddTimer();
 
+            _launchAnimationEffectTriggerComponent.StartEvent += LaunchAnimationStartHandler;
+            _launchAnimationEffectTriggerComponent.CompleteEvent += LaunchAnimationCompleteHandler;
+
             InitDebugMenu();
         }
 
@@ -152,6 +160,9 @@ namespace pdxpartyparrot.ggj2021.Players
         private void OnDestroy()
         {
             DestroyDebugMenu();
+
+            _launchAnimationEffectTriggerComponent.StartEvent -= LaunchAnimationStartHandler;
+            _launchAnimationEffectTriggerComponent.CompleteEvent -= LaunchAnimationCompleteHandler;
 
             if(GameManager.HasInstance) {
                 GameManager.Instance.RoundWonEvent -= RoundWonEventHandler;
@@ -280,17 +291,9 @@ namespace pdxpartyparrot.ggj2021.Players
                 return false;
             }
 
-            Sheep sheep = _carrying;
-            _carrying = null;
+            Debug.Log($"Shepherd launching sheep {_carrying.Id}");
 
-            // TODO: this doesn't line up with the animation *at all*
-
-            Debug.Log($"Shepherd launching sheep {sheep.Id}");
-
-            Vector3 direction = (Owner.FacingDirection + new Vector3(0.0f, 1.0f, 0.0f)).normalized;
-            sheep.OnLaunch(Owner.Movement.Position, direction);
-
-            GameManager.Instance.OnSheepLost();
+            DoLaunchSheep();
 
             _state = State.Launching;
             _launchEffect.Trigger(() => {
@@ -300,6 +303,17 @@ namespace pdxpartyparrot.ggj2021.Players
             });
 
             return true;
+        }
+
+        private void DoLaunchSheep()
+        {
+            Sheep sheep = _carrying;
+            _carrying = null;
+
+            Vector3 direction = (Owner.FacingDirection + new Vector3(0.0f, 1.0f, 0.0f)).normalized;
+            sheep.OnLaunch(Owner.Movement.Position, direction);
+
+            GameManager.Instance.OnSheepLost();
         }
 
         private void FreeSheep()
@@ -397,6 +411,26 @@ namespace pdxpartyparrot.ggj2021.Players
         public void OnPlatformExit()
         {
             _onPlatform = false;
+        }
+
+        private void LaunchAnimationStartHandler(object sender, SpineAnimationEffectTriggerComponent.EventArgs args)
+        {
+            args.TrackEntry.Event += LaunchAnimationEvent;
+        }
+
+        private void LaunchAnimationCompleteHandler(object sender, SpineAnimationEffectTriggerComponent.EventArgs args)
+        {
+            args.TrackEntry.Event -= LaunchAnimationEvent;
+        }
+
+        private void LaunchAnimationEvent(TrackEntry trackEntry, Spine.Event evt)
+        {
+            if(Owner.GamePlayerBehavior.GamePlayerBehaviorData.LaunchSheepAnimationEvent == evt.Data.Name) {
+                //DoLaunchSheep();
+                Debug.LogWarning("TODO: launch sheep on event");
+            } else {
+                Debug.LogWarning($"Unhandled launch event: {evt.Data.Name}");
+            }
         }
 
         #endregion
