@@ -14,6 +14,9 @@ namespace pdxpartyparrot.ggj2021.World
         private GameObject _goalScoredContainer;
 
         [SerializeField]
+        private GameObject[] _billboards;
+
+        [SerializeField]
         private float _defaultRotation = 180.0f;
 
         #region Unity Lifecycle
@@ -25,11 +28,20 @@ namespace pdxpartyparrot.ggj2021.World
 
         #endregion
 
-        public void RotateGoalScored()
+        public void RotateBillboards()
         {
-            Vector3 rot = _goalScoredContainer.transform.eulerAngles;
+            RotateBillboard(_goalScoredContainer);
+
+            foreach(GameObject billboard in _billboards) {
+                RotateBillboard(billboard);
+            }
+        }
+
+        private void RotateBillboard(GameObject billboard)
+        {
+            Vector3 rot = billboard.transform.eulerAngles;
             rot.y = _defaultRotation;
-            _goalScoredContainer.transform.eulerAngles = rot;
+            billboard.transform.eulerAngles = rot;
         }
     }
 }

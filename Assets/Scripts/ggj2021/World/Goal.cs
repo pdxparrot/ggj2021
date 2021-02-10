@@ -139,7 +139,7 @@ namespace pdxpartyparrot.ggj2021.World
             transform.forward = _nextWaypoint.GoalFacing;
             SetFacing(transform.forward);
 
-            _goalModel.RotateGoalScored();
+            _goalModel.RotateBillboards();
         }
 
         private void LaunchSheep(Sheep sheep)
