@@ -295,8 +295,6 @@ namespace pdxpartyparrot.ggj2021.Players
 
             Debug.Log($"Shepherd launching sheep {_carrying.Id}");
 
-            DoLaunchSheep();
-
             _state = State.Launching;
             _launchEffect.Trigger(() => {
                 _state = State.Idle;
@@ -428,8 +426,7 @@ namespace pdxpartyparrot.ggj2021.Players
         private void LaunchAnimationEvent(TrackEntry trackEntry, Spine.Event evt)
         {
             if(Owner.GamePlayerBehavior.GamePlayerBehaviorData.LaunchSheepAnimationEvent == evt.Data.Name) {
-                //DoLaunchSheep();
-                Debug.LogWarning("TODO: launch sheep on event");
+                DoLaunchSheep();
             } else {
                 Debug.LogWarning($"Unhandled launch event: {evt.Data.Name}");
             }
