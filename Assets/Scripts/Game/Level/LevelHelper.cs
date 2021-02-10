@@ -29,6 +29,9 @@ namespace pdxpartyparrot.Game.Level
         private EffectTrigger _levelEnterEffect;
 
         [SerializeField]
+        private bool _levelEnterIsBlocking = true;
+
+        [SerializeField]
         private EffectTrigger _levelExitEffect;
 
 #if USE_NAVMESH
@@ -129,7 +132,12 @@ namespace pdxpartyparrot.Game.Level
             // TODO: we really should communicate our ready state to the server
             // and then have it communicate back to us when everybody is ready
             if(null != _levelEnterEffect) {
-                _levelEnterEffect.Trigger(GameStateManager.Instance.GameManager.GameReady);
+                if(_levelEnterIsBlocking) {
+                    _levelEnterEffect.Trigger(GameStateManager.Instance.GameManager.GameReady);
+                } else {
+                    _levelEnterEffect.Trigger();
+                    GameStateManager.Instance.GameManager.GameReady();
+                }
             } else {
                 GameStateManager.Instance.GameManager.GameReady();
             }
