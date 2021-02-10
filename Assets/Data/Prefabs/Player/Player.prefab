@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skeletonAnimation: {fileID: 5242624070755656317}
-  _defaultSkinName: default
+  _defaultSkinName: Normal
   _skinNames:
   - Normal
   - Blue
