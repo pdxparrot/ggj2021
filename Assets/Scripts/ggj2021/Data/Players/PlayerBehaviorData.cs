@@ -17,5 +17,10 @@ namespace pdxpartyparrot.ggj2021.Data.Players
         private float _teleportCooldown = 2.0f;
 
         public float TeleportCooldown => _teleportCooldown;
+
+        [SerializeField]
+        private Vector3 _launchDirection = new Vector3(0.0f, 1.0f, 0.0f);
+
+        public Vector3 LaunchDirection => _launchDirection;
     }
 }
