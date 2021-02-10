@@ -34,14 +34,15 @@ namespace pdxpartyparrot.ggj2021.World
             return true;
         }
 
-        protected override void OnTeleport(GameObject gameObject)
+        protected override void OnTeleport(GameObject gameObject, Game.World.Teleporter source)
         {
             Player player = gameObject.GetComponentInParent<Player>();
             if(null == player) {
                 return;
             }
 
-            player.GamePlayerBehavior.ShepherdBehavior.OnTeleport(ExitPoint, _sheepFollow);
+            Teleporter gameSource = (Teleporter)source;
+            player.GamePlayerBehavior.ShepherdBehavior.OnTeleport(ExitPoint, gameSource._sheepFollow);
         }
     }
 }
