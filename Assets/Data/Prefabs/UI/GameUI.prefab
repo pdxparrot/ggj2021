@@ -347,6 +347,10 @@ PrefabInstance:
       value: 23.3
       objectReference: {fileID: 0}
     - target: {fileID: 5521311729257835029, guid: d8412a7c59ee5ff4d94fd762f040d46c, type: 3}
+      propertyPath: m_text
+      value: "Find all the lost cloud sheep\nlaunch them into the pen \nbefore Nightfall\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521311729257835029, guid: d8412a7c59ee5ff4d94fd762f040d46c, type: 3}
       propertyPath: m_fontSize
       value: 20
       objectReference: {fileID: 0}
@@ -420,6 +424,10 @@ PrefabInstance:
     - target: {fileID: 1051817051186315314, guid: ec6c97d542c6a58099ea11afb274fb43, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1051817051186315314, guid: ec6c97d542c6a58099ea11afb274fb43, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3.9488373
       objectReference: {fileID: 0}
     - target: {fileID: 1238638766495935429, guid: ec6c97d542c6a58099ea11afb274fb43, type: 3}
       propertyPath: m_Pivot.x
