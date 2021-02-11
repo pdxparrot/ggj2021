@@ -87,6 +87,13 @@ namespace pdxpartyparrot.Game.Level
             }
         }
 
+        protected virtual void Update()
+        {
+            // TODO: if we're in a blocking enter / exit,
+            // based on a flag (can skip or something),
+            // allow exiting out of the blocking trigger early
+        }
+
         #endregion
 
         protected void TransitionLevel()
