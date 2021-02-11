@@ -72,8 +72,10 @@ namespace pdxpartyparrot.ggj2021.Level
             base.OnDestroy();
         }
 
-        private void Update()
+        protected override void Update()
         {
+            base.Update();
+
             _lastTimePercent = _levelStarted ? 1.0f - (_timer.SecondsRemaining / _roundSeconds) : 0;
             if(GameManager.Instance.IsGameReady && null != GameUIManager.Instance.GameGameUI) {
                 GameUIManager.Instance.GameGameUI.PlayerHUD.UpdateTimer(1.0f - _lastTimePercent);

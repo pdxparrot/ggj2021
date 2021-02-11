@@ -420,7 +420,7 @@ MonoBehaviour:
   _canvas: {fileID: 2224624340576871247}
   _mainPanel: {fileID: 2224624340387184343}
   _creditTitleText: {fileID: 3775700408531303502}
-  _currentPanel: {fileID: 0}
+  _currentPanel: {fileID: 2224624341040848342}
 --- !u!1 &2224624341616439926
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,8 +665,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cabdd2f0138fffd1a19c41e65afb427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delay: 3
-  _scrollRate: 48
+  _delay: 2
+  _scrollRate: 125
   _resetOnEnable: 1
   _step: 0
   _delayRemaining: 0
@@ -966,7 +966,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.14860049, y: 0.86300004}
   m_AnchorMax: {x: 0.85400003, y: 1}
-  m_AnchoredPosition: {x: 0, y: 7.4999847}
+  m_AnchoredPosition: {x: 0, y: 7.5000153}
   m_SizeDelta: {x: 0, y: -25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1320868150569684834
@@ -1208,6 +1208,10 @@ PrefabInstance:
       value: Credits
       objectReference: {fileID: 0}
     - target: {fileID: 3969177678903498226, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
+      propertyPath: m_fontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3969177678903498226, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
       propertyPath: m_fontColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -1412,6 +1416,10 @@ PrefabInstance:
     - target: {fileID: 3969177678903498226, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
       propertyPath: m_text
       value: Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 3969177678903498226, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
+      propertyPath: m_fontSize
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3969177678903498226, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
       propertyPath: m_fontColor.b
@@ -1633,6 +1641,10 @@ PrefabInstance:
     - target: {fileID: 3969177678903498226, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
       propertyPath: m_text
       value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3969177678903498226, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
+      propertyPath: m_fontSize
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3969177678903498226, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
       propertyPath: m_fontColor.b
@@ -1934,7 +1946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8257624549395402265, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.1572876
+      value: 0.15722656
       objectReference: {fileID: 0}
     - target: {fileID: 8257624549395402265, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
       propertyPath: m_AnchoredPosition.y
