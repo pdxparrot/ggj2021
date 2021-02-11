@@ -18,7 +18,7 @@ MonoBehaviour:
   _angularDrag: 0
   _isKinematic: 0
   _animateModel: 0
-  _moveSpeed: 30
+  _moveSpeed: 20
   _runThreshold: 0.75
   _fallSpeedAdjustment: 200
   _terminalVelocity: 50
@@ -29,4 +29,6 @@ MonoBehaviour:
   _actionBufferSize: 1
   _actionBufferTimeoutMs: 500
   _alignMovementWithViewer: 0
+  _launchSheepAnimationEvent: sheep_launch
   _teleportCooldown: 2
+  _launchDirection: {x: 0, y: 1, z: 0}
