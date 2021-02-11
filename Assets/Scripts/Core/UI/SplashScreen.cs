@@ -66,6 +66,7 @@ namespace pdxpartyparrot.Core.UI
 
         private void OnDestroy()
         {
+            _videoPlayer.errorReceived -= ErrorReceivedEventHandler;
             _videoPlayer = null;
         }
 
@@ -78,6 +79,7 @@ namespace pdxpartyparrot.Core.UI
 
         private void PlayNextSplashScreen()
         {
+            _videoPlayer.prepareCompleted -= PrepareCompletedEventHandler;
             _videoPlayer.loopPointReached -= LoopPointReachedEventHandler;
 
             if(_currentSplashScreen >= _splashScreens.Length) {
