@@ -27,6 +27,10 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         [SerializeField]
         [ReadOnly]
+        private SpawnPoint _spawnPoint;
+
+        [SerializeField]
+        [ReadOnly]
         private string _tag;
 
         public string Tag
@@ -98,6 +102,12 @@ namespace pdxpartyparrot.ggj2021.NPCs
             }
         }
 
+        public void ReSpawn()
+        {
+            Debug.Log($"Respawning sheep {Id}");
+            _spawnPoint.ReSpawn(this);
+        }
+
         #region Spawn
 
         public override bool OnSpawn(SpawnPoint spawnpoint)
@@ -107,6 +117,8 @@ namespace pdxpartyparrot.ggj2021.NPCs
             }
 
             NPCManager.Instance.RegisterNPC(this);
+
+            _spawnPoint = spawnpoint;
 
             return true;
         }

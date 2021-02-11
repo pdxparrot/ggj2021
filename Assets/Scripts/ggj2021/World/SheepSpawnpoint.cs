@@ -20,7 +20,9 @@ namespace pdxpartyparrot.ggj2021.World
             base.InitActor(actor);
 
             Sheep sheep = (Sheep)actor;
-            sheep.Tag = _sheepTags.GetRandomEntry();
+            if(string.IsNullOrWhiteSpace(sheep.Tag)) {
+                sheep.Tag = _sheepTags.GetRandomEntry();
+            }
         }
     }
 }
