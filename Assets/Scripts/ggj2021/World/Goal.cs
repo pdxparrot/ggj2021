@@ -168,7 +168,9 @@ namespace pdxpartyparrot.ggj2021.World
         private void OnSheepTrigger(Sheep sheep)
         {
             if(!CanScore(sheep)) {
-                LaunchSheep(sheep);
+                if(sheep.CanScore) {
+                    LaunchSheep(sheep);
+                }
                 return;
             }
 
