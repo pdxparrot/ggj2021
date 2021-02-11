@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &6084614956804241808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3170911880424688320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63957fd870bbe44b6b782bd1a565224e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parameter: BlendPct
+  _renderer: {fileID: 3963638255016487701}
+  _lastPercent: 0
 --- !u!1 &3273433456991531050
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,7 +29,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7812759702898597291
 Transform:
@@ -48,7 +63,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &8477527115398595197
 Transform:
@@ -130,7 +145,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6851489893152502291
 Transform:
@@ -254,15 +269,29 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 71467276c9324bb43a2d6fd6d121b2bc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: acfd4a2291d8dca459fc444ec9dc4dc2, type: 2}
+      objectReference: {fileID: 2100000, guid: 6eac6ce92d60184448a1314f73f68b08, type: 2}
     - target: {fileID: 919132149155446097, guid: 71467276c9324bb43a2d6fd6d121b2bc, type: 3}
       propertyPath: m_Name
       value: cloud_obstacles_S1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 71467276c9324bb43a2d6fd6d121b2bc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71467276c9324bb43a2d6fd6d121b2bc, type: 3}
+--- !u!1 &3170911880424688320 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 71467276c9324bb43a2d6fd6d121b2bc, type: 3}
+  m_PrefabInstance: {fileID: 2359954786558326673}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2831223898211078266 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 71467276c9324bb43a2d6fd6d121b2bc, type: 3}
+  m_PrefabInstance: {fileID: 2359954786558326673}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3963638255016487701 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 71467276c9324bb43a2d6fd6d121b2bc, type: 3}
   m_PrefabInstance: {fileID: 2359954786558326673}
   m_PrefabAsset: {fileID: 0}
