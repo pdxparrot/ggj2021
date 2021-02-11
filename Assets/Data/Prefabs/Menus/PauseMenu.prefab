@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _owner: {fileID: 5620781127899135083}
-  _initialSelection: {fileID: 0}
+  _initialSelection: {fileID: 3951646983055724008}
   _enableEffect: {fileID: 0}
   _disableEffect: {fileID: 0}
   _settingsMenu: {fileID: 0}
@@ -727,6 +727,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Resume
       objectReference: {fileID: 0}
+    - target: {fileID: 3969177678903498226, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
+      propertyPath: m_fontSize
+      value: 44.75
+      objectReference: {fileID: 0}
     - target: {fileID: 3969177679622032839, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
       propertyPath: m_Name
       value: Resume
@@ -822,6 +826,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8257624549395402265, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
   m_PrefabInstance: {fileID: 126747229428619327}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3951646983055724008 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3969177678016959959, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
+  m_PrefabInstance: {fileID: 126747229428619327}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5064195765529046998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -860,6 +875,10 @@ PrefabInstance:
     - target: {fileID: 3969177678903498226, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
       propertyPath: m_text
       value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3969177678903498226, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
+      propertyPath: m_fontSize
+      value: 44.75
       objectReference: {fileID: 0}
     - target: {fileID: 3969177679622032839, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
       propertyPath: m_Name
@@ -994,6 +1013,10 @@ PrefabInstance:
     - target: {fileID: 3969177678903498226, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
       propertyPath: m_text
       value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3969177678903498226, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
+      propertyPath: m_fontSize
+      value: 44.65
       objectReference: {fileID: 0}
     - target: {fileID: 3969177679622032839, guid: 4f2df61132f91e47598bd9fbe1b4b617, type: 3}
       propertyPath: m_Name
