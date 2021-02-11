@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 
+using JetBrains.Annotations;
+
 using pdxpartyparrot.Core.Effects;
 using pdxpartyparrot.Core.World;
 using pdxpartyparrot.Game.State;
@@ -26,13 +28,28 @@ namespace pdxpartyparrot.Game.Level
         [Space(10)]
 
         [SerializeField]
+        [CanBeNull]
         private EffectTrigger _levelEnterEffect;
+
+        [CanBeNull]
+        protected EffectTrigger LevelEnterEfect => _levelEnterEffect;
 
         [SerializeField]
         private bool _levelEnterIsBlocking = true;
 
+        protected bool LevelEnterIsBlocking => _levelEnterIsBlocking;
+
         [SerializeField]
+        [CanBeNull]
         private EffectTrigger _levelExitEffect;
+
+        [CanBeNull]
+        protected EffectTrigger LevelExitEffect => _levelExitEffect;
+
+        [SerializeField]
+        private bool _levelExitIsBlocking = true;
+
+        protected bool LevelExitIsBlocking => _levelExitIsBlocking;
 
 #if USE_NAVMESH
         private NavMeshSurface _navMeshSurface;
@@ -79,7 +96,12 @@ namespace pdxpartyparrot.Game.Level
             // load the next level if we have one
             if(!string.IsNullOrWhiteSpace(_nextLevel)) {
                 if(null != _levelExitEffect) {
-                    _levelExitEffect.Trigger(DoLevelTransition);
+                    if(_levelExitIsBlocking) {
+                        _levelExitEffect.Trigger(DoLevelTransition);
+                    } else {
+                        _levelExitEffect.Trigger();
+                        DoLevelTransition();
+                    }
                 } else {
                     DoLevelTransition();
                 }
