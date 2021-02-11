@@ -41,6 +41,10 @@ namespace pdxpartyparrot.Game.Menu
         {
             base.Awake();
 
+            if(!HasInitialSelection) {
+                Debug.LogWarning("Main menu missing initial selection");
+            }
+
             if(null != _highScoresPanel) {
                 _highScoresPanel.gameObject.SetActive(false);
             }
