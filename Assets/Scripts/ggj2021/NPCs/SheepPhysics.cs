@@ -31,7 +31,9 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         public void OnWorldBoundaryCollisionExit(WorldBoundary boundary)
         {
-            NPCManager.Instance.RespawnNPC(_owner, GameManager.Instance.GameGameData.SheepSpawnTag);
+            if(!_owner.SheepBehavior.IsCarried) {
+                NPCManager.Instance.RespawnNPC(_owner, GameManager.Instance.GameGameData.SheepSpawnTag);
+            }
         }
 
         #endregion
