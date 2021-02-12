@@ -740,6 +740,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3457253327405249304, guid: 0a4cfc5a7872c540cae2c0f7a66c96a4, type: 3}
       propertyPath: _goalFacing.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3457253327405249304, guid: 0a4cfc5a7872c540cae2c0f7a66c96a4, type: 3}
+      propertyPath: _goalFacing.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3457253327405249304, guid: 0a4cfc5a7872c540cae2c0f7a66c96a4, type: 3}
@@ -2338,8 +2342,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3457253327405249304, guid: 0a4cfc5a7872c540cae2c0f7a66c96a4, type: 3}
+      propertyPath: _goalFacing.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3457253327405249304, guid: 0a4cfc5a7872c540cae2c0f7a66c96a4, type: 3}
       propertyPath: _goalFacing.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3457253327405249304, guid: 0a4cfc5a7872c540cae2c0f7a66c96a4, type: 3}
       propertyPath: _nextWaypoint
@@ -3426,11 +3434,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3457253327405249304, guid: 0a4cfc5a7872c540cae2c0f7a66c96a4, type: 3}
       propertyPath: _goalFacing.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3457253327405249304, guid: 0a4cfc5a7872c540cae2c0f7a66c96a4, type: 3}
       propertyPath: _goalFacing.z
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3457253327405249304, guid: 0a4cfc5a7872c540cae2c0f7a66c96a4, type: 3}
       propertyPath: _nextWaypoint
@@ -4196,6 +4204,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3457253327405249304, guid: 0a4cfc5a7872c540cae2c0f7a66c96a4, type: 3}
       propertyPath: _goalFacing.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3457253327405249304, guid: 0a4cfc5a7872c540cae2c0f7a66c96a4, type: 3}
+      propertyPath: _goalFacing.z
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3457253327405249304, guid: 0a4cfc5a7872c540cae2c0f7a66c96a4, type: 3}
