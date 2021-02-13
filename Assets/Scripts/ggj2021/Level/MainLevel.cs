@@ -29,10 +29,6 @@ namespace pdxpartyparrot.ggj2021.Level
 
         [SerializeField]
         [ReadOnly]
-        private bool _started;
-
-        [SerializeField]
-        [ReadOnly]
         private bool _levelStarted;
 
         [SerializeReference]
