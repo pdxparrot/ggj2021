@@ -11,6 +11,7 @@ using UnityEngine;
 
 namespace pdxpartyparrot.ggj2021.World
 {
+    // TODO: use a WaypointFollower instead of having this handle that
     public sealed class Goal : Actor3D
     {
         public override bool IsLocalActor => false;

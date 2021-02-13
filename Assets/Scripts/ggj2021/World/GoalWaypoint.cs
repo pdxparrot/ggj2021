@@ -20,8 +20,7 @@ namespace pdxpartyparrot.ggj2021.World
         {
             base.OnDrawGizmos();
 
-            Transform t = transform;
-            Vector3 pos = t.position;
+            Vector3 pos = transform.position;
 
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(pos, pos + _goalFacing * 2.0f);

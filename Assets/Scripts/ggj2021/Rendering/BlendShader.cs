@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace pdxpartyparrot.ggj2021.World
 {
+    // TODO: would be really cool to figure out a way to make this core
     public sealed class BlendShader : MonoBehaviour
     {
         [SerializeField]
