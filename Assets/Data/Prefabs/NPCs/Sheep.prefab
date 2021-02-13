@@ -354,6 +354,7 @@ MonoBehaviour:
   _stuckCheckCount: 0
   _debugTextTarget: {fileID: 0}
   _debugTextQueue: {fileID: 0}
+  _spawnPoint: {fileID: 0}
   _tag: 
 --- !u!1 &4303609339302781703
 GameObject:
@@ -687,6 +688,7 @@ MonoBehaviour:
   _state: 0
   _target: {fileID: 0}
   _noiseEffect: {fileID: 4248340219072283817}
+  _fallOutEffect: {fileID: 4248340219072283817}
   _noiseTimer:
     id: 0
   references:

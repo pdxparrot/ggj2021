@@ -62,6 +62,9 @@ namespace pdxpartyparrot.ggj2021.NPCs
         [SerializeField]
         private EffectTrigger _noiseEffect;
 
+        [SerializeField]
+        private EffectTrigger _fallOutEffect;
+
         #endregion
 
         [SerializeReference]
@@ -256,6 +259,11 @@ namespace pdxpartyparrot.ggj2021.NPCs
             Sheep.SetPassive();
             Owner.Movement.Teleport(exitPoint);
             Sheep.SetAgent();
+        }
+
+        public void OnFallOut()
+        {
+            _fallOutEffect.Trigger();
         }
 
         #endregion

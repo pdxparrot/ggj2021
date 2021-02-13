@@ -27,6 +27,7 @@ namespace pdxpartyparrot.ggj2021.NPCs
 
         public void OnWorldBoundaryCollisionEnter(WorldBoundary boundary)
         {
+            _owner.SheepBehavior.OnFallOut();
         }
 
         public void OnWorldBoundaryCollisionExit(WorldBoundary boundary)
